@@ -5,7 +5,7 @@ variable "GIT_COMMIT" {
 } 
 
 variable "REGISTRY" {
-  default = "ghcr.io/euro-office"
+  default = "ghcr.io/workplace4cm"
 }
 
 variable "TAG" {
@@ -46,7 +46,7 @@ variable "BRANDING_DIR" {
 }
 
 variable "COMPANY_NAME" {
-  default = "Euro-Office"
+  default = "CenOffice"
 }
 
 variable "COMPANY_NAME_LOW" {

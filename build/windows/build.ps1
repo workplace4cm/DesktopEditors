@@ -82,7 +82,7 @@ param(
     [string]$BuildNumber    = 'dev.1',
     [string]$Arch           = 'x64',
     [string]$Target         = 'standalone',
-    [string]$CompanyName    = 'Euro-Office',
+    [string]$CompanyName    = 'CenOffice',
     [string]$ProductName    = 'DesktopEditors',
     [string]$WinSdkVersion  = '10.0.19041.0',
     [string]$VcToolsVersion = '',   # e.g. 14.44 = VS 2022 toolset; empty = newest installed
