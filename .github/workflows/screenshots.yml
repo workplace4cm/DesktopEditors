@@ -40,9 +40,10 @@ jobs:
           mkdir -p out
           dpkg-deb -I "$DEB" > out/deb-info.txt
           sudo apt-get update -q
-          sudo apt-get install -y -q "./$DEB" xvfb x11-apps imagemagick xdotool openbox libopengl0 libegl1 libgl1 libgbm1 libnss3 libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-xinerama0 libxcb-randr0 libxcb-render-util0 libxcb-image0 libxcb-xkb1 > out/apt.log 2>&1 || (tail -50 out/apt.log; exit 1)
+          sudo apt-get install -y -q "./$DEB" xvfb x11-apps imagemagick xdotool openbox libopengl0 libegl1 libgl1 libgbm1 libnss3 libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-xinerama0 libxcb-randr0 libxcb-render-util0 libxcb-image0 libxcb-xkb1 libxcb-shape0 libxcb-xfixes0 libxcb-sync1 libxcb-shm0 libxcb-util1 libxcb-glx0 libxcb-render0 libxkbcommon-x11-0 libx11-xcb1 libxrender1 libxi6 libsm6 libice6 libfontconfig1 libdbus-1-3 libxcomposite1 libxdamage1 libxrandr2 libxtst6 > out/apt.log 2>&1 || (tail -50 out/apt.log; exit 1)
           dpkg -L $(dpkg-deb -f "$DEB" Package) > out/installed-files.txt
           ls /usr/share/applications/ | grep -i -E "cen|office|euro" > out/desktop-files.txt || true
+          for f in /opt/cenoffice/desktopeditors/platforms/libqxcb.so /opt/cenoffice/desktopeditors/DesktopEditors; do echo "== $f"; ldd "$f" | grep "not found"; done > out/missing-libs.txt 2>&1 || true
           for f in /usr/share/applications/*cenoffice*.desktop; do echo "== $f"; cat "$f"; done > out/desktop-entry.txt 2>&1 || true
 
       - name: Screenshot the app
@@ -55,6 +56,7 @@ jobs:
           sleep 2
           BIN=$(ls /usr/bin/ | grep -i cenoffice | head -1)
           echo "launcher: $BIN" >> out/desktop-files.txt
+          export QT_DEBUG_PLUGINS=1
           "$BIN" > out/app.log 2>&1 &
           sleep 40
           W=$(xdotool search --onlyvisible --name "CenOffice|Desktop Editors" | head -1)
@@ -142,8 +144,10 @@ jobs:
           }
           Start-Sleep 20
           $n++; Shot ("windows-installer-{0:D2}-installing" -f $n)
-          $done = "$env:ProgramFiles\CenOffice\DesktopEditors\unins000.exe"
-          for ($t = 0; $t -lt 90 -and -not (Test-Path $done); $t++) { Start-Sleep 10 }
+          # Inno writes the uninstall registry entry at the very end of installing
+          function Installed { Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*, HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -match 'CenOffice' } }
+          for ($t = 0; $t -lt 90 -and -not (Installed); $t++) { Start-Sleep 10 }
+          "install finished after about $($t * 10 + 20)s" | Add-Content out\report.txt
           Start-Sleep 20
           $null = $ws.AppActivate($p.Id); Start-Sleep 2
           $n++; Shot ("windows-installer-{0:D2}-finished" -f $n)
