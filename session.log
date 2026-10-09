@@ -1,0 +1,36 @@
+/usr/bin/startxfce4: X server already running on display :99
+dbus-update-activation-environment: warning: error sending to systemd: org.freedesktop.DBus.Error.Spawn.ChildExited: Process org.freedesktop.systemd1 exited with status 1
+
+(xfce4-session:4379): dbind-WARNING **: 17:02:18.614: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+/usr/bin/iceauth:  creating new authority file /run/user/1001/ICEauthority
+dbus-update-activation-environment: warning: error sending to systemd: org.freedesktop.DBus.Error.Spawn.ChildExited: Process org.freedesktop.systemd1 exited with status 1
+gpg-agent: a gpg-agent is already running - not starting a new one
+
+(xfwm4:4428): dbind-WARNING **: 17:02:18.685: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+
+(xfwm4:4428): xfwm4-WARNING **: 17:02:19.535: Another compositing manager is running on screen 0
+
+(xfsettingsd:4433): dbind-WARNING **: 17:02:19.562: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+
+(xfce4-panel:4437): dbind-WARNING **: 17:02:19.643: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+
+(migrate:4443): dbind-WARNING **: 17:02:19.662: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+
+(Thunar:4442): dbind-WARNING **: 17:02:19.680: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+
+(xfdesktop:4453): dbind-WARNING **: 17:02:19.732: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+
+** (xfdesktop:4453): WARNING **: 17:02:19.897: Thumbnailer failed calling GetFlavors
+
+(xfsettingsd:4463): dbind-WARNING **: 17:02:19.944: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+xfce4-panel-Message: 17:02:20.057: Plugin "(null)-7" was not found and has been removed from the configuration
+xfce4-panel-Message: 17:02:20.061: Plugin "power-manager-plugin-9" was not found and has been removed from the configuration
+xfce4-panel-Message: 17:02:20.062: Plugin "notification-plugin-10" was not found and has been removed from the configuration
+
+(wrapper-2.0:4472): dbind-WARNING **: 17:02:20.083: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+
+(wrapper-2.0:4471): dbind-WARNING **: 17:02:20.094: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+
+(wrapper-2.0:4479): dbind-WARNING **: 17:02:20.168: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+
+(wrapper-2.0:4472): libnotify-WARNING **: 17:02:20.414: Failed to connect to proxy
