@@ -40,7 +40,7 @@ jobs:
           mkdir -p out
           dpkg-deb -I "$DEB" > out/deb-info.txt
           sudo apt-get update -q
-          sudo apt-get install -y -q "./$DEB" xvfb x11-apps imagemagick xdotool openbox > out/apt.log 2>&1 || (tail -50 out/apt.log; exit 1)
+          sudo apt-get install -y -q "./$DEB" xvfb x11-apps imagemagick xdotool openbox libopengl0 libegl1 libgl1 libgbm1 libnss3 libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-xinerama0 libxcb-randr0 libxcb-render-util0 libxcb-image0 libxcb-xkb1 > out/apt.log 2>&1 || (tail -50 out/apt.log; exit 1)
           dpkg -L $(dpkg-deb -f "$DEB" Package) > out/installed-files.txt
           ls /usr/share/applications/ | grep -i -E "cen|office|euro" > out/desktop-files.txt || true
           for f in /usr/share/applications/*cenoffice*.desktop; do echo "== $f"; cat "$f"; done > out/desktop-entry.txt 2>&1 || true
@@ -57,29 +57,35 @@ jobs:
           echo "launcher: $BIN" >> out/desktop-files.txt
           "$BIN" > out/app.log 2>&1 &
           sleep 40
+          W=$(xdotool search --onlyvisible --name "CenOffice|Desktop Editors" | head -1)
+          [ -n "$W" ] && xdotool windowmove "$W" 0 0 windowsize "$W" 1600 1000 && sleep 3
           import -window root out/linux-1-start-page.png
-          xdotool search --name "CenOffice" getwindowname %@ > out/window-titles.txt 2>&1 || true
-          xdotool search --onlyvisible --name "" getwindowname %@ >> out/window-titles.txt 2>&1 || true
+          xdotool search --onlyvisible --name "" getwindowname %@ > out/window-titles.txt 2>&1 || true
+          # About sits at the bottom of the left panel
+          xdotool mousemove 60 967 click 1 && sleep 5
+          import -window root out/linux-2-about.png
           pkill -f "$BIN" || true
           pkill -f /opt/cenoffice || true
           sleep 3
           "$BIN" --new:word > out/app-word.log 2>&1 &
           sleep 45
-          import -window root out/linux-2-new-document.png
+          W=$(xdotool search --onlyvisible --name "CenOffice|Desktop Editors|docx" | head -1)
+          [ -n "$W" ] && xdotool windowmove "$W" 0 0 windowsize "$W" 1600 1000 && sleep 3
+          import -window root out/linux-3-new-document.png
           xdotool search --onlyvisible --name "" getwindowname %@ >> out/window-titles.txt 2>&1 || true
 
       - name: Scan installed files for old brand names
         run: |
-          DIR=$(dirname "$(grep -m1 -E '/(DesktopEditors|desktopeditors)$' out/installed-files.txt || grep -m1 /opt/ out/installed-files.txt)")
-          echo "install dir guess: $DIR" > out/brand-scan.txt
-          for term in ONLYOFFICE Euro-Office "Euro Office" EuroOffice; do
-            n=$(grep -rIl -i -- "$term" /opt /usr/share/applications /usr/bin 2>/dev/null | grep -i -E "cenoffice" | wc -l)
+          D=/opt/cenoffice
+          echo "install dir: $D" > out/brand-scan.txt
+          for term in ONLYOFFICE "Euro-?Office|Euro Office"; do
+            n=$(grep -rIl -i -E -- "$term" $D /usr/share/applications/cenoffice* /usr/bin/cenoffice* 2>/dev/null | wc -l)
             echo "files mentioning '$term': $n" >> out/brand-scan.txt
           done
-          echo "--- sample files mentioning ONLYOFFICE ---" >> out/brand-scan.txt
-          grep -rIl -i onlyoffice /opt 2>/dev/null | head -40 >> out/brand-scan.txt
-          echo "--- sample files mentioning Euro-Office ---" >> out/brand-scan.txt
-          grep -rIl -i -E "euro-?office|euro office" /opt 2>/dev/null | head -40 >> out/brand-scan.txt
+          echo "--- files mentioning ONLYOFFICE (first 60) ---" >> out/brand-scan.txt
+          grep -rIl -i onlyoffice $D 2>/dev/null | head -60 >> out/brand-scan.txt
+          echo "--- files mentioning Euro-Office (first 60) ---" >> out/brand-scan.txt
+          grep -rIl -i -E "euro-?office|euro office" $D 2>/dev/null | head -60 >> out/brand-scan.txt
 
       - name: Push results
         if: always()
@@ -119,24 +125,31 @@ jobs:
           "installer: $($exe.FullName)" | Add-Content out\report.txt
           $vi = (Get-Item $exe.FullName).VersionInfo
           "installer CompanyName: $($vi.CompanyName)`ninstaller ProductName: $($vi.ProductName)`ninstaller FileDescription: $($vi.FileDescription)`ninstaller LegalCopyright: $($vi.LegalCopyright)" | Add-Content out\report.txt
+          (New-Object -ComObject Shell.Application).MinimizeAll()
+          Start-Sleep 2
           $p = Start-Process $exe.FullName -PassThru
           $ws = New-Object -ComObject WScript.Shell
           Start-Sleep 8
-          for ($i = 1; $i -le 12; $i++) {
-            $null = $ws.AppActivate($p.Id)
-            Start-Sleep 2
-            Shot ("windows-installer-{0:D2}" -f $i)
-            if ($p.HasExited) { break }
-            # Accept the licence if this is the licence page, then go to the next page.
-            [System.Windows.Forms.SendKeys]::SendWait("%a")
-            Start-Sleep 1
-            [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
-            Start-Sleep 10
-            if ($p.HasExited) { break }
+          # language, welcome, licence (accept), tasks, file types, ready to install
+          $pages = @(@("{ENTER}"), @("{ENTER}"), @("%a", "{ENTER}"), @("{ENTER}"), @("{ENTER}"), @("{ENTER}"))
+          $n = 0
+          foreach ($keys in $pages) {
+            $n++
+            $null = $ws.AppActivate($p.Id); Start-Sleep 2
+            Shot ("windows-installer-{0:D2}" -f $n)
+            foreach ($k in $keys) { [System.Windows.Forms.SendKeys]::SendWait($k); Start-Sleep 1 }
+            Start-Sleep 4
           }
+          Start-Sleep 20
+          $n++; Shot ("windows-installer-{0:D2}-installing" -f $n)
+          $done = "$env:ProgramFiles\CenOffice\DesktopEditors\unins000.exe"
+          for ($t = 0; $t -lt 90 -and -not (Test-Path $done); $t++) { Start-Sleep 10 }
+          Start-Sleep 20
+          $null = $ws.AppActivate($p.Id); Start-Sleep 2
+          $n++; Shot ("windows-installer-{0:D2}-finished" -f $n)
+          [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
+          Start-Sleep 15
           "installer exited: $($p.HasExited) code: $(if ($p.HasExited) { $p.ExitCode })" | Add-Content out\report.txt
-          Start-Sleep 30
-          Shot "windows-after-install"
 
       - name: Check what Windows shows for the installed app
         shell: pwsh
@@ -155,8 +168,8 @@ jobs:
           Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*, HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* -ErrorAction SilentlyContinue |
             Where-Object { $_.DisplayName -match 'office|cen|euro' } |
             ForEach-Object { "DisplayName: $($_.DisplayName) | Publisher: $($_.Publisher) | InstallLocation: $($_.InstallLocation)" } | Add-Content $r
-          "--- Start menu shortcuts ---" | Add-Content $r
-          Get-ChildItem -Recurse "$env:ProgramData\Microsoft\Windows\Start Menu\Programs" -Filter *.lnk | Where-Object { $_.FullName -match 'office|cen|euro' } | ForEach-Object { $_.FullName } | Add-Content $r
+          "--- Start menu and desktop shortcuts ---" | Add-Content $r
+          Get-ChildItem -Recurse "$env:ProgramData\Microsoft\Windows\Start Menu\Programs", "$env:APPDATA\Microsoft\Windows\Start Menu\Programs", "$env:PUBLIC\Desktop", "$env:USERPROFILE\Desktop" -Filter *.lnk -ErrorAction SilentlyContinue | Where-Object { $_.FullName -match 'office|cen|euro' } | ForEach-Object { $_.FullName } | Add-Content $r
           $dir = (Get-ChildItem "$env:ProgramFiles" -Directory | Where-Object { $_.Name -match 'CenOffice|Euro|ONLYOFFICE' })
           "--- Program Files folders ---" | Add-Content $r
           $dir | ForEach-Object { $_.FullName } | Add-Content $r
@@ -166,15 +179,21 @@ jobs:
             "app exe: $($app.FullName)`napp CompanyName: $($vi.CompanyName)`napp ProductName: $($vi.ProductName)`napp FileDescription: $($vi.FileDescription)`napp LegalCopyright: $($vi.LegalCopyright)" | Add-Content $r
             Get-Process | Where-Object { $_.Path -like "$($dir.FullName)*" } | Stop-Process -Force -ErrorAction SilentlyContinue
             Start-Sleep 3
+            (New-Object -ComObject Shell.Application).MinimizeAll()
+            Start-Sleep 2
             Start-Process $app.FullName
             Start-Sleep 45
-            Shot "windows-app-start-page"
+            Shot "windows-app-1-start-page"
+            Add-Type -Namespace W -Name M -MemberDefinition '[DllImport("user32.dll")] public static extern bool SetCursorPos(int x, int y); [DllImport("user32.dll")] public static extern void mouse_event(int f, int x, int y, int d, int e);'
+            [W.M]::SetCursorPos(60, 695); [W.M]::mouse_event(2, 0, 0, 0, 0); [W.M]::mouse_event(4, 0, 0, 0, 0)
+            Start-Sleep 5
+            Shot "windows-app-2-about"
             Get-Process | Where-Object { $_.MainWindowTitle } | ForEach-Object { "window: $($_.ProcessName) | $($_.MainWindowTitle)" } | Add-Content $r
             Get-Process | Where-Object { $_.Path -like "$($dir.FullName)*" } | Stop-Process -Force -ErrorAction SilentlyContinue
             Start-Sleep 3
             Start-Process $app.FullName -ArgumentList "--new:word"
             Start-Sleep 45
-            Shot "windows-app-new-document"
+            Shot "windows-app-3-new-document"
             Get-Process | Where-Object { $_.MainWindowTitle } | ForEach-Object { "window: $($_.ProcessName) | $($_.MainWindowTitle)" } | Add-Content $r
           } else { "DesktopEditors.exe not found" | Add-Content $r }
           "--- files mentioning ONLYOFFICE / Euro-Office (names only, first 40 each) ---" | Add-Content $r
