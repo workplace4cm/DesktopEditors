@@ -1,0 +1,372 @@
+qt.core.library: "pipewire-0.3" cannot load: Cannot load library pipewire-0.3: pipewire-0.3: cannot open shared object file: No such file or directory
+qt.multimedia.symbolsresolver: Couldn't load pipewire-0.3 library
+qt.multimedia.symbolsresolver: Couldn't resolve pipewire-0.3 symbols
+qt.core.plugin.factoryloader: checking directory path "/opt/cenoffice/desktopeditors/platforms" ...
+qt.core.plugin.factoryloader: looking at "libqlinuxfb.so"
+qt.core.plugin.loader: Found metadata in lib /opt/cenoffice/desktopeditors/platforms/libqlinuxfb.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "linuxfb"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QLinuxFbIntegrationPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("linuxfb")
+qt.core.plugin.factoryloader: looking at "libqvkkhrdisplay.so"
+qt.core.plugin.loader: Found metadata in lib /opt/cenoffice/desktopeditors/platforms/libqvkkhrdisplay.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "vkkhrdisplay"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QVkKhrDisplayIntegrationPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("vkkhrdisplay")
+qt.core.plugin.factoryloader: looking at "libqwayland.so"
+qt.core.plugin.loader: Found metadata in lib /opt/cenoffice/desktopeditors/platforms/libqwayland.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "wayland",
+            "wayland-egl",
+            "wayland-brcm"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QWaylandIntegrationPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("wayland", "wayland-egl", "wayland-brcm")
+qt.core.plugin.factoryloader: looking at "libqeglfs.so"
+qt.core.plugin.loader: Found metadata in lib /opt/cenoffice/desktopeditors/platforms/libqeglfs.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "eglfs"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QEglFSIntegrationPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("eglfs")
+qt.core.plugin.factoryloader: looking at "libqvnc.so"
+qt.core.plugin.loader: Found metadata in lib /opt/cenoffice/desktopeditors/platforms/libqvnc.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "vnc"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QVncIntegrationPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("vnc")
+qt.core.plugin.factoryloader: looking at "libqxcb.so"
+qt.core.plugin.loader: Found metadata in lib /opt/cenoffice/desktopeditors/platforms/libqxcb.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "xcb"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QXcbIntegrationPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("xcb")
+qt.core.plugin.factoryloader: looking at "libqminimal.so"
+qt.core.plugin.loader: Found metadata in lib /opt/cenoffice/desktopeditors/platforms/libqminimal.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "minimal"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QMinimalIntegrationPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("minimal")
+qt.core.plugin.factoryloader: looking at "libqoffscreen.so"
+qt.core.plugin.loader: Found metadata in lib /opt/cenoffice/desktopeditors/platforms/libqoffscreen.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "offscreen"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QOffscreenIntegrationPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("offscreen")
+qt.core.plugin.factoryloader: looking at "libqminimalegl.so"
+qt.core.plugin.loader: Found metadata in lib /opt/cenoffice/desktopeditors/platforms/libqminimalegl.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "minimalegl"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QMinimalEglIntegrationPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("minimalegl")
+qt.core.library: "/opt/cenoffice/desktopeditors/platforms/libqxcb.so" loaded library
+qt.core.plugin.factoryloader: checking directory path "/opt/cenoffice/desktopeditors/platformthemes" ...
+qt.core.plugin.factoryloader: looking at "libqgtk3.so"
+qt.core.plugin.loader: Found metadata in lib /opt/cenoffice/desktopeditors/platformthemes/libqgtk3.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformThemeFactoryInterface.5.1",
+    "MetaData": {
+        "Keys": [
+            "gtk3"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QGtk3ThemePlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("gtk3")
+qt.core.plugin.factoryloader: looking at "libqxdgdesktopportal.so"
+qt.core.plugin.loader: Found metadata in lib /opt/cenoffice/desktopeditors/platformthemes/libqxdgdesktopportal.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformThemeFactoryInterface.5.1",
+    "MetaData": {
+        "Keys": [
+            "xdgdesktopportal",
+            "flatpak",
+            "snap"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QXdgDesktopPortalThemePlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("xdgdesktopportal", "flatpak", "snap")
+qt.core.plugin.factoryloader: checking directory path "/opt/cenoffice/desktopeditors/platforminputcontexts" ...
+qt.core.plugin.factoryloader: looking at "libcomposeplatforminputcontextplugin.so"
+qt.core.plugin.loader: Found metadata in lib /opt/cenoffice/desktopeditors/platforminputcontexts/libcomposeplatforminputcontextplugin.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPlatformInputContextFactoryInterface.5.1",
+    "MetaData": {
+        "Keys": [
+            "compose",
+            "xim"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QComposePlatformInputContextPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("compose", "xim")
+qt.core.plugin.factoryloader: looking at "libibusplatforminputcontextplugin.so"
+qt.core.plugin.loader: Found metadata in lib /opt/cenoffice/desktopeditors/platforminputcontexts/libibusplatforminputcontextplugin.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QPlatformInputContextFactoryInterface.5.1",
+    "MetaData": {
+        "Keys": [
+            "ibus"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QIbusPlatformInputContextPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("ibus")
+qt.core.library: "/opt/cenoffice/desktopeditors/platforminputcontexts/libcomposeplatforminputcontextplugin.so" loaded library
+qt.core.plugin.factoryloader: checking directory path "/opt/cenoffice/desktopeditors/styles" ...
+
+(DesktopEditors:4536): dbind-WARNING **: 16:36:57.431: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+
+(DesktopEditors:4536): Gtk-WARNING **: 16:36:57.786: gtk_disable_setlocale() must be called before gtk_init()
+qt.core.plugin.factoryloader: checking directory path "/opt/cenoffice/desktopeditors/printsupport" ...
+qt.core.plugin.factoryloader: looking at "libcupsprintersupport.so"
+qt.core.plugin.loader: Found metadata in lib /opt/cenoffice/desktopeditors/printsupport/libcupsprintersupport.so, metadata=
+{
+    "IID": "org.qt-project.QPlatformPrinterSupportFactoryInterface.5.1",
+    "MetaData": {
+        "Keys": [
+            "cupsprintersupport"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QCupsPrinterSupportPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("cupsprintersupport")
+qt.core.library: "/opt/cenoffice/desktopeditors/printsupport/libcupsprintersupport.so" loaded library
+libva error: vaGetDriverNames() failed with unknown libva error
+qt.core.plugin.factoryloader: checking directory path "/opt/cenoffice/desktopeditors/iconengines" ...
+qt.core.plugin.factoryloader: looking at "libqsvgicon.so"
+qt.core.plugin.loader: Found metadata in lib /opt/cenoffice/desktopeditors/iconengines/libqsvgicon.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QIconEngineFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "svg",
+            "svgz",
+            "svg.gz"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QSvgIconPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("svg", "svgz", "svg.gz")
+qt.core.plugin.factoryloader: checking directory path "/opt/cenoffice/desktopeditors/imageformats" ...
+qt.core.plugin.factoryloader: looking at "libqgif.so"
+qt.core.plugin.loader: Found metadata in lib /opt/cenoffice/desktopeditors/imageformats/libqgif.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QImageIOHandlerFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "gif"
+        ],
+        "MimeTypes": [
+            "image/gif"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QGifPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("gif")
+qt.core.plugin.factoryloader: looking at "libqjpeg.so"
+qt.core.plugin.loader: Found metadata in lib /opt/cenoffice/desktopeditors/imageformats/libqjpeg.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QImageIOHandlerFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "jpg",
+            "jpeg",
+            "jfif"
+        ],
+        "MimeTypes": [
+            "image/jpeg",
+            "image/jpeg",
+            "image/jpeg"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QJpegPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("jpg", "jpeg", "jfif")
+qt.core.plugin.factoryloader: looking at "libqico.so"
+qt.core.plugin.loader: Found metadata in lib /opt/cenoffice/desktopeditors/imageformats/libqico.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QImageIOHandlerFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "ico",
+            "cur"
+        ],
+        "MimeTypes": [
+            "image/vnd.microsoft.icon",
+            "image/vnd.microsoft.icon"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QICOPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("ico", "cur")
+qt.core.plugin.factoryloader: looking at "libqsvg.so"
+qt.core.plugin.loader: Found metadata in lib /opt/cenoffice/desktopeditors/imageformats/libqsvg.so, metadata=
+{
+    "IID": "org.qt-project.Qt.QImageIOHandlerFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "svg",
+            "svgz"
+        ],
+        "MimeTypes": [
+            "image/svg+xml",
+            "image/svg+xml-compressed"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QSvgPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("svg", "svgz")
+qt.core.library: "/opt/cenoffice/desktopeditors/imageformats/libqico.so" loaded library
+qt.core.library: "/opt/cenoffice/desktopeditors/iconengines/libqsvgicon.so" loaded library
+qt.core.library: "/opt/cenoffice/desktopeditors/imageformats/libqsvg.so" loaded library
+qt.core.plugin.factoryloader: checking directory path "/opt/cenoffice/desktopeditors/accessible" ...

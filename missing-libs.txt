@@ -1,0 +1,26 @@
++ for f in /opt/cenoffice/desktopeditors/platforms/libqxcb.so /opt/cenoffice/desktopeditors/DesktopEditors
++ echo '== /opt/cenoffice/desktopeditors/platforms/libqxcb.so'
+== /opt/cenoffice/desktopeditors/platforms/libqxcb.so
++ ldd /opt/cenoffice/desktopeditors/platforms/libqxcb.so
++ grep 'not found'
+	libQt6XcbQpa.so.6 => not found
+	libQt6Gui.so.6 => not found
+	libQt6Core.so.6 => not found
++ for f in /opt/cenoffice/desktopeditors/platforms/libqxcb.so /opt/cenoffice/desktopeditors/DesktopEditors
++ echo '== /opt/cenoffice/desktopeditors/DesktopEditors'
+== /opt/cenoffice/desktopeditors/DesktopEditors
++ ldd /opt/cenoffice/desktopeditors/DesktopEditors
++ grep 'not found'
+	libooxmlsignature.so.1 => not found
+	libkernel_network.so => not found
+	libkernel.so => not found
+	libgraphics.so => not found
+	libkernel.so => not found
+	libooxmlsignature.so.1 => not found
+	libdoctrenderer.so => not found
+	libXpsFile.so => not found
+	libDjVuFile.so => not found
+	libPdfFile.so => not found
+	libkernel_network.so => not found
+	libgraphics.so => not found
+	libkernel.so => not found

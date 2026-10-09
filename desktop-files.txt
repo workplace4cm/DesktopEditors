@@ -1,0 +1,2 @@
+cenoffice-desktopeditors.desktop
+launcher: cenoffice-desktopeditors
