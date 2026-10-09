@@ -23,6 +23,7 @@ permissions:
 
 jobs:
   linux:
+    if: github.event_name == 'workflow_dispatch'
     strategy:
       fail-fast: false
       matrix:
@@ -97,6 +98,86 @@ jobs:
           git config user.email "github-actions@users.noreply.github.com"
           git add -A && git commit -q -m "${{ matrix.os }} install screenshots for run ${BUILD_RUN_ID}"
           git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" HEAD:screenshots-results-${{ matrix.os }}
+
+  ubuntu-desktop:
+    strategy:
+      fail-fast: false
+      matrix:
+        desktop: [gnome, xfce]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: linux-packages-cenoffice-amd64
+          path: pkg
+          run-id: ${{ env.BUILD_RUN_ID }}
+          github-token: ${{ github.token }}
+
+      - name: Install a desktop and CenOffice
+        run: |
+          mkdir -p out
+          DEB=$(ls pkg/*.deb | grep -v -- -help | head -1)
+          sudo apt-get update -q
+          if [ "${{ matrix.desktop }}" = gnome ]; then
+            DESK="ubuntu-desktop-minimal gnome-shell-extension-ubuntu-dock yaru-theme-gtk yaru-theme-icon dbus-x11"
+          else
+            DESK="xfce4 xfce4-appfinder dbus-x11 elementary-xfce-icon-theme"
+          fi
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends $DESK xvfb imagemagick xdotool wmctrl \
+            libopengl0 libegl1 libgl1 libgl1-mesa-dri libglx-mesa0 libgbm1 libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-image0 libxcb-render-util0 libxcb-shape0 libxkbcommon-x11-0 \
+            > out/apt.log 2>&1 || (tail -40 out/apt.log; exit 1)
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q "./$DEB" >> out/apt.log 2>&1
+          # pin CenOffice to the Ubuntu dock
+          mkdir -p ~/Desktop
+
+      - name: Start the desktop and take screenshots
+        run: |
+          set -x
+          export DISPLAY=:99 LIBGL_ALWAYS_SOFTWARE=1 XDG_SESSION_TYPE=x11
+          Xvfb :99 -screen 0 1600x1000x24 &
+          sleep 3
+          if [ "${{ matrix.desktop }}" = gnome ]; then
+            export XDG_CURRENT_DESKTOP=ubuntu:GNOME GNOME_SHELL_SESSION_MODE=ubuntu XDG_SESSION_DESKTOP=ubuntu
+            dbus-launch --exit-with-session gnome-session --session=ubuntu > out/session.log 2>&1 &
+            sleep 45
+            dbus-send --session --print-reply --dest=org.gnome.Shell /org/gnome/Shell org.gnome.Shell.Eval string:'Main.overview.hide()' >/dev/null 2>&1 || true
+            gsettings set org.gnome.shell favorite-apps "['cenoffice-desktopeditors.desktop', 'org.gnome.Nautilus.desktop']" || true
+          else
+            dbus-launch --exit-with-session startxfce4 > out/session.log 2>&1 &
+            sleep 30
+          fi
+          import -window root out/1-desktop.png
+          # application menu / search showing CenOffice
+          if [ "${{ matrix.desktop }}" = gnome ]; then
+            xdotool key super; sleep 3; xdotool type --delay 150 cenoffice; sleep 5
+          else
+            xfce4-appfinder --collapsed > /dev/null 2>&1 & sleep 5; xdotool type --delay 150 cenoffice; sleep 4
+          fi
+          import -window root out/2-app-menu.png
+          xdotool key Escape; sleep 1; xdotool key Escape; sleep 2
+          pkill xfce4-appfinder || true
+          /usr/bin/cenoffice-desktopeditors > out/app.log 2>&1 &
+          sleep 45
+          import -window root out/3-app-running.png
+          pkill -f /opt/cenoffice || true
+          sleep 3
+          /usr/bin/cenoffice-desktopeditors --new:word > out/app-word.log 2>&1 &
+          sleep 50
+          W=$(xdotool search --onlyvisible --name "docx" | tail -1)
+          [ -n "$W" ] && wmctrl -i -r "$W" -b add,maximized_vert,maximized_horz
+          sleep 8
+          import -window root out/4-new-document.png
+          xdotool search --onlyvisible --name "" getwindowname %@ > out/window-titles.txt 2>&1 || true
+
+      - name: Push results
+        if: always()
+        run: |
+          cd out
+          git init -q -b r
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add -A && git commit -q -m "${{ matrix.desktop }} desktop screenshots"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" HEAD:screenshots-results-desktop-${{ matrix.desktop }}
 
   windows:
     if: github.event_name == 'workflow_dispatch'
