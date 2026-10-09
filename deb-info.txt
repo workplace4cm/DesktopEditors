@@ -1,0 +1,23 @@
+ new Debian package, version 2.0.
+ size 331267492 bytes: control archive=78292 bytes.
+     932 bytes,    16 lines      control
+  437412 bytes,  3548 lines      md5sums
+     450 bytes,    27 lines   *  postrm               #!/bin/sh
+    4599 bytes,    99 lines      shlibs
+      75 bytes,     2 lines      triggers
+ Package: cenoffice-desktopeditors
+ Version: 9.3.1-dev.1
+ Architecture: amd64
+ Maintainer: CenOffice <support@cenoffice.invalid>
+ Installed-Size: 1456118
+ Pre-Depends: dpkg (>= 1.14.0)
+ Depends: x11-common, libasound2, curl | wget, desktop-file-utils, gstreamer1.0-libav, gstreamer1.0-plugins-ugly, libxss1, libatk1.0-0, libgtk-3-0, libcairo2, libstdc++6 (>= 4.8), libxkbcommon-x11-0, libnotify4, fonts-dejavu | ttf-dejavu, fonts-liberation, fonts-crosextra-carlito, xdg-utils
+ Recommends: ttf-mscorefonts-installer, fonts-takao-gothic
+ Suggests: cenoffice-desktopeditors-help
+ Conflicts: cenoffice-desktopeditors-enterprise
+ Provides: cenoffice-desktopeditors
+ Section: editors
+ Priority: optional
+ Description: Desktop editors for text docs, spreadsheets, presentations, PDFs, and PDF forms.
+  Open-source office suite pack that comprises all the tools you need to
+  work offline with documents, spreadsheets, presentations, PDFs, and PDF forms.

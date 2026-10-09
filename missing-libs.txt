@@ -1,0 +1,30 @@
+== DesktopEditors
+	libooxmlsignature.so.1 => not found
+	libkernel_network.so => not found
+	libkernel.so => not found
+	libgraphics.so => not found
+	libkernel.so => not found
+	libOpenGL.so.0 => not found
+	libooxmlsignature.so.1 => not found
+	libdoctrenderer.so => not found
+	libXpsFile.so => not found
+	libDjVuFile.so => not found
+	libPdfFile.so => not found
+	libkernel_network.so => not found
+	libgraphics.so => not found
+	libkernel.so => not found
+	libEGL.so.1 => not found
+== platforms/libqxcb.so
+	libxcb-cursor.so.0 => not found
+	libxcb-icccm.so.4 => not found
+	libxcb-image.so.0 => not found
+	libxcb-keysyms.so.1 => not found
+	libxcb-render-util.so.0 => not found
+	libxcb-shape.so.0 => not found
+	libxcb-cursor.so.0 => not found
+	libxcb-icccm.so.4 => not found
+	libxcb-image.so.0 => not found
+	libxcb-keysyms.so.1 => not found
+	libxcb-render-util.so.0 => not found
+	libxcb-shape.so.0 => not found
+	libEGL.so.1 => not found
