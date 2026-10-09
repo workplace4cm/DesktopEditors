@@ -1,0 +1,195 @@
+name: Install screenshots
+
+# Installs the packages built by a "Build CenOffice" run on clean runners,
+# screenshots the installer and the app, and checks what users see for
+# ONLYOFFICE / Euro-Office branding. Results are pushed to the
+# screenshots-results-linux and screenshots-results-windows branches.
+
+on:
+  push:
+    branches: [screenshots]
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: Build run whose packages to install
+        required: true
+
+env:
+  BUILD_RUN_ID: ${{ inputs.run_id || '37890034927' }}
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  linux:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: linux-packages-cenoffice-amd64
+          path: pkg
+          run-id: ${{ env.BUILD_RUN_ID }}
+          github-token: ${{ github.token }}
+
+      - name: Install the .deb
+        run: |
+          set -x
+          ls -la pkg
+          DEB=$(ls pkg/*.deb | grep -v -- -help | head -1)
+          mkdir -p out
+          dpkg-deb -I "$DEB" > out/deb-info.txt
+          sudo apt-get update -q
+          sudo apt-get install -y -q "./$DEB" xvfb x11-apps imagemagick xdotool openbox > out/apt.log 2>&1 || (tail -50 out/apt.log; exit 1)
+          dpkg -L $(dpkg-deb -f "$DEB" Package) > out/installed-files.txt
+          ls /usr/share/applications/ | grep -i -E "cen|office|euro" > out/desktop-files.txt || true
+          for f in /usr/share/applications/*cenoffice*.desktop; do echo "== $f"; cat "$f"; done > out/desktop-entry.txt 2>&1 || true
+
+      - name: Screenshot the app
+        run: |
+          set -x
+          export DISPLAY=:99
+          Xvfb :99 -screen 0 1600x1000x24 &
+          sleep 3
+          openbox &
+          sleep 2
+          BIN=$(ls /usr/bin/ | grep -i cenoffice | head -1)
+          echo "launcher: $BIN" >> out/desktop-files.txt
+          "$BIN" > out/app.log 2>&1 &
+          sleep 40
+          import -window root out/linux-1-start-page.png
+          xdotool search --name "CenOffice" getwindowname %@ > out/window-titles.txt 2>&1 || true
+          xdotool search --onlyvisible --name "" getwindowname %@ >> out/window-titles.txt 2>&1 || true
+          pkill -f "$BIN" || true
+          pkill -f /opt/cenoffice || true
+          sleep 3
+          "$BIN" --new:word > out/app-word.log 2>&1 &
+          sleep 45
+          import -window root out/linux-2-new-document.png
+          xdotool search --onlyvisible --name "" getwindowname %@ >> out/window-titles.txt 2>&1 || true
+
+      - name: Scan installed files for old brand names
+        run: |
+          DIR=$(dirname "$(grep -m1 -E '/(DesktopEditors|desktopeditors)$' out/installed-files.txt || grep -m1 /opt/ out/installed-files.txt)")
+          echo "install dir guess: $DIR" > out/brand-scan.txt
+          for term in ONLYOFFICE Euro-Office "Euro Office" EuroOffice; do
+            n=$(grep -rIl -i -- "$term" /opt /usr/share/applications /usr/bin 2>/dev/null | grep -i -E "cenoffice" | wc -l)
+            echo "files mentioning '$term': $n" >> out/brand-scan.txt
+          done
+          echo "--- sample files mentioning ONLYOFFICE ---" >> out/brand-scan.txt
+          grep -rIl -i onlyoffice /opt 2>/dev/null | head -40 >> out/brand-scan.txt
+          echo "--- sample files mentioning Euro-Office ---" >> out/brand-scan.txt
+          grep -rIl -i -E "euro-?office|euro office" /opt 2>/dev/null | head -40 >> out/brand-scan.txt
+
+      - name: Push results
+        if: always()
+        run: |
+          cd out
+          git init -q -b screenshots-results-linux
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add -A && git commit -q -m "Linux install screenshots for run ${BUILD_RUN_ID}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" HEAD:screenshots-results-linux
+
+  windows:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: windows-packages-cenoffice-amd64
+          path: pkg
+          run-id: ${{ env.BUILD_RUN_ID }}
+          github-token: ${{ github.token }}
+
+      - name: Run the installer and screenshot each page
+        shell: pwsh
+        run: |
+          Add-Type -AssemblyName System.Windows.Forms, System.Drawing
+          New-Item -ItemType Directory -Force out | Out-Null
+          function Shot($name) {
+            $b = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
+            $bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
+            $g = [System.Drawing.Graphics]::FromImage($bmp)
+            $g.CopyFromScreen($b.Location, [System.Drawing.Point]::Empty, $b.Size)
+            $bmp.Save("out\$name.png", [System.Drawing.Imaging.ImageFormat]::Png)
+            $g.Dispose(); $bmp.Dispose()
+          }
+          Get-ChildItem -Recurse pkg | Select-Object FullName, Length | Format-Table -AutoSize | Out-String -Width 300 | Set-Content out\artifact-files.txt
+          $exe = Get-ChildItem -Recurse pkg -Filter *.exe | Select-Object -First 1
+          "installer: $($exe.FullName)" | Add-Content out\report.txt
+          $vi = (Get-Item $exe.FullName).VersionInfo
+          "installer CompanyName: $($vi.CompanyName)`ninstaller ProductName: $($vi.ProductName)`ninstaller FileDescription: $($vi.FileDescription)`ninstaller LegalCopyright: $($vi.LegalCopyright)" | Add-Content out\report.txt
+          $p = Start-Process $exe.FullName -PassThru
+          $ws = New-Object -ComObject WScript.Shell
+          Start-Sleep 8
+          for ($i = 1; $i -le 12; $i++) {
+            $null = $ws.AppActivate($p.Id)
+            Start-Sleep 2
+            Shot ("windows-installer-{0:D2}" -f $i)
+            if ($p.HasExited) { break }
+            # Accept the licence if this is the licence page, then go to the next page.
+            [System.Windows.Forms.SendKeys]::SendWait("%a")
+            Start-Sleep 1
+            [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
+            Start-Sleep 10
+            if ($p.HasExited) { break }
+          }
+          "installer exited: $($p.HasExited) code: $(if ($p.HasExited) { $p.ExitCode })" | Add-Content out\report.txt
+          Start-Sleep 30
+          Shot "windows-after-install"
+
+      - name: Check what Windows shows for the installed app
+        shell: pwsh
+        run: |
+          Add-Type -AssemblyName System.Windows.Forms, System.Drawing
+          function Shot($name) {
+            $b = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
+            $bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
+            $g = [System.Drawing.Graphics]::FromImage($bmp)
+            $g.CopyFromScreen($b.Location, [System.Drawing.Point]::Empty, $b.Size)
+            $bmp.Save("out\$name.png", [System.Drawing.Imaging.ImageFormat]::Png)
+            $g.Dispose(); $bmp.Dispose()
+          }
+          $r = "out\report.txt"
+          "--- Uninstall entries (Apps & features) ---" | Add-Content $r
+          Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*, HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* -ErrorAction SilentlyContinue |
+            Where-Object { $_.DisplayName -match 'office|cen|euro' } |
+            ForEach-Object { "DisplayName: $($_.DisplayName) | Publisher: $($_.Publisher) | InstallLocation: $($_.InstallLocation)" } | Add-Content $r
+          "--- Start menu shortcuts ---" | Add-Content $r
+          Get-ChildItem -Recurse "$env:ProgramData\Microsoft\Windows\Start Menu\Programs" -Filter *.lnk | Where-Object { $_.FullName -match 'office|cen|euro' } | ForEach-Object { $_.FullName } | Add-Content $r
+          $dir = (Get-ChildItem "$env:ProgramFiles" -Directory | Where-Object { $_.Name -match 'CenOffice|Euro|ONLYOFFICE' })
+          "--- Program Files folders ---" | Add-Content $r
+          $dir | ForEach-Object { $_.FullName } | Add-Content $r
+          $app = Get-ChildItem -Recurse $dir.FullName -Filter DesktopEditors.exe -ErrorAction SilentlyContinue | Select-Object -First 1
+          if ($app) {
+            $vi = $app.VersionInfo
+            "app exe: $($app.FullName)`napp CompanyName: $($vi.CompanyName)`napp ProductName: $($vi.ProductName)`napp FileDescription: $($vi.FileDescription)`napp LegalCopyright: $($vi.LegalCopyright)" | Add-Content $r
+            Get-Process | Where-Object { $_.Path -like "$($dir.FullName)*" } | Stop-Process -Force -ErrorAction SilentlyContinue
+            Start-Sleep 3
+            Start-Process $app.FullName
+            Start-Sleep 45
+            Shot "windows-app-start-page"
+            Get-Process | Where-Object { $_.MainWindowTitle } | ForEach-Object { "window: $($_.ProcessName) | $($_.MainWindowTitle)" } | Add-Content $r
+            Get-Process | Where-Object { $_.Path -like "$($dir.FullName)*" } | Stop-Process -Force -ErrorAction SilentlyContinue
+            Start-Sleep 3
+            Start-Process $app.FullName -ArgumentList "--new:word"
+            Start-Sleep 45
+            Shot "windows-app-new-document"
+            Get-Process | Where-Object { $_.MainWindowTitle } | ForEach-Object { "window: $($_.ProcessName) | $($_.MainWindowTitle)" } | Add-Content $r
+          } else { "DesktopEditors.exe not found" | Add-Content $r }
+          "--- files mentioning ONLYOFFICE / Euro-Office (names only, first 40 each) ---" | Add-Content $r
+          if ($dir) {
+            Get-ChildItem -Recurse $dir.FullName -Include *.js,*.json,*.html,*.txt,*.xml,*.ini -ErrorAction SilentlyContinue | Select-String -Pattern 'ONLYOFFICE' -List | Select-Object -First 40 | ForEach-Object { "ONLYOFFICE: $($_.Path)" } | Add-Content $r
+            Get-ChildItem -Recurse $dir.FullName -Include *.js,*.json,*.html,*.txt,*.xml,*.ini -ErrorAction SilentlyContinue | Select-String -Pattern 'Euro-?Office|Euro Office' -List | Select-Object -First 40 | ForEach-Object { "EURO: $($_.Path)" } | Add-Content $r
+          }
+
+      - name: Push results
+        if: always()
+        shell: bash
+        run: |
+          cd out
+          git init -q -b screenshots-results-windows
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add -A && git commit -q -m "Windows install screenshots for run ${BUILD_RUN_ID}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" HEAD:screenshots-results-windows
