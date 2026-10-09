@@ -23,7 +23,11 @@ permissions:
 
 jobs:
   linux:
-    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/download-artifact@v4
         with:
@@ -32,74 +36,70 @@ jobs:
           run-id: ${{ env.BUILD_RUN_ID }}
           github-token: ${{ github.token }}
 
-      - name: Install the .deb
+      - name: Install the .deb with only what it asks for
         run: |
           set -x
-          ls -la pkg
-          DEB=$(ls pkg/*.deb | grep -v -- -help | head -1)
           mkdir -p out
+          DEB=$(ls pkg/*.deb | grep -v -- -help | head -1)
           dpkg-deb -I "$DEB" > out/deb-info.txt
+          lsb_release -ds > out/os.txt
           sudo apt-get update -q
-          sudo apt-get install -y -q "./$DEB" xvfb x11-apps imagemagick xdotool openbox libopengl0 libegl1 libgl1 libgbm1 libnss3 libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-xinerama0 libxcb-randr0 libxcb-render-util0 libxcb-image0 libxcb-xkb1 libxcb-shape0 libxcb-xfixes0 libxcb-sync1 libxcb-shm0 libxcb-util1 libxcb-glx0 libxcb-render0 libxkbcommon-x11-0 libx11-xcb1 libxrender1 libxi6 libsm6 libice6 libfontconfig1 libdbus-1-3 libxcomposite1 libxdamage1 libxrandr2 libxtst6 > out/apt.log 2>&1 || (tail -50 out/apt.log; exit 1)
+          sudo apt-get install -y -q "./$DEB" > out/apt-deb.log 2>&1 || (tail -50 out/apt-deb.log; exit 1)
+          sudo apt-get install -y -q xvfb x11-apps imagemagick xdotool openbox wmctrl > out/apt-tools.log 2>&1
           dpkg -L $(dpkg-deb -f "$DEB" Package) > out/installed-files.txt
-          ls /usr/share/applications/ | grep -i -E "cen|office|euro" > out/desktop-files.txt || true
-          for f in /opt/cenoffice/desktopeditors/platforms/libqxcb.so /opt/cenoffice/desktopeditors/DesktopEditors; do echo "== $f"; ldd "$f" | grep "not found"; done > out/missing-libs.txt 2>&1 || true
           for f in /usr/share/applications/*cenoffice*.desktop; do echo "== $f"; cat "$f"; done > out/desktop-entry.txt 2>&1 || true
 
-      - name: Screenshot the app
+      - name: Try to start it as installed
         run: |
-          set -x
           export DISPLAY=:99
           Xvfb :99 -screen 0 1600x1000x24 &
           sleep 3
           openbox &
           sleep 2
-          BIN=$(ls /usr/bin/ | grep -i cenoffice | head -1)
-          echo "launcher: $BIN" >> out/desktop-files.txt
-          export QT_DEBUG_PLUGINS=1
-          "$BIN" > out/app.log 2>&1 &
+          timeout 40 /usr/bin/cenoffice-desktopeditors > out/1-as-installed.log 2>&1 || echo "exit code $?" >> out/1-as-installed.log
+          import -window root out/linux-0-as-installed.png
+          cd /opt/cenoffice/desktopeditors
+          for f in DesktopEditors platforms/libqxcb.so; do echo "== $f"; LD_LIBRARY_PATH=$PWD ldd "$f" | grep "not found"; done > $GITHUB_WORKSPACE/out/missing-libs.txt 2>&1 || true
+          pkill -f /opt/cenoffice || true
+
+      - name: Add the missing libraries and software OpenGL, then screenshot
+        run: |
+          set -x
+          sudo apt-get install -y -q libopengl0 libegl1 libgl1 libgl1-mesa-dri libglx-mesa0 libgbm1 libnss3 libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-xinerama0 libxcb-randr0 libxcb-render-util0 libxcb-image0 libxcb-xkb1 libxcb-shape0 libxcb-xfixes0 libxkbcommon-x11-0 > out/apt-extra.log 2>&1
+          export DISPLAY=:99 LIBGL_ALWAYS_SOFTWARE=1
+          max() { sleep 2; W=$(xdotool search --onlyvisible --name "$1" | tail -1); [ -n "$W" ] && wmctrl -i -r "$W" -b add,maximized_vert,maximized_horz; sleep 3; echo "$W"; }
+          /usr/bin/cenoffice-desktopeditors > out/2-app.log 2>&1 &
           sleep 40
-          W=$(xdotool search --onlyvisible --name "CenOffice|Desktop Editors" | head -1)
-          [ -n "$W" ] && xdotool windowmove "$W" 0 0 windowsize "$W" 1600 1000 && sleep 3
+          W=$(max CenOffice)
           import -window root out/linux-1-start-page.png
+          if [ -n "$W" ]; then
+            eval $(xdotool getwindowgeometry --shell "$W")
+            xdotool mousemove $((X + 60)) $((Y + HEIGHT - 34)) click 1
+            sleep 5
+            import -window root out/linux-2-about.png
+          fi
           xdotool search --onlyvisible --name "" getwindowname %@ > out/window-titles.txt 2>&1 || true
-          # About sits at the bottom of the left panel
-          xdotool mousemove 60 967 click 1 && sleep 5
-          import -window root out/linux-2-about.png
-          pkill -f "$BIN" || true
           pkill -f /opt/cenoffice || true
           sleep 3
-          "$BIN" --new:word > out/app-word.log 2>&1 &
-          sleep 45
-          W=$(xdotool search --onlyvisible --name "CenOffice|Desktop Editors|docx" | head -1)
-          [ -n "$W" ] && xdotool windowmove "$W" 0 0 windowsize "$W" 1600 1000 && sleep 3
+          /usr/bin/cenoffice-desktopeditors --new:word > out/3-word.log 2>&1 &
+          sleep 50
+          max "docx|CenOffice" > /dev/null
+          sleep 10
           import -window root out/linux-3-new-document.png
           xdotool search --onlyvisible --name "" getwindowname %@ >> out/window-titles.txt 2>&1 || true
-
-      - name: Scan installed files for old brand names
-        run: |
-          D=/opt/cenoffice
-          echo "install dir: $D" > out/brand-scan.txt
-          for term in ONLYOFFICE "Euro-?Office|Euro Office"; do
-            n=$(grep -rIl -i -E -- "$term" $D /usr/share/applications/cenoffice* /usr/bin/cenoffice* 2>/dev/null | wc -l)
-            echo "files mentioning '$term': $n" >> out/brand-scan.txt
-          done
-          echo "--- files mentioning ONLYOFFICE (first 60) ---" >> out/brand-scan.txt
-          grep -rIl -i onlyoffice $D 2>/dev/null | head -60 >> out/brand-scan.txt
-          echo "--- files mentioning Euro-Office (first 60) ---" >> out/brand-scan.txt
-          grep -rIl -i -E "euro-?office|euro office" $D 2>/dev/null | head -60 >> out/brand-scan.txt
 
       - name: Push results
         if: always()
         run: |
           cd out
-          git init -q -b screenshots-results-linux
+          git init -q -b r
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
-          git add -A && git commit -q -m "Linux install screenshots for run ${BUILD_RUN_ID}"
-          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" HEAD:screenshots-results-linux
+          git add -A && git commit -q -m "${{ matrix.os }} install screenshots for run ${BUILD_RUN_ID}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" HEAD:screenshots-results-${{ matrix.os }}
 
   windows:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: windows-2022
     steps:
       - uses: actions/download-artifact@v4
