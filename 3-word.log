@@ -1,0 +1,7 @@
+qt.multimedia.symbolsresolver: Couldn't load pipewire-0.3 library
+qt.multimedia.symbolsresolver: Couldn't resolve pipewire-0.3 symbols
+
+(DesktopEditors:4190): dbind-WARNING **: 16:51:57.856: AT-SPI: Error retrieving accessibility bus address: org.freedesktop.DBus.Error.ServiceUnknown: The name org.a11y.Bus was not provided by any .service files
+
+(DesktopEditors:4190): Gtk-WARNING **: 16:51:57.919: gtk_disable_setlocale() must be called before gtk_init()
+libva error: vaGetDriverNameByIndex() failed with unknown libva error, driver_name = (null)
