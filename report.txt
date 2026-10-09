@@ -1,0 +1,111 @@
+installer: D:\a\DesktopEditors\DesktopEditors\pkg\inno\CenOffice-DesktopEditors-Standalone-9.3.1.0-x64.exe
+installer CompanyName: CenOffice                                                   
+installer ProductName: CenOffice                                                   
+installer FileDescription: CenOffice Setup                                             
+installer LegalCopyright: © Ascensio System SIA, Euro-Office contributors, CenOffice 2026. All rights reserved.               
+install finished after about 110s
+installer exited: False code: 
+--- Uninstall entries (Apps & features) ---
+DisplayName: CenOffice (Standalone) 9.3.1 (x64) | Publisher: CenOffice | InstallLocation: C:\Program Files\CenOffice\DesktopEditors\
+DisplayName: Microsoft Visual Studio 2010 Tools for Office Runtime (x64) | Publisher: Microsoft Corporation | InstallLocation: c:\Program Files\Common Files\Microsoft Shared\VSTO\10.0\
+DisplayName: Microsoft Visual Studio 2010 Tools for Office Runtime (x64) | Publisher: Microsoft Corporation | InstallLocation: 
+DisplayName: sptools_Microsoft.VisualStudio.OfficeDeveloperTools.Msi | Publisher: Microsoft Corporation | InstallLocation: 
+DisplayName: Open XML SDK 2.5 for Microsoft Office | Publisher: Microsoft Corporation | InstallLocation: 
+--- Start menu and desktop shortcuts ---
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\CenOffice\CenOffice.lnk
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\CenOffice\New document.lnk
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\CenOffice\New PDF.lnk
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\CenOffice\New presentation.lnk
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\CenOffice\New spreadsheet.lnk
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\CenOffice\Uninstall.lnk
+C:\Users\Public\Desktop\CenOffice.lnk
+--- Program Files folders ---
+C:\Program Files\CenOffice
+app exe: C:\Program Files\CenOffice\DesktopEditors\DesktopEditors.exe
+app CompanyName: 
+app ProductName: 
+app FileDescription: 
+app LegalCopyright: 
+window: DesktopEditors | CenOffice
+window: hosted-compute-agent | C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent
+window: TextInputHost | Windows Input Experience
+window: DesktopEditors | Document1.docx - CenOffice
+window: hosted-compute-agent | C:\ProgramData\GitHub\HostedComputeAgent\hosted-compute-agent
+window: TextInputHost | Windows Input Experience
+--- files mentioning ONLYOFFICE / Euro-Office (names only, first 40 each) ---
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\cell\sdk-all-min.js
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\cell\sdk-all.js
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\slide\sdk-all-min.js
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\slide\sdk-all.js
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\visio\sdk-all-min.js
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\visio\sdk-all.js
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\word\sdk-all-min.js
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\word\sdk-all.js
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\api\documents\api.js
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\api\documents\index.html
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\common\main\resources\help\download.html
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\common\index.html
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\embed\index_loader.html
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\embed\index.html
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\forms\locale\ja.json
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\forms\locale\pt.json
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\forms\code.js
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\forms\index.html
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\locale\bg.json
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\locale\fi.json
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\locale\ko.json
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\locale\lv.json
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\locale\vi.json
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\resources\help\de\search\indexes.js
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\resources\help\de\Contents.json
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\resources\help\en\search\indexes.js
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\resources\help\en\Contents.json
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\resources\help\fr\search\indexes.js
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\resources\help\fr\Contents.json
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\resources\help\pt\search\indexes.js
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\resources\help\pt\Contents.json
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\resources\help\ru\search\indexes.js
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\resources\help\ru\Contents.json
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\resources\help\tr\search\indexes.js
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\resources\help\tr\Contents.json
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\app.js
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\code.js
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\mobile\dist\js\app.js
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\mobile\locale\ko.json
+ONLYOFFICE: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\mobile\index_loader.html
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\cell\sdk-all-min.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\cell\sdk-all.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\common\Charts\ChartStyles.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\common\Drawings\Format\path-boolean-min.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\common\hash\hash\engine.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\common\libfont\engine\fonts_native.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\common\libfont\engine\fonts.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\common\Native\native_graphics.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\common\Native\native.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\common\serviceworker\document_editor_service_worker.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\common\spell\spell\spell.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\common\zlib\engine\zlib.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\common\device_scale.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\pdf\src\engine\drawingfile_native.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\pdf\src\engine\drawingfile.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\pdf\src\engine\viewer.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\slide\sdk-all-min.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\slide\sdk-all.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\vendor\polyfill.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\visio\sdk-all-min.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\visio\sdk-all.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\word\sdk-all-min.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\sdkjs\word\sdk-all.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\main\app.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\documenteditor\mobile\dist\js\app.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\pdfeditor\main\app.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\presentationeditor\main\app.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\presentationeditor\mobile\dist\js\app.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\spreadsheeteditor\main\app.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\spreadsheeteditor\main\code.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\spreadsheeteditor\mobile\dist\js\app.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\visioeditor\main\app.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\editors\web-apps\apps\visioeditor\mobile\dist\js\app.js
+EURO: C:\Program Files\CenOffice\DesktopEditors\providers\nextcloud\config.json
+EURO: C:\Program Files\CenOffice\DesktopEditors\index.html
+EURO: C:\Program Files\CenOffice\DesktopEditors\provenance.json

@@ -1,0 +1,10 @@
+
+FullName                                                                                        Length
+--------                                                                                        ------
+D:\a\DesktopEditors\DesktopEditors\pkg\inno                                                     
+D:\a\DesktopEditors\DesktopEditors\pkg\zip                                                      
+D:\a\DesktopEditors\DesktopEditors\pkg\inno\CenOffice-DesktopEditors-Standalone-9.3.1.0-x64.exe 646402569
+D:\a\DesktopEditors\DesktopEditors\pkg\inno\vc_redist.x64.exe                                   25635768
+D:\a\DesktopEditors\DesktopEditors\pkg\zip\DesktopEditors-9.3.1.0-x64.zip                       1044053806
+
+
