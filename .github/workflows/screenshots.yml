@@ -1,6 +1,6 @@
 name: Install screenshots
 
-# Installs the packages built by a "Build CenOffice" run on clean runners,
+# Installs the packages built by a "Build Secure Office Suite" run on clean runners,
 # screenshots the installer and the app, and checks what users see for
 # ONLYOFFICE / Euro-Office branding. Results are pushed to the
 # screenshots-results-linux and screenshots-results-windows branches.
@@ -15,7 +15,7 @@ on:
         required: true
 
 env:
-  BUILD_RUN_ID: ${{ inputs.run_id || '37890034927' }}
+  BUILD_RUN_ID: ${{ inputs.run_id || '38219618260' }}
 
 permissions:
   contents: write
@@ -32,7 +32,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: linux-packages-cenoffice-amd64
+          name: linux-packages-secure-office-suite-amd64
           path: pkg
           run-id: ${{ env.BUILD_RUN_ID }}
           github-token: ${{ github.token }}
@@ -48,7 +48,7 @@ jobs:
           sudo apt-get install -y -q "./$DEB" > out/apt-deb.log 2>&1 || (tail -50 out/apt-deb.log; exit 1)
           sudo apt-get install -y -q xvfb x11-apps imagemagick xdotool openbox wmctrl > out/apt-tools.log 2>&1
           dpkg -L $(dpkg-deb -f "$DEB" Package) > out/installed-files.txt
-          for f in /usr/share/applications/*cenoffice*.desktop; do echo "== $f"; cat "$f"; done > out/desktop-entry.txt 2>&1 || true
+          for f in /usr/share/applications/*secure-office-suite*.desktop; do echo "== $f"; cat "$f"; done > out/desktop-entry.txt 2>&1 || true
 
       - name: Try to start it as installed
         run: |
@@ -57,11 +57,11 @@ jobs:
           sleep 3
           openbox &
           sleep 2
-          timeout 40 /usr/bin/cenoffice-desktopeditors > out/1-as-installed.log 2>&1 || echo "exit code $?" >> out/1-as-installed.log
+          timeout 40 /usr/bin/secure-office-suite-desktopeditors > out/1-as-installed.log 2>&1 || echo "exit code $?" >> out/1-as-installed.log
           import -window root out/linux-0-as-installed.png
-          cd /opt/cenoffice/desktopeditors
+          cd /opt/secure-office-suite/desktopeditors
           for f in DesktopEditors platforms/libqxcb.so; do echo "== $f"; LD_LIBRARY_PATH=$PWD ldd "$f" | grep "not found"; done > $GITHUB_WORKSPACE/out/missing-libs.txt 2>&1 || true
-          pkill -f /opt/cenoffice || true
+          pkill -f /opt/secure-office-suite || true
 
       - name: Add the missing libraries and software OpenGL, then screenshot
         run: |
@@ -69,9 +69,9 @@ jobs:
           sudo apt-get install -y -q libopengl0 libegl1 libgl1 libgl1-mesa-dri libglx-mesa0 libgbm1 libnss3 libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-xinerama0 libxcb-randr0 libxcb-render-util0 libxcb-image0 libxcb-xkb1 libxcb-shape0 libxcb-xfixes0 libxkbcommon-x11-0 > out/apt-extra.log 2>&1
           export DISPLAY=:99 LIBGL_ALWAYS_SOFTWARE=1
           max() { sleep 2; W=$(xdotool search --onlyvisible --name "$1" | tail -1); [ -n "$W" ] && wmctrl -i -r "$W" -b add,maximized_vert,maximized_horz; sleep 3; echo "$W"; }
-          /usr/bin/cenoffice-desktopeditors > out/2-app.log 2>&1 &
+          /usr/bin/secure-office-suite-desktopeditors > out/2-app.log 2>&1 &
           sleep 40
-          W=$(max CenOffice)
+          W=$(max "Secure Office Suite")
           import -window root out/linux-1-start-page.png
           if [ -n "$W" ]; then
             eval $(xdotool getwindowgeometry --shell "$W")
@@ -80,11 +80,11 @@ jobs:
             import -window root out/linux-2-about.png
           fi
           xdotool search --onlyvisible --name "" getwindowname %@ > out/window-titles.txt 2>&1 || true
-          pkill -f /opt/cenoffice || true
+          pkill -f /opt/secure-office-suite || true
           sleep 3
-          /usr/bin/cenoffice-desktopeditors --new:word > out/3-word.log 2>&1 &
+          /usr/bin/secure-office-suite-desktopeditors --new:word > out/3-word.log 2>&1 &
           sleep 50
-          max "docx|CenOffice" > /dev/null
+          max "docx|Secure Office Suite" > /dev/null
           sleep 10
           import -window root out/linux-3-new-document.png
           xdotool search --onlyvisible --name "" getwindowname %@ >> out/window-titles.txt 2>&1 || true
@@ -103,17 +103,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        desktop: [gnome, xfce]
+        desktop: [xfce]   # GNOME hangs on hosted runners
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: linux-packages-cenoffice-amd64
+          name: linux-packages-secure-office-suite-amd64
           path: pkg
           run-id: ${{ env.BUILD_RUN_ID }}
           github-token: ${{ github.token }}
 
-      - name: Install a desktop and CenOffice
+      - name: Install a desktop and Secure Office Suite
         run: |
           mkdir -p out
           DEB=$(ls pkg/*.deb | grep -v -- -help | head -1)
@@ -127,7 +127,7 @@ jobs:
             libopengl0 libegl1 libgl1 libgl1-mesa-dri libglx-mesa0 libgbm1 libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-image0 libxcb-render-util0 libxcb-shape0 libxkbcommon-x11-0 \
             > out/apt.log 2>&1 || (tail -40 out/apt.log; exit 1)
           sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q "./$DEB" >> out/apt.log 2>&1
-          # pin CenOffice to the Ubuntu dock
+          # pin Secure Office Suite to the Ubuntu dock
           mkdir -p ~/Desktop
 
       - name: Start the desktop and take screenshots
@@ -141,27 +141,27 @@ jobs:
             dbus-launch --exit-with-session gnome-session --session=ubuntu > out/session.log 2>&1 &
             sleep 45
             dbus-send --session --print-reply --dest=org.gnome.Shell /org/gnome/Shell org.gnome.Shell.Eval string:'Main.overview.hide()' >/dev/null 2>&1 || true
-            gsettings set org.gnome.shell favorite-apps "['cenoffice-desktopeditors.desktop', 'org.gnome.Nautilus.desktop']" || true
+            gsettings set org.gnome.shell favorite-apps "['secure-office-suite-desktopeditors.desktop', 'org.gnome.Nautilus.desktop']" || true
           else
             dbus-launch --exit-with-session startxfce4 > out/session.log 2>&1 &
             sleep 30
           fi
           import -window root out/1-desktop.png
-          # application menu / search showing CenOffice
+          # application menu / search showing Secure Office Suite
           if [ "${{ matrix.desktop }}" = gnome ]; then
-            xdotool key super; sleep 3; xdotool type --delay 150 cenoffice; sleep 5
+            xdotool key super; sleep 3; xdotool type --delay 150 secure; sleep 5
           else
-            xfce4-appfinder --collapsed > /dev/null 2>&1 & sleep 5; xdotool type --delay 150 cenoffice; sleep 4
+            xfce4-appfinder --collapsed > /dev/null 2>&1 & sleep 5; xdotool type --delay 150 secure; sleep 4
           fi
           import -window root out/2-app-menu.png
           xdotool key Escape; sleep 1; xdotool key Escape; sleep 2
           pkill xfce4-appfinder || true
-          /usr/bin/cenoffice-desktopeditors > out/app.log 2>&1 &
+          /usr/bin/secure-office-suite-desktopeditors > out/app.log 2>&1 &
           sleep 45
           import -window root out/3-app-running.png
-          pkill -f /opt/cenoffice || true
+          pkill -f /opt/secure-office-suite || true
           sleep 3
-          /usr/bin/cenoffice-desktopeditors --new:word > out/app-word.log 2>&1 &
+          /usr/bin/secure-office-suite-desktopeditors --new:word > out/app-word.log 2>&1 &
           sleep 50
           W=$(xdotool search --onlyvisible --name "docx" | tail -1)
           [ -n "$W" ] && wmctrl -i -r "$W" -b add,maximized_vert,maximized_horz
@@ -185,7 +185,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: windows-packages-cenoffice-amd64
+          name: windows-packages-secure-office-suite-amd64
           path: pkg
           run-id: ${{ env.BUILD_RUN_ID }}
           github-token: ${{ github.token }}
@@ -226,7 +226,7 @@ jobs:
           Start-Sleep 20
           $n++; Shot ("windows-installer-{0:D2}-installing" -f $n)
           # Inno writes the uninstall registry entry at the very end of installing
-          function Installed { Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*, HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -match 'CenOffice' } }
+          function Installed { Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*, HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -match 'Secure Office Suite' } }
           for ($t = 0; $t -lt 90 -and -not (Installed); $t++) { Start-Sleep 10 }
           "install finished after about $($t * 10 + 20)s" | Add-Content out\report.txt
           Start-Sleep 20
@@ -255,7 +255,7 @@ jobs:
             ForEach-Object { "DisplayName: $($_.DisplayName) | Publisher: $($_.Publisher) | InstallLocation: $($_.InstallLocation)" } | Add-Content $r
           "--- Start menu and desktop shortcuts ---" | Add-Content $r
           Get-ChildItem -Recurse "$env:ProgramData\Microsoft\Windows\Start Menu\Programs", "$env:APPDATA\Microsoft\Windows\Start Menu\Programs", "$env:PUBLIC\Desktop", "$env:USERPROFILE\Desktop" -Filter *.lnk -ErrorAction SilentlyContinue | Where-Object { $_.FullName -match 'office|cen|euro' } | ForEach-Object { $_.FullName } | Add-Content $r
-          $dir = (Get-ChildItem "$env:ProgramFiles" -Directory | Where-Object { $_.Name -match 'CenOffice|Euro|ONLYOFFICE' })
+          $dir = (Get-ChildItem "$env:ProgramFiles" -Directory | Where-Object { $_.Name -match 'Secure Office Suite|CenOffice|Euro|ONLYOFFICE' })
           "--- Program Files folders ---" | Add-Content $r
           $dir | ForEach-Object { $_.FullName } | Add-Content $r
           $app = Get-ChildItem -Recurse $dir.FullName -Filter DesktopEditors.exe -ErrorAction SilentlyContinue | Select-Object -First 1
@@ -285,6 +285,7 @@ jobs:
           if ($dir) {
             Get-ChildItem -Recurse $dir.FullName -Include *.js,*.json,*.html,*.txt,*.xml,*.ini -ErrorAction SilentlyContinue | Select-String -Pattern 'ONLYOFFICE' -List | Select-Object -First 40 | ForEach-Object { "ONLYOFFICE: $($_.Path)" } | Add-Content $r
             Get-ChildItem -Recurse $dir.FullName -Include *.js,*.json,*.html,*.txt,*.xml,*.ini -ErrorAction SilentlyContinue | Select-String -Pattern 'Euro-?Office|Euro Office' -List | Select-Object -First 40 | ForEach-Object { "EURO: $($_.Path)" } | Add-Content $r
+            Get-ChildItem -Recurse $dir.FullName -Include *.js,*.json,*.html,*.txt,*.xml,*.ini -ErrorAction SilentlyContinue | Select-String -Pattern 'CenOffice' -List | Select-Object -First 40 | ForEach-Object { "CENOFFICE: $($_.Path)" } | Add-Content $r
           }
 
       - name: Push results
