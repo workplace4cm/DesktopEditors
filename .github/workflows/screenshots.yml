@@ -17,8 +17,8 @@ on:
         required: true
 
 env:
-  BUILD_RUN_ID: ${{ inputs.run_id || '38252903829' }}
-  TRIAL: '1'
+  BUILD_RUN_ID: ${{ inputs.run_id || '38526772062' }}
+  TRIAL: '0'
 
 permissions:
   contents: write
