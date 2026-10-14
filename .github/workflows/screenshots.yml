@@ -1,9 +1,11 @@
 name: Install screenshots
 
-# Installs the packages built by a "Build Secure Office Suite" run on clean runners,
-# screenshots the installer and the app, and checks what users see for
-# ONLYOFFICE / Euro-Office branding. Results are pushed to the
-# screenshots-results-linux and screenshots-results-windows branches.
+# Installs the packages built by a "Build Secure Office Suite" run and drives
+# the app with OCR-guided clicks: start page, About, and the Insert/View tabs,
+# File menu and Advanced Settings of every editor.
+# Ubuntu: the .deb is installed with dpkg -i, without network, into a container
+# holding the package set of the official Ubuntu desktop ISO.
+# Results are pushed to the screenshots-results-* branches.
 
 on:
   push:
@@ -16,6 +18,7 @@ on:
 
 env:
   BUILD_RUN_ID: ${{ inputs.run_id || '38252903829' }}
+  TRIAL: '1'
 
 permissions:
   contents: write
@@ -23,89 +26,21 @@ permissions:
 
 jobs:
   linux:
-    if: github.event_name == 'workflow_dispatch'
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-22.04, ubuntu-24.04]
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: linux-packages-secure-office-suite-amd64
-          path: pkg
-          run-id: ${{ env.BUILD_RUN_ID }}
-          github-token: ${{ github.token }}
-
-      - name: Install the .deb with only what it asks for
-        run: |
-          set -x
-          mkdir -p out
-          DEB=$(ls pkg/*.deb | grep -v -- -help | head -1)
-          dpkg-deb -I "$DEB" > out/deb-info.txt
-          lsb_release -ds > out/os.txt
-          sudo apt-get update -q
-          sudo apt-get install -y -q "./$DEB" > out/apt-deb.log 2>&1 || (tail -50 out/apt-deb.log; exit 1)
-          sudo apt-get install -y -q xvfb x11-apps imagemagick xdotool openbox wmctrl > out/apt-tools.log 2>&1
-          dpkg -L $(dpkg-deb -f "$DEB" Package) > out/installed-files.txt
-          for f in /usr/share/applications/*secure-office-suite*.desktop; do echo "== $f"; cat "$f"; done > out/desktop-entry.txt 2>&1 || true
-
-      - name: Try to start it as installed
-        run: |
-          export DISPLAY=:99
-          Xvfb :99 -screen 0 1600x1000x24 &
-          sleep 3
-          openbox &
-          sleep 2
-          timeout 40 /usr/bin/secure-office-suite-desktopeditors > out/1-as-installed.log 2>&1 || echo "exit code $?" >> out/1-as-installed.log
-          import -window root out/linux-0-as-installed.png
-          cd /opt/secure-office-suite/desktopeditors
-          for f in DesktopEditors platforms/libqxcb.so; do echo "== $f"; LD_LIBRARY_PATH=$PWD ldd "$f" | grep "not found"; done > $GITHUB_WORKSPACE/out/missing-libs.txt 2>&1 || true
-          pkill -f /opt/secure-office-suite || true
-
-      - name: Add the missing libraries and software OpenGL, then screenshot
-        run: |
-          set -x
-          sudo apt-get install -y -q libopengl0 libegl1 libgl1 libgl1-mesa-dri libglx-mesa0 libgbm1 libnss3 libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-xinerama0 libxcb-randr0 libxcb-render-util0 libxcb-image0 libxcb-xkb1 libxcb-shape0 libxcb-xfixes0 libxkbcommon-x11-0 > out/apt-extra.log 2>&1
-          export DISPLAY=:99 LIBGL_ALWAYS_SOFTWARE=1
-          max() { sleep 2; W=$(xdotool search --onlyvisible --name "$1" | tail -1); [ -n "$W" ] && wmctrl -i -r "$W" -b add,maximized_vert,maximized_horz; sleep 3; echo "$W"; }
-          /usr/bin/secure-office-suite-desktopeditors > out/2-app.log 2>&1 &
-          sleep 40
-          W=$(max "Secure Office Suite")
-          import -window root out/linux-1-start-page.png
-          if [ -n "$W" ]; then
-            eval $(xdotool getwindowgeometry --shell "$W")
-            xdotool mousemove $((X + 60)) $((Y + HEIGHT - 34)) click 1
-            sleep 5
-            import -window root out/linux-2-about.png
-          fi
-          xdotool search --onlyvisible --name "" getwindowname %@ > out/window-titles.txt 2>&1 || true
-          pkill -f /opt/secure-office-suite || true
-          sleep 3
-          /usr/bin/secure-office-suite-desktopeditors --new:word > out/3-word.log 2>&1 &
-          sleep 50
-          max "docx|Secure Office Suite" > /dev/null
-          sleep 10
-          import -window root out/linux-3-new-document.png
-          xdotool search --onlyvisible --name "" getwindowname %@ >> out/window-titles.txt 2>&1 || true
-
-      - name: Push results
-        if: always()
-        run: |
-          cd out
-          git init -q -b r
-          git config user.name "github-actions"
-          git config user.email "github-actions@users.noreply.github.com"
-          git add -A && git commit -q -m "${{ matrix.os }} install screenshots for run ${BUILD_RUN_ID}"
-          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" HEAD:screenshots-results-${{ matrix.os }}
-
-  ubuntu-desktop:
-    strategy:
-      fail-fast: false
-      matrix:
-        desktop: [xfce]   # GNOME hangs on hosted runners
+        include:
+          - ubuntu: '22.04'
+            manifest: https://releases.ubuntu.com/22.04/ubuntu-22.04.5-desktop-amd64.manifest
+          - ubuntu: '24.04'
+            manifest: https://releases.ubuntu.com/24.04/ubuntu-24.04.3-desktop-amd64.manifest
     runs-on: ubuntu-24.04
     steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: build/screenshots
+          submodules: false
+
       - uses: actions/download-artifact@v4
         with:
           name: linux-packages-secure-office-suite-amd64
@@ -113,74 +48,33 @@ jobs:
           run-id: ${{ env.BUILD_RUN_ID }}
           github-token: ${{ github.token }}
 
-      - name: Install a desktop and Secure Office Suite
+      - name: Build a stock Ubuntu ${{ matrix.ubuntu }} desktop image
+        run: |
+          docker build -q -t stock build/screenshots \
+            --build-arg UBUNTU=${{ matrix.ubuntu }} \
+            --build-arg MANIFEST_URL=${{ matrix.manifest }} \
+            --build-arg TRIAL=${TRIAL}
+
+      - name: Install the .deb offline and take screenshots
         run: |
           mkdir -p out
-          DEB=$(ls pkg/*.deb | grep -v -- -help | head -1)
-          sudo apt-get update -q
-          if [ "${{ matrix.desktop }}" = gnome ]; then
-            DESK="ubuntu-desktop-minimal gnome-shell-extension-ubuntu-dock yaru-theme-gtk yaru-theme-icon dbus-x11"
-          else
-            DESK="xfce4 xfce4-appfinder dbus-x11 elementary-xfce-icon-theme"
-          fi
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends $DESK xvfb imagemagick xdotool wmctrl \
-            libopengl0 libegl1 libgl1 libgl1-mesa-dri libglx-mesa0 libgbm1 libxcb-cursor0 libxcb-icccm4 libxcb-keysyms1 libxcb-image0 libxcb-render-util0 libxcb-shape0 libxkbcommon-x11-0 \
-            > out/apt.log 2>&1 || (tail -40 out/apt.log; exit 1)
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y -q "./$DEB" >> out/apt.log 2>&1
-          # pin Secure Office Suite to the Ubuntu dock
-          mkdir -p ~/Desktop
-
-      - name: Start the desktop and take screenshots
-        run: |
-          set -x
-          export DISPLAY=:99 LIBGL_ALWAYS_SOFTWARE=1 XDG_SESSION_TYPE=x11
-          Xvfb :99 -screen 0 1600x1000x24 &
-          sleep 3
-          if [ "${{ matrix.desktop }}" = gnome ]; then
-            export XDG_CURRENT_DESKTOP=ubuntu:GNOME GNOME_SHELL_SESSION_MODE=ubuntu XDG_SESSION_DESKTOP=ubuntu
-            dbus-launch --exit-with-session gnome-session --session=ubuntu > out/session.log 2>&1 &
-            sleep 45
-            dbus-send --session --print-reply --dest=org.gnome.Shell /org/gnome/Shell org.gnome.Shell.Eval string:'Main.overview.hide()' >/dev/null 2>&1 || true
-            gsettings set org.gnome.shell favorite-apps "['secure-office-suite-desktopeditors.desktop', 'org.gnome.Nautilus.desktop']" || true
-          else
-            dbus-launch --exit-with-session startxfce4 > out/session.log 2>&1 &
-            sleep 30
-          fi
-          import -window root out/1-desktop.png
-          # application menu / search showing Secure Office Suite
-          if [ "${{ matrix.desktop }}" = gnome ]; then
-            xdotool key super; sleep 3; xdotool type --delay 150 secure; sleep 5
-          else
-            xfce4-appfinder --collapsed > /dev/null 2>&1 & sleep 5; xdotool type --delay 150 secure; sleep 4
-          fi
-          import -window root out/2-app-menu.png
-          xdotool key Escape; sleep 1; xdotool key Escape; sleep 2
-          pkill xfce4-appfinder || true
-          /usr/bin/secure-office-suite-desktopeditors > out/app.log 2>&1 &
-          sleep 45
-          import -window root out/3-app-running.png
-          pkill -f /opt/secure-office-suite || true
-          sleep 3
-          /usr/bin/secure-office-suite-desktopeditors --new:word > out/app-word.log 2>&1 &
-          sleep 50
-          W=$(xdotool search --onlyvisible --name "docx" | tail -1)
-          [ -n "$W" ] && wmctrl -i -r "$W" -b add,maximized_vert,maximized_horz
-          sleep 8
-          import -window root out/4-new-document.png
-          xdotool search --onlyvisible --name "" getwindowname %@ > out/window-titles.txt 2>&1 || true
+          docker run --rm --network none -e TRIAL=${TRIAL} \
+            -v $PWD/pkg:/pkg:ro -v $PWD/build/screenshots:/tools:ro -v $PWD/out:/out \
+            stock bash /tools/linux-test.sh
+          cat out/RESULT out/dpkg-install.log
 
       - name: Push results
         if: always()
         run: |
+          sudo chown -R $(id -u) out
           cd out
           git init -q -b r
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
-          git add -A && git commit -q -m "${{ matrix.desktop }} desktop screenshots"
-          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" HEAD:screenshots-results-desktop-${{ matrix.desktop }}
+          git add -A && git commit -q -m "Ubuntu ${{ matrix.ubuntu }} install screenshots for run ${BUILD_RUN_ID}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" HEAD:screenshots-results-ubuntu-${{ matrix.ubuntu }}
 
   windows:
-    if: github.event_name == 'workflow_dispatch'
     runs-on: windows-2022
     steps:
       - uses: actions/download-artifact@v4
@@ -236,57 +130,26 @@ jobs:
           Start-Sleep 15
           "installer exited: $($p.HasExited) code: $(if ($p.HasExited) { $p.ExitCode })" | Add-Content out\report.txt
 
-      - name: Check what Windows shows for the installed app
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: build/screenshots
+          submodules: false
+          path: src
+
+      - name: Drive the app and take screenshots
         shell: pwsh
         run: |
-          Add-Type -AssemblyName System.Windows.Forms, System.Drawing
-          function Shot($name) {
-            $b = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
-            $bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
-            $g = [System.Drawing.Graphics]::FromImage($bmp)
-            $g.CopyFromScreen($b.Location, [System.Drawing.Point]::Empty, $b.Size)
-            $bmp.Save("out\$name.png", [System.Drawing.Imaging.ImageFormat]::Png)
-            $g.Dispose(); $bmp.Dispose()
-          }
           $r = "out\report.txt"
-          "--- Uninstall entries (Apps & features) ---" | Add-Content $r
-          Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*, HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* -ErrorAction SilentlyContinue |
-            Where-Object { $_.DisplayName -match 'office|cen|euro' } |
-            ForEach-Object { "DisplayName: $($_.DisplayName) | Publisher: $($_.Publisher) | InstallLocation: $($_.InstallLocation)" } | Add-Content $r
-          "--- Start menu and desktop shortcuts ---" | Add-Content $r
-          Get-ChildItem -Recurse "$env:ProgramData\Microsoft\Windows\Start Menu\Programs", "$env:APPDATA\Microsoft\Windows\Start Menu\Programs", "$env:PUBLIC\Desktop", "$env:USERPROFILE\Desktop" -Filter *.lnk -ErrorAction SilentlyContinue | Where-Object { $_.FullName -match 'office|cen|euro' } | ForEach-Object { $_.FullName } | Add-Content $r
-          $dir = (Get-ChildItem "$env:ProgramFiles" -Directory | Where-Object { $_.Name -match 'Secure Office Suite|CenOffice|Euro|ONLYOFFICE' })
-          "--- Program Files folders ---" | Add-Content $r
-          $dir | ForEach-Object { $_.FullName } | Add-Content $r
+          choco install tesseract -y --no-progress | Out-Null
+          python -m pip install -q pillow
+          $dir = (Get-ChildItem "$env:ProgramFiles" -Directory | Where-Object { $_.Name -match 'Secure Office Suite' })
           $app = Get-ChildItem -Recurse $dir.FullName -Filter DesktopEditors.exe -ErrorAction SilentlyContinue | Select-Object -First 1
-          if ($app) {
-            $vi = $app.VersionInfo
-            "app exe: $($app.FullName)`napp CompanyName: $($vi.CompanyName)`napp ProductName: $($vi.ProductName)`napp FileDescription: $($vi.FileDescription)`napp LegalCopyright: $($vi.LegalCopyright)" | Add-Content $r
-            Get-Process | Where-Object { $_.Path -like "$($dir.FullName)*" } | Stop-Process -Force -ErrorAction SilentlyContinue
-            Start-Sleep 3
-            (New-Object -ComObject Shell.Application).MinimizeAll()
-            Start-Sleep 2
-            Start-Process $app.FullName
-            Start-Sleep 45
-            Shot "windows-app-1-start-page"
-            Add-Type -Namespace W -Name M -MemberDefinition '[DllImport("user32.dll")] public static extern bool SetCursorPos(int x, int y); [DllImport("user32.dll")] public static extern void mouse_event(int f, int x, int y, int d, int e);'
-            [W.M]::SetCursorPos(60, 695); [W.M]::mouse_event(2, 0, 0, 0, 0); [W.M]::mouse_event(4, 0, 0, 0, 0)
-            Start-Sleep 5
-            Shot "windows-app-2-about"
-            Get-Process | Where-Object { $_.MainWindowTitle } | ForEach-Object { "window: $($_.ProcessName) | $($_.MainWindowTitle)" } | Add-Content $r
-            Get-Process | Where-Object { $_.Path -like "$($dir.FullName)*" } | Stop-Process -Force -ErrorAction SilentlyContinue
-            Start-Sleep 3
-            Start-Process $app.FullName -ArgumentList "--new:word"
-            Start-Sleep 45
-            Shot "windows-app-3-new-document"
-            Get-Process | Where-Object { $_.MainWindowTitle } | ForEach-Object { "window: $($_.ProcessName) | $($_.MainWindowTitle)" } | Add-Content $r
-          } else { "DesktopEditors.exe not found" | Add-Content $r }
-          "--- files mentioning ONLYOFFICE / Euro-Office (names only, first 40 each) ---" | Add-Content $r
-          if ($dir) {
-            Get-ChildItem -Recurse $dir.FullName -Include *.js,*.json,*.html,*.txt,*.xml,*.ini -ErrorAction SilentlyContinue | Select-String -Pattern 'ONLYOFFICE' -List | Select-Object -First 40 | ForEach-Object { "ONLYOFFICE: $($_.Path)" } | Add-Content $r
-            Get-ChildItem -Recurse $dir.FullName -Include *.js,*.json,*.html,*.txt,*.xml,*.ini -ErrorAction SilentlyContinue | Select-String -Pattern 'Euro-?Office|Euro Office' -List | Select-Object -First 40 | ForEach-Object { "EURO: $($_.Path)" } | Add-Content $r
-            Get-ChildItem -Recurse $dir.FullName -Include *.js,*.json,*.html,*.txt,*.xml,*.ini -ErrorAction SilentlyContinue | Select-String -Pattern 'CenOffice' -List | Select-Object -First 40 | ForEach-Object { "CENOFFICE: $($_.Path)" } | Add-Content $r
-          }
+          $vi = $app.VersionInfo
+          "app exe: $($app.FullName)`napp ProductName: $($vi.ProductName)`napp LegalCopyright: $($vi.LegalCopyright)" | Add-Content $r
+          Get-Process | Where-Object { $_.Path -like "$($dir.FullName)*" } | Stop-Process -Force -ErrorAction SilentlyContinue
+          (New-Object -ComObject Shell.Application).MinimizeAll()
+          Start-Sleep 2
+          python src\build\screenshots\drive.py out\shots "$($app.FullName)"
 
       - name: Push results
         if: always()
