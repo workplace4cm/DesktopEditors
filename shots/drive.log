@@ -1,0 +1,72 @@
+start ['C:\\Program Files\\Secure Office Suite\\DesktopEditors\\DesktopEditors.exe']
+saved app-1-start-page
+find 'About' -> [(82, 696)]
+saved app-2-about
+start ['C:\\Program Files\\Secure Office Suite\\DesktopEditors\\DesktopEditors.exe', '--new:word']
+find 'Got' -> [(545, 661)]
+find 'Got' -> []
+saved document-0-opened
+find 'Insert' -> [(148, 74)]
+saved document-insert-tab
+find 'View' -> [(589, 74)]
+saved document-view-tab
+find 'File' -> [(40, 74)]
+saved document-file-menu
+find 'Advanced' -> [(70, 654)]
+saved document-advanced-settings
+find 'Editing' -> [(315, 183)]
+find 'Editing' -> [(315, 183)]
+saved document-advanced-settings-2
+saved document-advanced-settings-3
+find 'Macro' -> []
+find 'Macros' -> []
+start ['C:\\Program Files\\Secure Office Suite\\DesktopEditors\\DesktopEditors.exe', '--new:cell']
+find 'Got' -> []
+saved spreadsheet-0-opened
+find 'Insert' -> [(148, 74)]
+saved spreadsheet-insert-tab
+find 'View' -> [(624, 74)]
+saved spreadsheet-view-tab
+find 'File' -> [(40, 74)]
+saved spreadsheet-file-menu
+find 'Advanced' -> [(70, 654)]
+saved spreadsheet-advanced-settings
+find 'Editing' -> [(315, 183)]
+find 'Editing' -> [(315, 183)]
+saved spreadsheet-advanced-settings-2
+saved spreadsheet-advanced-settings-3
+find 'Macro' -> []
+find 'Macros' -> []
+start ['C:\\Program Files\\Secure Office Suite\\DesktopEditors\\DesktopEditors.exe', '--new:slide']
+find 'Got' -> []
+saved presentation-0-opened
+find 'Insert' -> [(148, 74)]
+saved presentation-insert-tab
+find 'View' -> [(672, 74)]
+saved presentation-view-tab
+find 'File' -> [(40, 74)]
+saved presentation-file-menu
+find 'Advanced' -> [(70, 654)]
+saved presentation-advanced-settings
+find 'Editing' -> [(315, 183)]
+find 'Editing' -> [(315, 183)]
+saved presentation-advanced-settings-2
+saved presentation-advanced-settings-3
+find 'Macro' -> []
+find 'Macros' -> []
+start ['C:\\Program Files\\Secure Office Suite\\DesktopEditors\\DesktopEditors.exe', 'D:\\a\\DesktopEditors\\DesktopEditors\\out\\test.pdf']
+find 'Got' -> []
+saved pdf-0-opened
+find 'Insert' -> []
+find 'View' -> [(328, 74)]
+saved pdf-view-tab
+find 'File' -> [(40, 74)]
+saved pdf-file-menu
+find 'Advanced' -> [(70, 654)]
+saved pdf-advanced-settings
+find 'Editing' -> [(315, 183)]
+find 'Editing' -> [(315, 183)]
+saved pdf-advanced-settings-2
+saved pdf-advanced-settings-3
+find 'Macro' -> []
+find 'Macros' -> []

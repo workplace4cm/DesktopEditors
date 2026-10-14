@@ -1,0 +1,10 @@
+installer: D:\a\DesktopEditors\DesktopEditors\pkg\inno\Secure Office Suite-DesktopEditors-Standalone-9.3.1.0-x64.exe
+installer CompanyName: Secure Office Suite                                         
+installer ProductName: Secure Office Suite                                         
+installer FileDescription: Secure Office Suite Setup                                   
+installer LegalCopyright: © Secure Office Suite 2026. Portions © Ascensio System SIA.                                         
+install finished after about 90s
+installer exited: False code: 
+app exe: C:\Program Files\Secure Office Suite\DesktopEditors\DesktopEditors.exe
+app ProductName: 
+app LegalCopyright: 
