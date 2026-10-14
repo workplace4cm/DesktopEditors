@@ -1,0 +1,84 @@
+start ['/usr/bin/secure-office-suite-desktopeditors']
+
+(DesktopEditors:108): Gtk-WARNING **: 11:48:41.075: gtk_disable_setlocale() must be called before gtk_init()
+saved app-1-start-page
+find 'About' -> [(84, 967)]
+saved app-2-about
+start ['/usr/bin/secure-office-suite-desktopeditors', '--new:word']
+
+(DesktopEditors:210): Gtk-WARNING **: 11:49:39.035: gtk_disable_setlocale() must be called before gtk_init()
+find 'Got' -> [(1117, 932)]
+find 'Got' -> []
+saved document-0-opened
+find 'Insert' -> [(154, 73)]
+saved document-insert-tab
+find 'View' -> [(616, 73)]
+saved document-view-tab
+find 'File' -> [(40, 73)]
+saved document-file-menu
+find 'Advanced' -> [(71, 925)]
+saved document-advanced-settings
+find 'Editing' -> [(317, 183)]
+find 'Editing' -> [(317, 183)]
+saved document-advanced-settings-2
+saved document-advanced-settings-3
+find 'Macro' -> []
+find 'Macros' -> []
+start ['/usr/bin/secure-office-suite-desktopeditors', '--new:cell']
+
+(DesktopEditors:461): Gtk-WARNING **: 11:51:18.555: gtk_disable_setlocale() must be called before gtk_init()
+find 'Got' -> [(792, 274)]
+find 'Got' -> []
+saved spreadsheet-0-opened
+find 'Insert' -> [(154, 73)]
+saved spreadsheet-insert-tab
+find 'View' -> [(652, 73)]
+saved spreadsheet-view-tab
+find 'File' -> [(40, 73)]
+saved spreadsheet-file-menu
+find 'Advanced' -> [(71, 925)]
+saved spreadsheet-advanced-settings
+find 'Editing' -> [(317, 183)]
+find 'Editing' -> [(317, 183)]
+saved spreadsheet-advanced-settings-2
+saved spreadsheet-advanced-settings-3
+find 'Macro' -> []
+find 'Macros' -> []
+start ['/usr/bin/secure-office-suite-desktopeditors', '--new:slide']
+
+(DesktopEditors:711): Gtk-WARNING **: 11:52:58.780: gtk_disable_setlocale() must be called before gtk_init()
+find 'Got' -> [(679, 286)]
+find 'Got' -> []
+saved presentation-0-opened
+find 'Insert' -> [(154, 73)]
+saved presentation-insert-tab
+find 'View' -> [(703, 73)]
+saved presentation-view-tab
+find 'File' -> [(40, 73)]
+saved presentation-file-menu
+find 'Advanced' -> [(71, 925)]
+saved presentation-advanced-settings
+find 'Editing' -> [(317, 183)]
+find 'Editing' -> [(317, 183)]
+saved presentation-advanced-settings-2
+saved presentation-advanced-settings-3
+find 'Macro' -> []
+find 'Macros' -> []
+start ['/usr/bin/secure-office-suite-desktopeditors', '/out/test.pdf']
+
+(DesktopEditors:962): Gtk-WARNING **: 11:54:37.797: gtk_disable_setlocale() must be called before gtk_init()
+find 'Got' -> []
+saved pdf-0-opened
+find 'Insert' -> []
+find 'View' -> [(340, 73)]
+saved pdf-view-tab
+find 'File' -> [(41, 73)]
+saved pdf-file-menu
+find 'Advanced' -> [(71, 925)]
+saved pdf-advanced-settings
+find 'Editing' -> [(317, 183)]
+find 'Editing' -> [(317, 183)]
+saved pdf-advanced-settings-2
+saved pdf-advanced-settings-3
+find 'Macro' -> []
+find 'Macros' -> []
