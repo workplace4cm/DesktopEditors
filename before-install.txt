@@ -1,0 +1,7 @@
+libxcb-cursor0               not installed
+fonts-liberation             unknown ok not-installed
+fonts-crosextra-carlito      unknown ok not-installed
+ttf-mscorefonts-installer    unknown ok not-installed
+fonts-takao-gothic           not installed
+gstreamer1.0-libav           unknown ok not-installed
+network: none

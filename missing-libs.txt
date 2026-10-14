@@ -1,0 +1,12 @@
++ for f in DesktopEditors platforms/libqxcb.so
++ echo '== DesktopEditors'
+== DesktopEditors
++ LD_LIBRARY_PATH=/opt/secure-office-suite/desktopeditors:/opt/secure-office-suite/desktopeditors/converter
++ ldd DesktopEditors
++ grep 'not found'
++ for f in DesktopEditors platforms/libqxcb.so
++ echo '== platforms/libqxcb.so'
+== platforms/libqxcb.so
++ LD_LIBRARY_PATH=/opt/secure-office-suite/desktopeditors:/opt/secure-office-suite/desktopeditors/converter
++ ldd platforms/libqxcb.so
++ grep 'not found'

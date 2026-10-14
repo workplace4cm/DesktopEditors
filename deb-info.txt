@@ -1,0 +1,22 @@
+ new Debian package, version 2.0.
+ size 336246372 bytes: control archive=79836 bytes.
+     921 bytes,    15 lines      control              
+  476864 bytes,  3583 lines      md5sums              
+     470 bytes,    27 lines   *  postrm               #!/bin/sh
+    5640 bytes,   100 lines      shlibs               
+      75 bytes,     2 lines      triggers             
+ Package: secure-office-suite-desktopeditors
+ Version: 9.3.1-dev.1
+ Architecture: amd64
+ Maintainer: Secure Office Suite <support@secure-office-suite.invalid>
+ Installed-Size: 1468613
+ Pre-Depends: dpkg (>= 1.14.0)
+ Depends: x11-common, libasound2, curl | wget, desktop-file-utils, libxss1, libatk1.0-0, libgtk-3-0, libcairo2, libstdc++6 (>= 4.8), libxkbcommon-x11-0, libopengl0, libegl1, libxcb-icccm4, libxcb-image0, libxcb-keysyms1, libxcb-render-util0, libxcb-shape0, libnotify4, xdg-utils
+ Suggests: secure-office-suite-desktopeditors-help
+ Conflicts: secure-office-suite-desktopeditors-enterprise
+ Provides: secure-office-suite-desktopeditors
+ Section: editors
+ Priority: optional
+ Description: Desktop editors for text docs, spreadsheets, presentations, PDFs, and PDF forms.
+  Open-source office suite pack that comprises all the tools you need to
+  work offline with documents, spreadsheets, presentations, PDFs, and PDF forms.

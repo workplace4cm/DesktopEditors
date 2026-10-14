@@ -1,0 +1,77 @@
+sudo: unable to resolve host fe1b9bd7f9bd: Temporary failure in name resolution
+_XSERVTransmkdir: ERROR: euid != 0,directory /tmp/.X11-unix will not be created.
+Openbox-Message: Unable to find a valid menu file "/var/lib/openbox/debian-menu.xml"
+start ['/usr/bin/secure-office-suite-desktopeditors']
+saved app-1-start-page
+find 'About' -> [(84, 967)]
+saved app-2-about
+start ['/usr/bin/secure-office-suite-desktopeditors', '--new:word']
+find 'Got' -> [(1117, 932)]
+find 'Got' -> []
+saved document-0-opened
+find 'Insert' -> [(157, 73)]
+saved document-insert-tab
+find 'View' -> [(637, 73)]
+saved document-view-tab
+find 'File' -> [(41, 73)]
+saved document-file-menu
+find 'Advanced' -> [(73, 925)]
+saved document-advanced-settings
+find 'Editing' -> [(320, 181)]
+find 'Editing' -> [(320, 181)]
+saved document-advanced-settings-2
+saved document-advanced-settings-3
+find 'Macro' -> []
+find 'Macros' -> []
+start ['/usr/bin/secure-office-suite-desktopeditors', '--new:cell']
+find 'Got' -> [(792, 273)]
+find 'Got' -> []
+saved spreadsheet-0-opened
+find 'Insert' -> [(157, 73)]
+saved spreadsheet-insert-tab
+find 'View' -> [(673, 73)]
+saved spreadsheet-view-tab
+find 'File' -> [(41, 73)]
+saved spreadsheet-file-menu
+find 'Advanced' -> [(73, 925)]
+saved spreadsheet-advanced-settings
+find 'Editing' -> [(320, 181)]
+find 'Editing' -> [(320, 181)]
+saved spreadsheet-advanced-settings-2
+saved spreadsheet-advanced-settings-3
+find 'Macro' -> []
+find 'Macros' -> []
+start ['/usr/bin/secure-office-suite-desktopeditors', '--new:slide']
+find 'Got' -> [(679, 305)]
+find 'Got' -> []
+saved presentation-0-opened
+find 'Insert' -> [(157, 73)]
+saved presentation-insert-tab
+find 'View' -> [(726, 73)]
+saved presentation-view-tab
+find 'File' -> [(41, 73)]
+saved presentation-file-menu
+find 'Advanced' -> [(73, 925)]
+saved presentation-advanced-settings
+find 'Editing' -> [(320, 181)]
+find 'Editing' -> [(320, 181)]
+saved presentation-advanced-settings-2
+saved presentation-advanced-settings-3
+find 'Macro' -> []
+find 'Macros' -> []
+start ['/usr/bin/secure-office-suite-desktopeditors', '/out/test.pdf']
+find 'Got' -> []
+saved pdf-0-opened
+find 'Insert' -> []
+find 'View' -> [(348, 74)]
+saved pdf-view-tab
+find 'File' -> [(41, 73)]
+saved pdf-file-menu
+find 'Advanced' -> [(73, 925)]
+saved pdf-advanced-settings
+find 'Editing' -> [(320, 181)]
+find 'Editing' -> [(320, 181)]
+saved pdf-advanced-settings-2
+saved pdf-advanced-settings-3
+find 'Macro' -> []
+find 'Macros' -> []
