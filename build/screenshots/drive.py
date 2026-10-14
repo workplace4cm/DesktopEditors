@@ -43,6 +43,13 @@ if WIN:
         ctypes.windll.user32.keybd_event(vk, 0, 0, 0)
         ctypes.windll.user32.keybd_event(vk, 0, 2, 0)
 
+    def scroll(x, y, n):
+        u = ctypes.windll.user32
+        u.SetCursorPos(int(x), int(y))
+        for _ in range(n):
+            u.mouse_event(0x0800, 0, 0, -120, 0)
+            time.sleep(0.1)
+
     def kill():
         subprocess.call(["taskkill", "/F", "/IM", "DesktopEditors.exe", "/T"],
                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
@@ -62,6 +69,12 @@ else:
 
     def key(name):
         subprocess.call(["xdotool", "key", name])
+
+    def scroll(x, y, n):
+        subprocess.call(["xdotool", "mousemove", str(int(x)), str(int(y))])
+        for _ in range(n):
+            subprocess.call(["xdotool", "click", "5"])
+            time.sleep(0.1)
 
     def kill():
         subprocess.call(["pkill", "-f", "/opt/secure-office-suite"])
@@ -145,6 +158,12 @@ def editor(tag, args):
         snap(tag + "-file-menu")
         if click_text("Advanced"):
             snap(tag + "-advanced-settings")
+            _, x, _ = find("Editing")[0] if find("Editing") else (0, 500, 0)
+            for i in (1, 2):
+                scroll(x, 400, 15)
+                snap("%s-advanced-settings-%d" % (tag, i + 1))
+            find("Macro")
+            find("Macros")
         key("Escape")
 
 
