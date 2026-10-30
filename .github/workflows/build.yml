@@ -229,6 +229,12 @@ jobs:
           submodules: recursive
           token: ${{ github.token }}
 
+      # The start page and the editors share one set of design tokens; each
+      # submodule carries a copy, and the two must not drift apart.
+      - name: Check shared design tokens
+        run: |
+          cmp desktop-apps/common/loginpage/src/sos/tokens.less \
+              web-apps/theme/secure-office-suite/assets/less/sos/tokens.less
 
       - name: Debug workspace
         run: |
