@@ -236,6 +236,18 @@ jobs:
           cmp desktop-apps/common/loginpage/src/sos/tokens.less \
               web-apps/theme/secure-office-suite/assets/less/sos/tokens.less
 
+      # Every template card of the start pages must point at a shipped file:
+      # the target PCs are offline, so nothing missing can be fetched later.
+      - name: Check start-page templates
+        run: |
+          set -f   # names like "[32]..." are not globs
+          dir=desktop-apps/common/templates/sos
+          missing=0
+          for f in $(grep -oE "(file|thumb): '[^']+'" "$dir/manifest.js" | sed -E "s/^[a-z]+: '(.*)'$/\1/"); do
+            [ -f "$dir/$f" ] || { echo "missing: $f"; missing=1; }
+          done
+          exit $missing
+
       - name: Debug workspace
         run: |
           echo "workspace: ${{ github.workspace }}"
