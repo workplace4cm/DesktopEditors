@@ -236,17 +236,13 @@ jobs:
           cmp desktop-apps/common/loginpage/src/sos/tokens.less \
               web-apps/theme/secure-office-suite/assets/less/sos/tokens.less
 
-      # Every template card of the start pages must point at a shipped file:
-      # the target PCs are offline, so nothing missing can be fetched later.
+      # Every template card of the start pages must point at a shipped,
+      # well-formed template: the target PCs are offline, so nothing missing
+      # can be fetched later. (The engine check runs after build-linux.)
       - name: Check start-page templates
         run: |
-          set -f   # names like "[32]..." are not globs
-          dir=desktop-apps/common/templates/sos
-          missing=0
-          for f in $(grep -oE "(file|thumb): '[^']+'" "$dir/manifest.js" | sed -E "s/^[a-z]+: '(.*)'$/\1/"); do
-            [ -f "$dir/$f" ] || { echo "missing: $f"; missing=1; }
-          done
-          exit $missing
+          python3 desktop-apps/tools/sos-templates/verify_templates.py \
+            --manifest desktop-apps/common/templates/sos/manifest.js
 
       # Recent documents: per-application lists, pins, removal, crash and
       # upgrade safety of the shell's store (Qt Core only, no engine needed).
@@ -258,6 +254,15 @@ jobs:
           cmake -S "$t" -B /tmp/recentdocuments
           cmake --build /tmp/recentdocuments
           /tmp/recentdocuments/tst_recentdocuments
+
+      # Template library: damaged, missing, wrong-type and macro templates are
+      # refused; only library files can be opened; My Templates scan.
+      - name: Test template library checks
+        run: |
+          t=desktop-apps/win-linux/tests/templatelibrary
+          cmake -S "$t" -B /tmp/templatelibrary
+          cmake --build /tmp/templatelibrary
+          /tmp/templatelibrary/tst_templatelibrary
 
       - name: Debug workspace
         run: |
@@ -634,6 +639,39 @@ jobs:
 
 
   # ─────────────────────────────────────────────────────────────
+  # Every template the Linux package ships is opened, saved as a
+  # document and reopened with the package's own converter, with no
+  # network: templates must be real and work offline.
+  # ─────────────────────────────────────────────────────────────
+  verify-templates:
+    runs-on: ubuntu-latest
+    needs: [build-linux]
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          token: ${{ github.token }}
+
+      - name: Check out desktop-apps
+        run: git submodule update --init --depth 1 desktop-apps
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: linux-packages-secure-office-suite-amd64
+          path: packages
+
+      - name: Unpack the packages
+        run: for deb in packages/*.deb; do dpkg -x "$deb" pkg; done
+
+      - name: Open, save and reopen every shipped template
+        run: |
+          conv=$(dirname "$(find pkg -name x2t -type f | head -1)")
+          sudo unshare --net -- sudo -u "$USER" env "PATH=$PATH" python3 desktop-apps/tools/sos-templates/verify_templates.py \
+            --manifest "$conv/templates/sos/manifest.js" \
+            --engine "$(dirname "$conv")" --work "$RUNNER_TEMP/templates"
+
+  # ─────────────────────────────────────────────────────────────
   # Classify the tag: v9.3.4-1 is stable; anything else
   # (v9.3.4-beta.1, v9.3.4-rc.1, v9.3.1-dev.1, ...) is a prerelease.
   # ─────────────────────────────────────────────────────────────
@@ -656,7 +694,7 @@ jobs:
   # ─────────────────────────────────────────────────────────────
   publish-release:
     runs-on: ubuntu-latest
-    needs: [release-info, build-linux, build-windows]
+    needs: [release-info, build-linux, build-windows, verify-templates]
     if: startsWith(github.ref, 'refs/tags/')
     permissions:
       contents: write
