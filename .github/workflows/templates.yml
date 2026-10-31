@@ -52,7 +52,8 @@ jobs:
         run: |
           deb=$(ls packages/*.deb | head -1)
           dpkg -x "$deb" pkg
-          find pkg -name x2t -printf '%h\n' | head -1 | xargs ls -la
+          find pkg -maxdepth 4 | head -60
+          find pkg -path '*converter*' -maxdepth 6 | head -40
 
       # No network for the converter: templates must work on offline PCs.
       - name: Open, save and reopen every template
