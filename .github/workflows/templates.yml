@@ -1,0 +1,63 @@
+name: Template library
+
+# Opens every start-page template with the EuroOffice engine of the latest
+# green main build, in minutes instead of a full build. build.yml runs the
+# same check against the packages it has just built.
+
+on:
+  pull_request:
+    paths:
+      - desktop-apps
+      - .github/workflows/templates.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read            # download the packages of another run
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  templates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          token: ${{ github.token }}
+
+      - name: Check out desktop-apps
+        run: git submodule update --init --depth 1 desktop-apps
+
+      - name: Find the latest green main build
+        id: run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          id=$(gh run list -R "$GITHUB_REPOSITORY" --workflow build.yml --branch main --event push \
+                 --status success -L 1 --json databaseId -q '.[0].databaseId')
+          test -n "$id"
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+          echo "Engine from run $id"
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: linux-packages-secure-office-suite-amd64
+          run-id: ${{ steps.run.outputs.id }}
+          github-token: ${{ github.token }}
+          path: packages
+
+      - name: Unpack the engine
+        run: |
+          deb=$(ls packages/*.deb | head -1)
+          dpkg -x "$deb" pkg
+          find pkg -name x2t -printf '%h\n' | head -1 | xargs ls -la
+
+      # No network for the converter: templates must work on offline PCs.
+      - name: Open, save and reopen every template
+        run: |
+          app=$(dirname "$(dirname "$(find pkg -name x2t | head -1)")")
+          sudo unshare --net -- sudo -u "$USER" env "PATH=$PATH" python3 desktop-apps/tools/sos-templates/verify_templates.py \
+            --manifest desktop-apps/common/templates/sos/manifest.js \
+            --engine "$app" --work "$RUNNER_TEMP/templates"
