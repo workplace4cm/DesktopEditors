@@ -50,15 +50,15 @@ jobs:
 
       - name: Unpack the engine
         run: |
-          deb=$(ls packages/*.deb | head -1)
-          dpkg -x "$deb" pkg
-          find pkg -maxdepth 4 | head -60
-          find pkg -path '*converter*' -maxdepth 6 | head -40
+          ls -la packages
+          for deb in packages/*.deb; do dpkg -x "$deb" pkg; done
+          conv=$(dirname "$(find pkg -name x2t -type f | head -1)")
+          ls -la "$conv" | head -60
 
       # No network for the converter: templates must work on offline PCs.
       - name: Open, save and reopen every template
         run: |
-          app=$(dirname "$(dirname "$(find pkg -name x2t | head -1)")")
+          app=$(dirname "$(dirname "$(find pkg -name x2t -type f | head -1)")")
           sudo unshare --net -- sudo -u "$USER" env "PATH=$PATH" python3 desktop-apps/tools/sos-templates/verify_templates.py \
             --manifest desktop-apps/common/templates/sos/manifest.js \
             --engine "$app" --work "$RUNNER_TEMP/templates"
