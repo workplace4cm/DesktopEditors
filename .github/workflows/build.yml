@@ -248,6 +248,17 @@ jobs:
           done
           exit $missing
 
+      # Recent documents: per-application lists, pins, removal, crash and
+      # upgrade safety of the shell's store (Qt Core only, no engine needed).
+      - name: Test recent-document service
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq qt6-base-dev >/dev/null
+          t=desktop-apps/win-linux/tests/recentdocuments
+          cmake -S "$t" -B /tmp/recentdocuments
+          cmake --build /tmp/recentdocuments
+          /tmp/recentdocuments/tst_recentdocuments
+
       - name: Debug workspace
         run: |
           echo "workspace: ${{ github.workspace }}"
