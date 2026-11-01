@@ -60,7 +60,7 @@ jobs:
           sudo apt-get install -y -qq xvfb openbox xdotool x11-utils imagemagick desktop-file-utils >/dev/null
           deb=$(ls packages/*.deb | grep -v -- -help | head -1)
           sudo apt-get install -y -qq "./$deb" >/dev/null
-          # packages built before libpulse0 was a dependency
+          # packages built before libpulse0 became a dependency
           dpkg -s libpulse0 >/dev/null 2>&1 || sudo apt-get install -y -qq libpulse0 >/dev/null
 
       - name: Libraries the applications cannot find
