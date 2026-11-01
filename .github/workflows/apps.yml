@@ -60,6 +60,17 @@ jobs:
           sudo apt-get install -y -qq xvfb openbox xdotool x11-utils imagemagick desktop-file-utils >/dev/null
           deb=$(ls packages/*.deb | grep -v -- -help | head -1)
           sudo apt-get install -y -qq "./$deb" >/dev/null
+          # packages built before libpulse0 was a dependency
+          dpkg -s libpulse0 >/dev/null 2>&1 || sudo apt-get install -y -qq libpulse0 >/dev/null
+
+      - name: Libraries the applications cannot find
+        run: |
+          app=/opt/secure-office-suite/desktopeditors
+          export LD_LIBRARY_PATH=$app:$app/converter
+          for f in $app/DesktopEditors $app/*.so*; do
+            ldd "$f" 2>/dev/null | grep "not found" | sed "s|^|$(basename "$f"): |"
+          done | sort -u | tee missing.txt
+          test ! -s missing.txt
 
       - name: Launch the four applications
         run: |
