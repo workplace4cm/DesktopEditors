@@ -1,0 +1,96 @@
+name: Windows installer
+
+# Rebuilds the Windows installer from this branch's desktop-apps packaging
+# (Inno Setup project) around the program files of an earlier build run, then
+# installs it and checks the Windows integration of EuroOffice Writer, Sheet,
+# Presentation and PDF (desktop-apps tools/sos-apps/verify_windows.ps1): in
+# minutes instead of a full build. build.yml runs the same check against the
+# installer it builds.
+
+on:
+  pull_request:
+    paths:
+      - desktop-apps
+      - build/windows/packaging-helpers.ps1
+      - .github/workflows/windows-install.yml
+  workflow_dispatch:
+    inputs:
+      run-id:
+        description: build.yml run whose Windows program files to package (empty = latest main build)
+        required: false
+
+permissions:
+  contents: read
+  actions: read            # download the packages of another run
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  installer:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          token: ${{ github.token }}
+
+      - name: Check out desktop-apps
+        run: git submodule update --init --depth 1 desktop-apps
+
+      - name: Find the build
+        id: run
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ inputs.run-id }}
+        run: |
+          id=$RUN_ID
+          [ -n "$id" ] || id=$(gh run list -R "$GITHUB_REPOSITORY" --workflow build.yml --branch main --event push \
+                 --status success -L 1 --json databaseId -q '.[0].databaseId')
+          test -n "$id"
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+          echo "Program files from run $id"
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: windows-packages-secure-office-suite-amd64
+          run-id: ${{ steps.run.outputs.id }}
+          github-token: ${{ github.token }}
+          path: packages
+
+      - name: Build the installer from this branch
+        shell: pwsh
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          . build/windows/packaging-helpers.ps1
+          $pkg = Resolve-Path desktop-apps/package
+          $zip = Get-ChildItem packages -Recurse -Filter '*.zip' | Select-Object -First 1
+          $build = Join-Path $pkg 'build\x64'
+          New-Item -ItemType Directory -Force -Path "$build\desktop", "$build\help" | Out-Null
+          & 7z x -y -bd "-o$build\desktop" $zip.FullName | Out-Null
+          if ($LASTEXITCODE -ne 0) { throw "7z failed" }
+          # the ZIP holds the help too; the standalone installer also takes a help folder
+          Set-Content "$build\help\README-help.txt" 'Help is installed with the program files.'
+          choco install innosetup --version=6.2.2 -y --no-progress | Out-Null
+          $env:INNOPATH = Get-InnoRoot "${env:ProgramFiles(x86)}\Inno Setup 6"
+          Sync-InnoLanguages (Join-Path $env:INNOPATH 'Languages')
+          Save-VcRedist $pkg 'x64'
+          Push-Location $pkg
+          .\make_inno.ps1 -Version '9.3.1.0' -Arch x64 -Target standalone
+          Pop-Location
+          Get-ChildItem "$pkg\inno\*.exe" | Where-Object Name -notlike 'vc_redist*' | Format-Table Name, Length
+
+      - name: Install, use, upgrade and uninstall
+        shell: pwsh
+        run: |
+          $setup = Get-ChildItem desktop-apps/package/inno -Filter '*.exe' | Where-Object Name -notlike 'vc_redist*' | Select-Object -First 1
+          desktop-apps/tools/sos-apps/verify_windows.ps1 -Installer $setup.FullName -Out "$env:RUNNER_TEMP\windows"
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: verify-windows
+          path: ${{ runner.temp }}/windows
