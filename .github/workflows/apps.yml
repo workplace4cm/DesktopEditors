@@ -1,8 +1,11 @@
 name: Four applications
 
 # Launches EuroOffice Writer, Sheet, Presentation and PDF from the Ubuntu
-# package of an earlier build run, in minutes instead of a full build.
-# build.yml runs the same check against the package it has just built.
+# package of an earlier build run, in minutes instead of a full build, and
+# checks their Ubuntu integration (menus, default applications, double-click,
+# upgrade, uninstall). The package's menu entries and install scripts are
+# first rebuilt from this branch's desktop-apps, so packaging changes are
+# tested too. build.yml runs the same checks against the package it builds.
 
 on:
   pull_request:
@@ -54,12 +57,29 @@ jobs:
           github-token: ${{ github.token }}
           path: packages
 
-      - name: Install the package and a virtual display
+      - name: Rebuild the package's integration files from this branch
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq xvfb openbox xdotool x11-utils imagemagick desktop-file-utils >/dev/null
+          sudo apt-get install -y -qq m4 >/dev/null
           deb=$(ls packages/*.deb | grep -v -- -help | head -1)
-          sudo apt-get install -y -qq "./$deb" >/dev/null
+          pkg=$(dpkg-deb -f "$deb" Package)
+          files="build/main/usr/share/$pkg/mimeapps.list build/main/usr/bin/$pkg-desktop-shortcuts
+                 build/main/usr/share/applications/$pkg.desktop deb/build/debian/postinst deb/build/debian/postrm"
+          for a in writer sheet presentation pdf; do
+            files="$files build/main/usr/share/applications/$pkg-$a.desktop build/main/usr/bin/$pkg-$a"
+          done
+          make -C desktop-apps/package $files
+          sudo dpkg-deb -R "$deb" repack
+          sudo cp -r desktop-apps/package/build/main/usr/. repack/usr/
+          for s in postinst postrm; do sudo install -m 755 desktop-apps/package/deb/build/debian/$s repack/DEBIAN/$s; done
+          sudo dpkg-deb -Zxz -z1 -b repack "$RUNNER_TEMP/$(basename "$deb")"
+          sudo rm -rf repack
+          echo "DEB=$RUNNER_TEMP/$(basename "$deb")" >> "$GITHUB_ENV"
+
+      - name: Install the package and a virtual display
+        run: |
+          sudo apt-get install -y -qq xvfb openbox xdotool x11-utils imagemagick desktop-file-utils libglib2.0-bin xdg-user-dirs >/dev/null
+          sudo apt-get install -y -qq "$DEB" >/dev/null
           # packages built before libpulse0 became a dependency
           dpkg -s libpulse0 >/dev/null 2>&1 || sudo apt-get install -y -qq libpulse0 >/dev/null
 
@@ -79,6 +99,11 @@ jobs:
           Xvfb :99 -screen 0 1600x1000x24 & sleep 3
           openbox & sleep 2
           desktop-apps/tools/sos-apps/verify_apps.sh secure-office-suite-desktopeditors "$RUNNER_TEMP/apps"
+
+      - name: Ubuntu integration
+        run: |
+          export DISPLAY=:99 LIBGL_ALWAYS_SOFTWARE=1 QT_QPA_PLATFORM=xcb
+          desktop-apps/tools/sos-apps/verify_integration.sh secure-office-suite-desktopeditors "$DEB" "$RUNNER_TEMP/apps/integration"
 
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
