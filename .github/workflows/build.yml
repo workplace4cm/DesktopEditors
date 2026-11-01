@@ -255,6 +255,16 @@ jobs:
           cmake --build /tmp/recentdocuments
           /tmp/recentdocuments/tst_recentdocuments
 
+      # EuroOffice Writer, Sheet, Presentation and PDF: which application a
+      # launch or a document belongs to, per-application single-instance,
+      # taskbar and data keys, and the installers' file types agree.
+      - name: Test application identities
+        run: |
+          t=desktop-apps/win-linux/tests/appidentity
+          cmake -S "$t" -B /tmp/appidentity
+          cmake --build /tmp/appidentity
+          /tmp/appidentity/tst_appidentity
+
       # Template library: damaged, missing, wrong-type and macro templates are
       # refused; only library files can be opened; My Templates scan.
       - name: Test template library checks
@@ -670,6 +680,51 @@ jobs:
           sudo unshare --net -- sudo -u "$USER" env "PATH=$PATH" python3 desktop-apps/tools/sos-templates/verify_templates.py \
             --manifest "$conv/templates/sos/manifest.js" \
             --engine "$(dirname "$conv")" --work "$RUNNER_TEMP/templates"
+
+  # ─────────────────────────────────────────────────────────────
+  # The four applications from the installed .deb, on a virtual
+  # display: a document opens directly in its application, each starts
+  # on its own start page in its own process with its own window
+  # identity, a second launch reaches the running one, and documents
+  # given to the wrong application open in the right one.
+  # ─────────────────────────────────────────────────────────────
+  verify-apps:
+    runs-on: ubuntu-24.04
+    needs: [build-linux]
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          token: ${{ github.token }}
+
+      - name: Check out desktop-apps
+        run: git submodule update --init --depth 1 desktop-apps
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: linux-packages-secure-office-suite-amd64
+          path: packages
+
+      - name: Install the package and a virtual display
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb openbox xdotool x11-utils imagemagick desktop-file-utils >/dev/null
+          deb=$(ls packages/*.deb | grep -v -- -help | head -1)
+          sudo apt-get install -y -qq "./$deb" >/dev/null
+
+      - name: Launch the four applications
+        run: |
+          export DISPLAY=:99 LIBGL_ALWAYS_SOFTWARE=1 QT_QPA_PLATFORM=xcb
+          Xvfb :99 -screen 0 1600x1000x24 & sleep 3
+          openbox & sleep 2
+          desktop-apps/tools/sos-apps/verify_apps.sh secure-office-suite-desktopeditors "$RUNNER_TEMP/apps"
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: verify-apps
+          path: ${{ runner.temp }}/apps
 
   # ─────────────────────────────────────────────────────────────
   # Classify the tag: v9.3.4-1 is stable; anything else
