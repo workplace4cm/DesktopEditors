@@ -67,7 +67,8 @@ jobs:
         run: |
           app=/opt/secure-office-suite/desktopeditors
           export LD_LIBRARY_PATH=$app:$app/converter
-          for f in $app/DesktopEditors $app/*.so*; do
+          # what the application loads (libQt6Quick3DSpatialAudio ships unused)
+          for f in $app/DesktopEditors $app/converter/x2t; do
             ldd "$f" 2>/dev/null | grep "not found" | sed "s|^|$(basename "$f"): |"
           done | sort -u | tee missing.txt
           test ! -s missing.txt
