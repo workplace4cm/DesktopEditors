@@ -1,0 +1,87 @@
+name: Four applications
+
+# Launches EuroOffice Writer, Sheet, Presentation and PDF from the Ubuntu
+# package of an earlier build run, in minutes instead of a full build.
+# build.yml runs the same check against the package it has just built.
+
+on:
+  pull_request:
+    paths:
+      - desktop-apps
+      - .github/workflows/apps.yml
+  workflow_dispatch:
+    inputs:
+      run-id:
+        description: build.yml run whose Ubuntu package to test (empty = latest main build)
+        required: false
+
+permissions:
+  contents: read
+  actions: read            # download the packages of another run
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  apps:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          token: ${{ github.token }}
+
+      - name: Check out desktop-apps
+        run: git submodule update --init --depth 1 desktop-apps
+
+      - name: Find the build
+        id: run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ inputs.run-id }}
+        run: |
+          id=$RUN_ID
+          [ -n "$id" ] || id=$(gh run list -R "$GITHUB_REPOSITORY" --workflow build.yml --branch main --event push \
+                 -L 1 --json databaseId -q '.[0].databaseId')
+          test -n "$id"
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+          echo "Package from run $id"
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: linux-packages-secure-office-suite-amd64
+          run-id: ${{ steps.run.outputs.id }}
+          github-token: ${{ github.token }}
+          path: packages
+
+      - name: Install the package and a virtual display
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb openbox xdotool x11-utils imagemagick desktop-file-utils >/dev/null
+          deb=$(ls packages/*.deb | grep -v -- -help | head -1)
+          sudo apt-get install -y -qq "./$deb" >/dev/null
+          # packages built before libpulse0 became a dependency
+          dpkg -s libpulse0 >/dev/null 2>&1 || sudo apt-get install -y -qq libpulse0 >/dev/null
+
+      - name: Libraries the applications cannot find
+        run: |
+          app=/opt/secure-office-suite/desktopeditors
+          export LD_LIBRARY_PATH=$app:$app/converter
+          # what the application loads (libQt6Quick3DSpatialAudio ships unused)
+          for f in $app/DesktopEditors $app/converter/x2t; do
+            ldd "$f" 2>/dev/null | grep "not found" | sed "s|^|$(basename "$f"): |"
+          done | sort -u | tee missing.txt
+          test ! -s missing.txt
+
+      - name: Launch the four applications
+        run: |
+          export DISPLAY=:99 LIBGL_ALWAYS_SOFTWARE=1 QT_QPA_PLATFORM=xcb
+          Xvfb :99 -screen 0 1600x1000x24 & sleep 3
+          openbox & sleep 2
+          desktop-apps/tools/sos-apps/verify_apps.sh secure-office-suite-desktopeditors "$RUNNER_TEMP/apps"
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: verify-apps
+          path: ${{ runner.temp }}/apps
