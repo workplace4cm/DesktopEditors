@@ -744,6 +744,7 @@ jobs:
   # ─────────────────────────────────────────────────────────────
   verify-windows:
     runs-on: windows-2022
+    timeout-minutes: 75
     needs: [build-windows]
     permissions:
       contents: read
