@@ -188,6 +188,10 @@ jobs:
               New-NetFirewallRule -DisplayName "SOS offline $exe" -Direction Outbound -Program "$dir\$exe" -Action Block | Out-Null
             }
           }
+          # the first-run "make it your default application?" question
+          # (association policy, Phase 8) is answered once, as a user does
+          New-Item -Force -Path 'HKCU:\Software\Secure Office Suite\DesktopEditors' | Out-Null
+          Set-ItemProperty -Path 'HKCU:\Software\Secure Office Suite\DesktopEditors' -Name ignoreAssocMsg -Value 'true'
           Set-NetFirewallProfile -All -Enabled True -LogBlocked True -LogMaxSizeKilobytes 32767 -LogFileName "$env:SystemRoot\System32\LogFiles\Firewall\pfirewall.log"
 
       - name: Run the regression test
