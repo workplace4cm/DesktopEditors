@@ -62,7 +62,7 @@ Run the installer from an administrator command prompt or a deployment tool:
 | `/DIR="D:\Apps\Secure Office Suite"` | install somewhere else |
 | `/LOG="C:\Temp\sos-install.log"` | write a setup log |
 
-Windows doesn't let a program set default applications for a user who is signed in. To get around that, the installer also sets the Windows *default associations* policy (`DefaultAssociations.xml` in the program folder). Every user gets the suite's file types at their next sign-in. The PDF type is the one exception: for the user who was signed in during the install, Windows keeps Microsoft Edge for PDF files until that user signs out and back in.
+Windows doesn't let a program set default applications for a user who is signed in. To get around that, the installer also sets the Windows *default associations* policy (`DefaultAssociations.xml` in the program folder). Every user gets the suite's file types at their next sign-in. There are two exceptions, both only for the user who was signed in during the install, and only until that user signs out and back in. Windows keeps Microsoft Edge for PDF files. On Windows 11 and Server 2025, Windows also asks once which application should open TXT files.
 
 ### Upgrade
 
@@ -183,7 +183,7 @@ Back up these folders together with your documents. Upgrades and uninstalls keep
 | Problem | What to do |
 |---|---|
 | SmartScreen blocks the installer | Check the checksum, then **More info > Run anyway**. Signing the installer would remove this warning; see the limitations. |
-| A PDF still opens in Edge after installing | Sign out and back in once. Or right-click a PDF, choose **Open with > Choose another app**, pick **EuroOffice PDF** and tick **Always**. |
+| A PDF still opens in Edge, or a TXT asks which app to use, after installing | Sign out and back in once. Or right-click a PDF, choose **Open with > Choose another app**, pick **EuroOffice PDF** and tick **Always**. |
 | Windows asks at first start whether to make the suite the default | Answer once. Administrators can set `ignoreAssocMsg` = `true` (string) under the settings key above to skip the question. |
 | `dpkg: dependency problems` on Ubuntu | The PC isn't a standard Ubuntu Desktop install. See [Install, without internet](#install-without-internet). |
 | An application doesn't start on Ubuntu | Run its command from a terminal (`secure-office-suite-desktopeditors-writer`) and read the messages. A missing `libpulse0` or `libopengl0` means a minimal install. |
