@@ -1,0 +1,136 @@
+name: Regression (four applications)
+
+# Phase 9: cross-application functional and document-format regression test
+# of EuroOffice Writer, Sheet, Presentation and PDF on the Ubuntu package of
+# an earlier build run. desktop-apps tools/sos-apps/regression drives the
+# real applications (start pages, editors, native file pickers) as a
+# separate user whose network access is blocked except loopback, so the
+# run is also the offline check. Results: the job summary and the
+# "regression" artifact (results.md / results.json, screenshots, logs).
+
+on:
+  pull_request:
+    paths:
+      - desktop-apps
+      - .github/workflows/regression.yml
+  workflow_dispatch:
+    inputs:
+      run-id:
+        description: build.yml run whose Ubuntu package to test (empty = latest successful build)
+        required: false
+      only:
+        description: functional or formats (empty = both)
+        required: false
+      apps:
+        description: applications for the functional part
+        required: false
+        default: writer,sheet,presentation,pdf
+
+permissions:
+  contents: read
+  actions: read            # download the packages of another run
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regression:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          token: ${{ github.token }}
+
+      - name: Check out desktop-apps
+        run: git submodule update --init --depth 1 desktop-apps
+
+      - name: Find the build
+        id: run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ inputs.run-id }}
+        run: |
+          id=$RUN_ID
+          [ -n "$id" ] || id=$(gh run list -R "$GITHUB_REPOSITORY" --workflow build.yml \
+                 --status success -L 1 --json databaseId -q '.[0].databaseId')
+          test -n "$id"
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+          echo "Package from build run $id: $(gh run view -R "$GITHUB_REPOSITORY" "$id" --json headBranch,headSha,displayTitle \
+                 -q '"\(.headBranch) \(.headSha[0:7]) \(.displayTitle)"')" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: linux-packages-secure-office-suite-amd64
+          run-id: ${{ steps.run.outputs.id }}
+          github-token: ${{ github.token }}
+          path: packages
+
+      - name: Install the package, a virtual display and the test tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb openbox xdotool x11-utils x11-xserver-utils imagemagick \
+               python3-websocket python3-pypdf dbus-x11 libglib2.0-bin >/dev/null
+          deb=$(ls packages/*.deb | grep -v -- -help | head -1)
+          sudo apt-get install -y -qq "./$deb" >/dev/null
+          dpkg -s libpulse0 >/dev/null 2>&1 || sudo apt-get install -y -qq libpulse0 >/dev/null
+          sudo cp -r desktop-apps/tools/sos-apps /opt/sos-qa
+          sudo chmod -R a+rX /opt/sos-qa
+
+      - name: Test user without network
+        run: |
+          sudo useradd -m -s /bin/bash qa
+          sudo -u qa mkdir -p /home/qa/Documents
+          # loopback (DevTools of the applications) only; everything else is
+          # logged and refused, so a connection attempt shows in the counters
+          for ipt in iptables ip6tables; do
+            sudo $ipt -A OUTPUT -o lo -m owner --uid-owner qa -j ACCEPT
+            sudo $ipt -A OUTPUT -m owner --uid-owner qa -j LOG --log-prefix "SOS-OFFLINE " --log-uid
+            sudo $ipt -A OUTPUT -m owner --uid-owner qa -j REJECT
+          done
+          sudo -u qa curl -sS -m 5 https://github.com >/dev/null 2>&1 && { echo "qa still has network"; exit 1; } || echo "qa has no network"
+          sudo iptables -Z OUTPUT; sudo ip6tables -Z OUTPUT
+
+      - name: Run the regression test
+        env:
+          ONLY: ${{ inputs.only }}
+          APPS: ${{ inputs.apps || 'writer,sheet,presentation,pdf' }}
+        run: |
+          Xvfb :99 -screen 0 1600x1000x24 >/dev/null 2>&1 & sleep 3
+          export DISPLAY=:99
+          openbox >/dev/null 2>&1 & sleep 2
+          xhost +SI:localuser:qa
+          sudo mkdir -p /tmp/qa-out && sudo chown qa /tmp/qa-out
+          args="--out /tmp/qa-out --apps $APPS"
+          [ -n "$ONLY" ] && args="$args --only $ONLY"
+          set +e
+          sudo -u qa -H env DISPLAY=:99 LIBGL_ALWAYS_SOFTWARE=1 QT_QPA_PLATFORM=xcb NO_AT_BRIDGE=1 \
+               dbus-run-session -- python3 /opt/sos-qa/regression/run_regression.py $args
+          status=$?
+          set -e
+          cat /tmp/qa-out/results.md >> "$GITHUB_STEP_SUMMARY" || true
+          exit $status
+
+      - name: Offline check
+        if: always()
+        run: |
+          {
+            echo "## Offline"
+            echo
+            for ipt in iptables ip6tables; do
+              n=$(sudo $ipt -L OUTPUT -v -n -x | awk '/REJECT/ && /owner UID match/ {s+=$1} END {print s+0}')
+              echo "- $ipt: $n outgoing packets from the applications refused"
+            done
+            echo
+            echo '```'
+            sudo dmesg | grep SOS-OFFLINE | sed 's/MAC=[^ ]* //' | tail -20 || true
+            echo '```'
+          } | tee /tmp/offline.md | tee -a "$GITHUB_STEP_SUMMARY"
+          sudo cp /tmp/offline.md /tmp/qa-out/ || true
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: regression
+          path: /tmp/qa-out
