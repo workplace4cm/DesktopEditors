@@ -136,3 +136,85 @@ jobs:
         with:
           name: regression
           path: /tmp/qa-out
+
+  regression-windows:
+    runs-on: windows-2022
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          token: ${{ github.token }}
+
+      - name: Check out desktop-apps
+        run: git submodule update --init --depth 1 desktop-apps
+
+      - name: Find the build
+        id: run
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ inputs.run-id }}
+        run: |
+          id=$RUN_ID
+          [ -n "$id" ] || id=$(gh run list -R "$GITHUB_REPOSITORY" --workflow build.yml \
+                 --status success -L 1 --json databaseId -q '.[0].databaseId')
+          test -n "$id"
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+          echo "Installer from build run $id" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: windows-packages-secure-office-suite-amd64
+          run-id: ${{ steps.run.outputs.id }}
+          github-token: ${{ github.token }}
+          path: packages
+
+      - name: Install the test tools and the suite
+        shell: pwsh
+        run: |
+          python -m pip install --quiet websocket-client pypdf pywinauto psutil pillow
+          $setup = Get-ChildItem packages -Recurse -Filter '*.exe' | Where-Object Name -notlike 'vc_redist*' | Select-Object -First 1
+          $p = Start-Process $setup.FullName -ArgumentList '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', "/LOG=`"$env:RUNNER_TEMP\install.log`"" -PassThru
+          if (-not $p.WaitForExit(900000)) { throw "setup did not finish" }
+          "setup exit code $($p.ExitCode)"
+          Test-Path "$env:ProgramFiles\Secure Office Suite\DesktopEditors\DesktopEditors.exe"
+
+      - name: Block the applications' network access
+        shell: pwsh
+        run: |
+          $dir = "$env:ProgramFiles\Secure Office Suite\DesktopEditors"
+          foreach ($exe in 'DesktopEditors.exe', 'editors_helper.exe', 'converter\x2t.exe') {
+            if (Test-Path "$dir\$exe") {
+              New-NetFirewallRule -DisplayName "SOS offline $exe" -Direction Outbound -Program "$dir\$exe" -Action Block | Out-Null
+            }
+          }
+          Set-NetFirewallProfile -All -Enabled True -LogBlocked True -LogMaxSizeKilobytes 32767 -LogFileName "$env:SystemRoot\System32\LogFiles\Firewall\pfirewall.log"
+
+      - name: Run the regression test
+        shell: pwsh
+        env:
+          ONLY: ${{ inputs.only }}
+          APPS: ${{ inputs.apps || 'writer,sheet,presentation,pdf' }}
+        run: |
+          $out = "$env:RUNNER_TEMP\qa-out"
+          $a = @('desktop-apps/tools/sos-apps/regression/run_regression.py', '--out', $out, '--apps', $env:APPS)
+          if ($env:ONLY) { $a += @('--only', $env:ONLY) }
+          python @a
+          Get-Content "$out\results.md" -ErrorAction SilentlyContinue | Add-Content $env:GITHUB_STEP_SUMMARY
+          python -c "import json,sys; r=json.load(open(r'$out\results.json'))['results']; sys.exit(any(x['status']=='FAIL' for x in r) or not r)"
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+
+      - name: Offline check
+        if: always()
+        shell: pwsh
+        run: |
+          $log = "$env:SystemRoot\System32\LogFiles\Firewall\pfirewall.log"
+          $n = 0
+          if (Test-Path $log) { $n = @(Get-Content $log | Select-String ' DROP TCP .* SEND| DROP UDP .* SEND').Count }
+          "## Offline (Windows)`n`n- outbound block rules for DesktopEditors.exe, editors_helper.exe, x2t.exe; dropped outgoing packets logged by the firewall: $n" | Tee-Object -FilePath "$env:RUNNER_TEMP\qa-out\offline.md" | Add-Content $env:GITHUB_STEP_SUMMARY
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: regression-windows
+          path: ${{ runner.temp }}/qa-out
