@@ -25,6 +25,11 @@ on:
         description: build.yml run to upgrade from (empty = latest successful main build)
         type: string
         required: false
+  # a change to the checks runs them in minutes on the last two main builds
+  pull_request:
+    paths:
+      - desktop-apps
+      - .github/workflows/release-validation.yml
   workflow_dispatch:
     inputs:
       run-id:
@@ -38,19 +43,25 @@ permissions:
   contents: read
   actions: read            # download the packages of other runs
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name == 'pull_request' && 'pr' || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
   runs:
     runs-on: ubuntu-latest
     outputs:
       candidate: ${{ steps.find.outputs.candidate }}
       previous: ${{ steps.find.outputs.previous }}
+      require-newer: ${{ steps.find.outputs.require-newer }}
     steps:
       - id: find
         env:
           GH_TOKEN: ${{ github.token }}
           RUN_ID: ${{ inputs.run-id }}
           PREVIOUS: ${{ inputs.previous-run-id }}
-          CALLED: ${{ github.event_name != 'workflow_dispatch' }}
+          # called from build.yml (the event is the build's push or pull_request)
+          CALLED: ${{ github.workflow != 'Release validation' }}
         run: |
           main=$(gh run list -R "$GITHUB_REPOSITORY" --workflow build.yml --branch main --event push \
                  --status success -L 5 --json databaseId -q '.[].databaseId')
@@ -63,6 +74,9 @@ jobs:
           test -n "$cand" && test -n "$prev"
           echo "candidate=$cand" >> "$GITHUB_OUTPUT"
           echo "previous=$prev" >> "$GITHUB_OUTPUT"
+          # builds before Phase 10 all have version 9.3.1-dev.1; a build made
+          # by build.yml now must be newer than the one it upgrades
+          echo "require-newer=$([ "$CALLED" = true ] && echo 1 || echo 0)" >> "$GITHUB_OUTPUT"
           {
             echo "## Release validation"
             echo
@@ -113,7 +127,7 @@ jobs:
         run: |
           mkdir -p out
           set +e
-          docker run --rm --network none --shm-size=2g \
+          docker run --rm --network none --shm-size=2g -e SOS_REQUIRE_NEWER=${{ needs.runs.outputs.require-newer }} \
             -v "$PWD/pkg:/pkg:ro" -v "$PWD/desktop-apps/tools/sos-apps:/tools:ro" -v "$PWD/out:/out" \
             stock-${{ matrix.ubuntu }} bash /tools/stock-ubuntu/run_in_container.sh /tools /pkg/new.deb /out /pkg/old.deb
           status=$?
