@@ -110,6 +110,8 @@ jobs:
           status=$?
           set -e
           cat /tmp/qa-out/results.md >> "$GITHUB_STEP_SUMMARY" || true
+          # a FAIL anywhere fails the job, whatever the exit status
+          python3 -c "import json,sys; r=json.load(open('/tmp/qa-out/results.json'))['results']; sys.exit(any(x['status']=='FAIL' for x in r) or not r)" || exit 1
           exit $status
 
       - name: Offline check
