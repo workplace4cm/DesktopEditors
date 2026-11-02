@@ -45,7 +45,7 @@ jobs:
         run: |
           id=$RUN_ID
           [ -n "$id" ] || id=$(gh run list -R "$GITHUB_REPOSITORY" --workflow build.yml --branch main --event push \
-                 -L 1 --json databaseId -q '.[0].databaseId')
+                 --status success -L 1 --json databaseId -q '.[0].databaseId')
           test -n "$id"
           echo "id=$id" >> "$GITHUB_OUTPUT"
           echo "Package from run $id"
