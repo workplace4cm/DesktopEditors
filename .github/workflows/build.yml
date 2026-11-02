@@ -104,17 +104,13 @@ jobs:
 
       # The Ubuntu package's version must grow with every build, or apt treats
       # a newer build as already installed and never offers it as an upgrade
-      # (every build used to be 9.3.1-dev.1). Builds that aren't tags get
-      # dev.<run number>, which sorts above dev.1 and each earlier build.
-      # Only the packaging step takes it, so no compile cache is invalidated.
+      # (every build used to be 9.3.1-dev.1). Every build, tag or not, gets
+      # sos.<run number>: run numbers only grow, and "sos" sorts above "dev",
+      # so machines with a dev.1 build upgrade too. Only the packaging step
+      # takes it, so no compile cache is invalidated.
       - name: Package build number
         id: pkg
-        run: |
-          if [[ "${{ startsWith(github.ref, 'refs/tags/') }}" == "true" ]]; then
-            echo "package_build_number=${{ steps.meta.outputs.build_number }}" >> "$GITHUB_OUTPUT"
-          else
-            echo "package_build_number=dev.${GITHUB_RUN_NUMBER}" >> "$GITHUB_OUTPUT"
-          fi
+        run: echo "package_build_number=sos.${GITHUB_RUN_NUMBER}" >> "$GITHUB_OUTPUT"
 
 
   # ─────────────────────────────────────────────────────────────
