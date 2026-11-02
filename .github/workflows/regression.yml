@@ -71,7 +71,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq xvfb openbox xdotool x11-utils x11-xserver-utils imagemagick \
-               python3-websocket python3-pypdf dbus-x11 libglib2.0-bin >/dev/null
+               python3-websocket python3-pypdf dbus-x11 libglib2.0-bin tesseract-ocr >/dev/null
           deb=$(ls packages/*.deb | grep -v -- -help | head -1)
           sudo apt-get install -y -qq "./$deb" >/dev/null
           dpkg -s libpulse0 >/dev/null 2>&1 || sudo apt-get install -y -qq libpulse0 >/dev/null
