@@ -1,0 +1,220 @@
+name: Release validation
+
+# Phase 10: installation validation of a build's Windows installer and Ubuntu
+# package, offline, on clean machines:
+#   - Ubuntu 22.04 and 24.04: a stock desktop (the official desktop ISO's
+#     package set) in a container with no network at all; the previous main
+#     build is installed first and upgraded to this one, then the package is
+#     used, purged and reinstalled, and the build's own application and
+#     integration checks run on it (desktop-apps tools/sos-apps).
+#   - Windows Server 2022 and 2025: the previous main build's installer, the
+#     upgrade to this one, use, uninstall and reinstall with the installer
+#     and the applications blocked from the network, then the full Windows
+#     integration check (verify_windows.ps1).
+# build.yml calls it for every build; it can also be run by hand on any two
+# build runs. Each job writes a summary and uploads its logs.
+
+on:
+  workflow_call:
+    inputs:
+      run-id:
+        description: build.yml run to validate (empty = the calling run)
+        type: string
+        required: false
+      previous-run-id:
+        description: build.yml run to upgrade from (empty = latest successful main build)
+        type: string
+        required: false
+  # a change to the checks runs them in minutes on the last two main builds
+  pull_request:
+    paths:
+      - desktop-apps
+      - .github/workflows/release-validation.yml
+  workflow_dispatch:
+    inputs:
+      run-id:
+        description: build.yml run to validate (empty = latest successful main build)
+        required: false
+      previous-run-id:
+        description: build.yml run to upgrade from (empty = the successful main build before it)
+        required: false
+
+permissions:
+  contents: read
+  actions: read            # download the packages of other runs
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name == 'pull_request' && 'pr' || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  runs:
+    runs-on: ubuntu-latest
+    outputs:
+      candidate: ${{ steps.find.outputs.candidate }}
+      previous: ${{ steps.find.outputs.previous }}
+      require-newer: ${{ steps.find.outputs.require-newer }}
+    steps:
+      - id: find
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ inputs.run-id }}
+          PREVIOUS: ${{ inputs.previous-run-id }}
+          # called from build.yml (the event is the build's push or pull_request)
+          CALLED: ${{ github.workflow != 'Release validation' }}
+        run: |
+          main=$(gh run list -R "$GITHUB_REPOSITORY" --workflow build.yml --branch main --event push \
+                 --status success -L 5 --json databaseId -q '.[].databaseId')
+          cand=$RUN_ID
+          if [ -z "$cand" ]; then
+            if [ "$CALLED" = true ]; then cand=$GITHUB_RUN_ID; else cand=$(echo "$main" | head -1); fi
+          fi
+          prev=$PREVIOUS
+          [ -n "$prev" ] || prev=$(echo "$main" | grep -vx "$cand" | head -1)
+          test -n "$cand" && test -n "$prev"
+          echo "candidate=$cand" >> "$GITHUB_OUTPUT"
+          echo "previous=$prev" >> "$GITHUB_OUTPUT"
+          # builds before Phase 10 all have version 9.3.1-dev.1; a build made
+          # by build.yml now must be newer than the one it upgrades
+          echo "require-newer=$([ "$CALLED" = true ] && echo 1 || echo 0)" >> "$GITHUB_OUTPUT"
+          {
+            echo "## Release validation"
+            echo
+            echo "- build under test: run $cand ($(gh run view -R "$GITHUB_REPOSITORY" "$cand" --json headBranch,headSha -q '"\(.headBranch) \(.headSha[0:7])"'))"
+            echo "- upgraded from: run $prev ($(gh run view -R "$GITHUB_REPOSITORY" "$prev" --json headBranch,headSha -q '"\(.headBranch) \(.headSha[0:7])"'))"
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+
+  ubuntu:
+    needs: runs
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        ubuntu: ['22.04', '24.04']
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          token: ${{ github.token }}
+
+      - name: Check out desktop-apps
+        run: git submodule update --init --depth 1 desktop-apps
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: linux-packages-secure-office-suite-amd64
+          run-id: ${{ needs.runs.outputs.candidate }}
+          github-token: ${{ github.token }}
+          path: new
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: linux-packages-secure-office-suite-amd64
+          run-id: ${{ needs.runs.outputs.previous }}
+          github-token: ${{ github.token }}
+          path: old
+
+      - name: Build a stock Ubuntu ${{ matrix.ubuntu }} desktop
+        run: |
+          docker build -q -t stock-${{ matrix.ubuntu }} --build-arg UBUNTU=${{ matrix.ubuntu }} desktop-apps/tools/sos-apps/stock-ubuntu
+          mkdir -p pkg
+          cp "$(ls new/*.deb | grep -v -- -help | head -1)" pkg/new.deb
+          cp "$(ls old/*.deb | grep -v -- -help | head -1)" pkg/old.deb
+          rm -rf new old
+          for d in old new; do echo "$d: $(dpkg-deb -f pkg/$d.deb Package) $(dpkg-deb -f pkg/$d.deb Version)"; done
+
+      - name: Install, upgrade, use, uninstall and reinstall with no network
+        run: |
+          mkdir -p out
+          set +e
+          docker run --rm --network none --shm-size=2g -e SOS_REQUIRE_NEWER=${{ needs.runs.outputs.require-newer }} \
+            -v "$PWD/pkg:/pkg:ro" -v "$PWD/desktop-apps/tools/sos-apps:/tools:ro" -v "$PWD/out:/out" \
+            stock-${{ matrix.ubuntu }} bash /tools/stock-ubuntu/run_in_container.sh /tools /pkg/new.deb /out /pkg/old.deb
+          status=$?
+          set -e
+          {
+            echo "### Ubuntu ${{ matrix.ubuntu }} (stock desktop, no network)"
+            echo; echo '```'; cat out/stock-manifest.txt out/RESULT 2>/dev/null; echo '```'
+            echo; echo '<details><summary>checks</summary>'; echo; echo '```'
+            cat out/release.log out/apps.log out/integration.log 2>/dev/null | grep -E '^(PASS|FAIL|NOTE)' | head -400
+            echo '```'; echo '</details>'
+          } >> "$GITHUB_STEP_SUMMARY"
+          for l in release apps integration; do echo "::group::$l"; cat out/$l.log; echo "::endgroup::"; done
+          grep -h '^FAIL' out/*.log || true
+          exit $status
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: release-ubuntu-${{ matrix.ubuntu }}
+          path: out
+
+  windows:
+    needs: runs
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-2022, windows-2025]
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          token: ${{ github.token }}
+
+      - name: Check out desktop-apps
+        run: git submodule update --init --depth 1 desktop-apps
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: windows-packages-secure-office-suite-amd64
+          run-id: ${{ needs.runs.outputs.candidate }}
+          github-token: ${{ github.token }}
+          path: new
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: windows-packages-secure-office-suite-amd64
+          run-id: ${{ needs.runs.outputs.previous }}
+          github-token: ${{ github.token }}
+          path: old
+
+      - name: Upgrade, use, uninstall and reinstall offline
+        shell: pwsh
+        run: |
+          $new = Get-ChildItem new -Recurse -Filter '*.exe' | Where-Object Name -notlike 'vc_redist*' | Select-Object -First 1
+          $old = Get-ChildItem old -Recurse -Filter '*.exe' | Where-Object Name -notlike 'vc_redist*' | Select-Object -First 1
+          Get-ChildItem new, old -Recurse -Filter '*.zip' | Remove-Item -Force   # the portable ZIPs aren't needed
+          $os = (Get-CimInstance Win32_OperatingSystem)
+          "### ${{ matrix.os }}: $($os.Caption) $($os.Version)" | Add-Content $env:GITHUB_STEP_SUMMARY
+          desktop-apps/tools/sos-apps/verify_release_windows.ps1 -Installer $new.FullName -Previous $old.FullName -Out "$env:RUNNER_TEMP\release" *>&1 |
+            Tee-Object -FilePath "$env:RUNNER_TEMP\release.log"
+          $code = $LASTEXITCODE
+          $lines = Get-Content "$env:RUNNER_TEMP\release.log" | Where-Object { $_ -match '^(PASS|FAIL|NOTE|CSV)' }
+          "- release checks: $(@($lines | Where-Object { $_ -like 'PASS*' }).Count) passed, $(@($lines | Where-Object { $_ -like 'FAIL*' }).Count) failed" | Add-Content $env:GITHUB_STEP_SUMMARY
+          $lines | Where-Object { $_ -like 'FAIL*' -or $_ -like 'CSV*' } | ForEach-Object { "  - $_" } | Add-Content $env:GITHUB_STEP_SUMMARY
+          Copy-Item "$env:RUNNER_TEMP\release.log" "$env:RUNNER_TEMP\release\" -ErrorAction SilentlyContinue
+          if ($code -ne 0) { exit 1 }
+
+      - name: Clean install, Start Menu, file types, upgrade and uninstall
+        if: always()
+        shell: pwsh
+        run: |
+          # verify_windows.ps1 starts from a machine without the suite
+          $u = "$env:ProgramFiles\Secure Office Suite\DesktopEditors\unins000.exe"
+          if (Test-Path $u) { Start-Process $u -ArgumentList '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART' -Wait; Start-Sleep 20 }
+          $new = Get-ChildItem new -Recurse -Filter '*.exe' | Where-Object Name -notlike 'vc_redist*' | Select-Object -First 1
+          desktop-apps/tools/sos-apps/verify_windows.ps1 -Installer $new.FullName -Out "$env:RUNNER_TEMP\release\integration" *>&1 |
+            Tee-Object -FilePath "$env:RUNNER_TEMP\integration.log"
+          $code = $LASTEXITCODE
+          $l = Get-Content "$env:RUNNER_TEMP\integration.log"
+          "- integration checks: $(@($l | Where-Object { $_ -like 'PASS*' }).Count) passed, $(@($l | Where-Object { $_ -like 'FAIL*' }).Count) failed" | Add-Content $env:GITHUB_STEP_SUMMARY
+          $l | Where-Object { $_ -like 'FAIL*' } | ForEach-Object { "  - $_" } | Add-Content $env:GITHUB_STEP_SUMMARY
+          Copy-Item "$env:RUNNER_TEMP\integration.log" "$env:RUNNER_TEMP\release\" -ErrorAction SilentlyContinue
+          if ($code -ne 0) { exit 1 }
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: release-${{ matrix.os }}
+          path: ${{ runner.temp }}/release
