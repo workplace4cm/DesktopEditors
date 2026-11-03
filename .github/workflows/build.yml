@@ -409,7 +409,9 @@ jobs:
           - name: secure-office-suite
             company_name: Secure Office Suite
             product_name: Desktop Editors
-            # Unsigned, packaged here and published to the GitHub release.
+            # Packaged here and published to the GitHub release. Signed in
+            # this job when a code-signing secret is set (see "Prepare code
+            # signing"); `sign: true` is upstream's separate signing server.
             sign: false
     env:
       PYTHONUTF8: "1"
@@ -475,10 +477,72 @@ jobs:
         run: tar -xzf brand-assets/brand-assets.tar.gz -C .
 
       # ---- build + package (single source of truth: the script) ---- #
+      # Optional Authenticode signing, on only when a certificate is configured
+      # in the repository secrets (docs/release/TECHNICAL.md, "Code signing"):
+      #   Azure Trusted Signing: AZURE_TENANT_ID, AZURE_CLIENT_ID,
+      #     AZURE_CLIENT_SECRET, TRUSTED_SIGNING_ENDPOINT,
+      #     TRUSTED_SIGNING_ACCOUNT, TRUSTED_SIGNING_PROFILE
+      #   certificate file: WINDOWS_SIGNING_PFX (base64 of the .pfx) and
+      #     WINDOWS_SIGNING_PFX_PASSWORD
+      # With neither, the build stays unsigned exactly as before.
+      - name: Prepare code signing
+        id: signing
+        if: ${{ !matrix.brand.sign }}
+        shell: pwsh
+        env:
+          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          TS_ENDPOINT: ${{ secrets.TRUSTED_SIGNING_ENDPOINT }}
+          TS_ACCOUNT: ${{ secrets.TRUSTED_SIGNING_ACCOUNT }}
+          TS_PROFILE: ${{ secrets.TRUSTED_SIGNING_PROFILE }}
+          PFX_BASE64: ${{ secrets.WINDOWS_SIGNING_PFX }}
+          PFX_PASSWORD: ${{ secrets.WINDOWS_SIGNING_PFX_PASSWORD }}
+        run: |
+          $signArgs = @()
+          if ($env:TS_ENDPOINT -and $env:TS_ACCOUNT -and $env:TS_PROFILE -and $env:AZURE_CLIENT_ID) {
+            $dir = Join-Path $env:RUNNER_TEMP 'trusted-signing'
+            nuget install Microsoft.Trusted.Signing.Client -OutputDirectory $dir -ExcludeVersion -NonInteractive | Out-Host
+            $dlib = Get-ChildItem $dir -Recurse -Filter 'Azure.CodeSigning.Dlib.dll' |
+                    Where-Object { $_.FullName -match '\\x64\\' } | Select-Object -First 1
+            if (-not $dlib) { throw "Azure.CodeSigning.Dlib.dll not found in the Trusted Signing client package." }
+            $meta = Join-Path $dir 'metadata.json'
+            @{ Endpoint = $env:TS_ENDPOINT; CodeSigningAccountName = $env:TS_ACCOUNT; CertificateProfileName = $env:TS_PROFILE } |
+              ConvertTo-Json | Set-Content -Encoding UTF8 $meta
+            $signArgs = '/fd', 'SHA256', '/tr', 'http://timestamp.acs.microsoft.com', '/td', 'SHA256',
+                    '/dlib', $dlib.FullName, '/dmdf', $meta
+            $mode = 'Azure Trusted Signing'
+          } elseif ($env:PFX_BASE64) {
+            $pfx = Join-Path $env:RUNNER_TEMP 'signing.pfx'
+            [IO.File]::WriteAllBytes($pfx, [Convert]::FromBase64String($env:PFX_BASE64))
+            $pw = ConvertTo-SecureString -String "$env:PFX_PASSWORD" -AsPlainText -Force
+            $cert = Import-PfxCertificate -FilePath $pfx -CertStoreLocation Cert:\CurrentUser\My -Password $pw |
+                    Where-Object HasPrivateKey | Select-Object -First 1
+            Remove-Item $pfx -Force
+            if (-not $cert) { throw "WINDOWS_SIGNING_PFX holds no certificate with a private key." }
+            $signArgs = '/fd', 'sha256', '/sha1', $cert.Thumbprint, '/tr', 'http://timestamp.digicert.com', '/td', 'sha256'
+            $mode = "certificate $($cert.Subject), valid until $($cert.NotAfter.ToString('yyyy-MM-dd'))"
+          }
+          if ($signArgs) {
+            "args=$(ConvertTo-Json -Compress -InputObject @($signArgs))" >> $env:GITHUB_OUTPUT
+            "Code signing: $mode" | Tee-Object -Append -FilePath $env:GITHUB_STEP_SUMMARY
+          } else {
+            "Code signing: off (no certificate configured), the installer is unsigned" | Tee-Object -Append -FilePath $env:GITHUB_STEP_SUMMARY
+          }
+
       - name: Build & package
         shell: pwsh
+        env:
+          SIGN_ARGS: ${{ steps.signing.outputs.args }}
+          # read by the Trusted Signing client while signtool runs
+          AZURE_TENANT_ID: ${{ steps.signing.outputs.args && secrets.AZURE_TENANT_ID || '' }}
+          AZURE_CLIENT_ID: ${{ steps.signing.outputs.args && secrets.AZURE_CLIENT_ID || '' }}
+          AZURE_CLIENT_SECRET: ${{ steps.signing.outputs.args && secrets.AZURE_CLIENT_SECRET || '' }}
         run: |
           $extra = @{}
+          if ($env:SIGN_ARGS) {
+            $extra.Sign = $true
+            $extra.SignArgs = [string[]](ConvertFrom-Json $env:SIGN_ARGS)
+          }
           if ('${{ matrix.brand.sign }}' -eq 'true') {
             # Packages must be built from signed binaries, so leave that to
             # the signing server.
@@ -834,8 +898,24 @@ jobs:
 
       - run: find dist -type f -printf '%p  %s bytes\n' | sort
 
-      # The installer is not code-signed yet, so publish checksums people can
-      # compare against before running it.
+      # The release documents go next to the packages.
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          sparse-checkout: docs/release
+          path: src
+          token: ${{ github.token }}
+
+      - name: Add the release documents
+        id: docs
+        run: |
+          # the release is named by the notes' title, e.g. "Secure Office Suite 1.0.0"
+          echo "title=$(head -1 src/docs/release/RELEASE-NOTES.md | sed 's/^# *//')" >> "$GITHUB_OUTPUT"
+          for f in README INSTALL KNOWN-LIMITATIONS TECHNICAL VALIDATION; do
+            cp "src/docs/release/$f.md" "dist/SecureOfficeSuite-$f.md"
+          done
+
+      # Checksums people can compare against before running the installer
+      # (needed while it isn't code-signed).
       - name: Write SHA256SUMS
         run: |
           cd dist
@@ -844,6 +924,8 @@ jobs:
 
       - uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2
         with:
+          name: ${{ steps.docs.outputs.title }}
+          body_path: src/docs/release/RELEASE-NOTES.md
           files: dist/**/*
           prerelease: ${{ needs.release-info.outputs.stable != 'true' }}
           fail_on_unmatched_files: true

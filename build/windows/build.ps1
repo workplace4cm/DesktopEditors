@@ -59,6 +59,16 @@
     Written before the (unsigned) packaging steps, so it works together with
     -SkipPackaging.
 
+.PARAMETER Sign
+    Code-sign every exe/dll before packaging and the installer and uninstaller
+    while packaging (signtool via make.ps1 / make_inno.ps1), then check that
+    the installer carries a signature. The certificate is chosen by -SignArgs.
+
+.PARAMETER SignArgs
+    Full signtool argument list (everything between "signtool sign" and the
+    file names), e.g. /fd sha256 /sha1 <thumbprint> /tr <timestamp> /td sha256,
+    or the /dlib + /dmdf form for Azure Trusted Signing.
+
 .EXAMPLE
     # Common content already at .\common, all tools installed:
     .\build-windows.ps1
@@ -97,7 +107,9 @@ param(
     [switch]$InstallDeps,
     [switch]$BuildMsi,
     [switch]$SkipPackaging,
-    [string]$SigningBundle  = ''
+    [string]$SigningBundle  = '',
+    [switch]$Sign,
+    [string[]]$SignArgs     = @()
 )
 
 Set-StrictMode -Version Latest
@@ -523,8 +535,24 @@ Either download the 'common-files' CI artifact and pass -CommonDir, or rerun wit
     } else {
         Push-Location $PackageDir
         try {
+            $signParams = @{}
+            if ($Sign) {
+                if (-not $SignArgs) { throw "-Sign needs -SignArgs." }
+                # make.ps1 and Inno's SignTool both call plain "signtool".
+                if (-not (Get-Command signtool.exe -ErrorAction SilentlyContinue)) {
+                    $signtool = Get-ChildItem "${env:ProgramFiles(x86)}\Windows Kits\10\bin" -Directory -Filter '10.*' -ErrorAction SilentlyContinue |
+                                Sort-Object { [version]$_.Name } -Descending |
+                                ForEach-Object { Join-Path $_.FullName 'x64\signtool.exe' } |
+                                Where-Object { Test-Path $_ } | Select-Object -First 1
+                    if (-not $signtool) { throw "signtool.exe not found - install the Windows SDK signing tools." }
+                    $env:PATH = "$(Split-Path $signtool);$env:PATH"
+                }
+                Write-Host "Code signing on: signtool -> $((Get-Command signtool.exe).Source)"
+                $signParams = @{ Sign = $true; SignArgs = $SignArgs }
+            }
+
             Write-Step "10. Stage build (make.ps1)"
-            .\make.ps1 `
+            .\make.ps1 @signParams `
                 -Version     $VersionFull `
                 -Arch        $Arch `
                 -Target      $Target `
@@ -551,8 +579,18 @@ Either download the 'common-files' CI artifact and pass -CommonDir, or rerun wit
             Sync-InnoLanguages (Join-Path $env:INNOPATH 'Languages')
 
             # vc_redist.<arch>.exe was pre-staged in step 9c.
-            .\make_inno.ps1 -Version $VersionFull -Arch $Arch -Target $Target
+            .\make_inno.ps1 @signParams -Version $VersionFull -Arch $Arch -Target $Target
             Assert-LastExit "make_inno.ps1"
+
+            if ($Sign) {
+                # Every installer must carry a signature. An internal CA the
+                # build machine doesn't trust shows as UnknownError, not Valid.
+                foreach ($f in Get-ChildItem 'inno\*.exe' | Where-Object { $_.Name -notlike 'vc_redist*' }) {
+                    $sig = Get-AuthenticodeSignature $f.FullName
+                    if (-not $sig.SignerCertificate) { throw "$($f.Name) is not signed." }
+                    Write-Host ("{0}: {1}, signed by {2}" -f $f.Name, $sig.Status, $sig.SignerCertificate.Subject)
+                }
+            }
 
             if ($BuildMsi) {
                 Write-Step "11c. Build MSI (make_advinst.ps1)"

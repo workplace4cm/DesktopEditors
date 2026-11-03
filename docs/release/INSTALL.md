@@ -34,7 +34,7 @@ The Windows installer is not code-signed yet (see [KNOWN-LIMITATIONS.md](KNOWN-L
 ### Install
 
 1. Double-click the installer (`.exe`).
-2. Windows SmartScreen may say *"Windows protected your PC"* because the installer isn't signed. Click **More info**, then **Run anyway**. Do this only if the checksum matched.
+2. Windows SmartScreen may say *"Windows protected your PC"* because the installer isn't signed. Click **More info**, then **Run anyway**. Do this only if the checksum matched. SmartScreen only checks files that carry a download mark: a copy made on a FAT32/exFAT USB drive, or one unblocked in **Properties > Unblock**, doesn't ask.
 3. Follow the wizard. Keep **Associate file types** selected if Secure Office Suite should open Office, OpenDocument, text, CSV and PDF files.
 
 The installer creates:
