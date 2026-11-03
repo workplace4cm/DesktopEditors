@@ -30,7 +30,7 @@ Pins on `main` are the source of truth. Each phase's PR in `DesktopEditors` bump
 | `verify-apps` | ubuntu 24.04 + Xvfb | `verify_apps.sh` (40 checks on the four applications) and `verify_integration.sh` (menus, icons, default applications, double-click on 13 file types, desktop shortcuts, upgrade, remove, purge) |
 | `verify-windows` | windows-2022 | `verify_windows.ps1`: silent install, Start Menu and desktop shortcuts, icons, Default Apps, 13 file types by double-click, upgrade, uninstall |
 | `release-validation` | see §8 | offline clean install, upgrade from the previous main build, use, uninstall, reinstall, on stock Ubuntu 22.04/24.04 and Windows Server 2022/2025 |
-| `publish-release` | ubuntu, tags only | GitHub Release with `SHA256SUMS`. It needs every job above to be green |
+| `publish-release` | ubuntu, tags only | GitHub Release with the packages, the release documents and `SHA256SUMS`. It needs every job above to be green |
 
 A full build takes about two hours. The third-party libraries are built from source, with BuildKit and sccache caches. The submodule-only workflows `apps.yml`, `windows-install.yml`, `templates.yml` and `regression.yml` rerun their checks in minutes against the latest main build's packages. `release-validation.yml` can be run by hand on any two build runs.
 
@@ -113,8 +113,19 @@ These come from the October 2026 security review (`/mnt/project-files/rebrand/se
 
 Open items are listed in [KNOWN-LIMITATIONS.md](KNOWN-LIMITATIONS.md): the Chromium (CEF) upgrade, older image and XML libraries, and code signing.
 
+### Code signing
+
+`build-windows` signs the build when a certificate is configured in the repository's **Settings > Secrets and variables > Actions**. The step *Prepare code signing* picks the method; `build/windows/build.ps1 -Sign -SignArgs …` then signs every `.exe` and `.dll` before packaging (`make.ps1 -Sign`) and the installer and uninstaller (`make_inno.ps1 -Sign`), and fails if the installer carries no signature. With no secrets the build is unsigned, as before. The job summary says which applies.
+
+| Method | Secrets |
+|---|---|
+| Azure Trusted Signing (recommended) | `AZURE_TENANT_ID`, `AZURE_CLIENT_ID`, `AZURE_CLIENT_SECRET` (an app registration with the *Trusted Signing Certificate Profile Signer* role), `TRUSTED_SIGNING_ENDPOINT` (e.g. `https://weu.codesigning.azure.net`), `TRUSTED_SIGNING_ACCOUNT`, `TRUSTED_SIGNING_PROFILE` |
+| A certificate file (`.pfx`), e.g. from your organisation's own CA | `WINDOWS_SIGNING_PFX` (the file, base64-encoded: `[Convert]::ToBase64String([IO.File]::ReadAllBytes('cert.pfx'))`) and `WINDOWS_SIGNING_PFX_PASSWORD` |
+
+Public OV and EV certificates are now issued only on hardware tokens or cloud HSMs, so a `.pfx` is mainly for an internal CA, whose root must then be trusted on the target PCs (by Group Policy). Signatures are timestamped, so they stay valid after the certificate expires.
+
 ## 10. Making a release
 
 1. Merge into `main` and wait for **Build Secure Office Suite** to be green, with every job passing.
-2. Optionally push a tag `v9.3.1-<n>`. `publish-release` attaches the packages and `SHA256SUMS` to a GitHub Release. The fork is public, so the release is public.
+2. Push a tag `v9.3.1-<n>` (for example `v9.3.1-1`). The tag build runs every check again, and `publish-release` creates a GitHub Release named after the first line of `docs/release/RELEASE-NOTES.md`, with those notes, the packages, the release documents and `SHA256SUMS`. The fork is public, so the release is public.
 3. Copy the `.exe`, `.deb` (and `-help.deb`) and the checksums to the offline distribution medium.

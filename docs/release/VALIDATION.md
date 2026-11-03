@@ -12,6 +12,7 @@ This document records how the Phase 10 installation tests were run and what they
 | Ubuntu package | `secure-office-suite-desktopeditors_9.3.1-sos.64_amd64.deb` (artifact `linux-packages-secure-office-suite-amd64`) |
 | Windows installer | `Secure Office Suite-DesktopEditors-Standalone-9.3.1.0-x64.exe` (artifact `windows-packages-secure-office-suite-amd64`) |
 | Upgraded from | main build [41438930937](https://github.com/workplace4cm/DesktopEditors/actions/runs/41438930937) (commit `b9a3536`, package `9.3.1-dev.1`) |
+| After the merge | main build [41556599099](https://github.com/workplace4cm/DesktopEditors/actions/runs/41556599099) (commit `7561048`): every job green again |
 | Earlier runs of the same checks | release validation [41487849574](https://github.com/workplace4cm/DesktopEditors/actions/runs/41487849574) and [41491130977](https://github.com/workplace4cm/DesktopEditors/actions/runs/41491130977) (on the two latest main builds) |
 
 ### Machines
