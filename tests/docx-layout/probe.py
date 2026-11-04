@@ -68,6 +68,7 @@ var p=ld.Content[i];
 if (end) p.MoveCursorToEndPos(false); else p.MoveCursorToStartPos(false);
 ld.CurPos.ContentPos=i; ld.Selection.Use=false;
 ld.UpdateSelection(); ld.UpdateInterface(); ld.UpdateRulers();
+try { ld.private_UpdateCursorXY(true, true, true); } catch (e) {}
 var a=document.getElementById('area_id'); if(a) a.focus();
 return true;
 """
@@ -137,6 +138,8 @@ def press_enter(ed, para, end=False):
 
 def main(out, files):
     sos.OUT = out
+    if hasattr(sos, 'winplat'):
+        sos.winplat.OUT = out
     os.makedirs(out, exist_ok=True)
     sos.enable_devtools()
     results = []
@@ -156,6 +159,10 @@ def main(out, files):
         time.sleep(3)
         r['open'] = lay = dump(ed)
         r['overlaps'] = overlaps(lay) if lay else None
+        if lay and lay['drawings']:
+            # bring the first drawing into view (cursor at the end of its paragraph)
+            ed.js(PLACE % (lay['drawings'][0]['para'], 'true'))
+            time.sleep(1)
         shot(ed, name + '-0-open')
         if lay and lay['drawings'] and name.startswith(('01', '04', '05')):
             dp = lay['drawings'][0]['para']

@@ -124,6 +124,79 @@ jobs:
           git -c user.name=github-actions -c user.email=github-actions@users.noreply.github.com commit -qm "docx-layout results for ${{ github.sha }}"
           git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/docx-layout-results
 
+  docx-layout-windows:
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          token: ${{ github.token }}
+
+      - name: Check out desktop-apps
+        run: git submodule update --init --depth 1 desktop-apps
+
+      - name: Find the build
+        id: run
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ inputs.run-id }}
+        run: |
+          id=$RUN_ID
+          [ -n "$id" ] || id=$(gh run list -R "$GITHUB_REPOSITORY" --workflow build.yml \
+                 --status success -L 1 --json databaseId -q '.[0].databaseId')
+          test -n "$id"
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+          echo "Installer from build run $id" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: windows-packages-secure-office-suite-amd64
+          run-id: ${{ steps.run.outputs.id }}
+          github-token: ${{ github.token }}
+          path: packages
+
+      - name: Install the test tools and the suite
+        shell: pwsh
+        run: |
+          python -m pip install --quiet websocket-client pywinauto psutil pillow
+          $setup = Get-ChildItem packages -Recurse -Filter '*.exe' | Where-Object Name -notlike 'vc_redist*' | Select-Object -First 1
+          $p = Start-Process $setup.FullName -ArgumentList '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART' -PassThru
+          if (-not $p.WaitForExit(900000)) { throw "setup did not finish" }
+          New-Item -Force -Path 'HKCU:\Software\Secure Office Suite\DesktopEditors' | Out-Null
+          Set-ItemProperty -Path 'HKCU:\Software\Secure Office Suite\DesktopEditors' -Name ignoreAssocMsg -Value 'true'
+          python tests/docx-layout/make_cases.py "$env:RUNNER_TEMP\out\cases"
+
+      - name: Open the cases in Writer
+        shell: pwsh
+        run: |
+          $out = "$env:RUNNER_TEMP\out"
+          $env:PYTHONPATH = "$PWD\desktop-apps\tools\sos-apps\regression"
+          $env:SOS_OUT = $out
+          $cases = Get-ChildItem "$out\cases\*.docx" | ForEach-Object FullName
+          python tests/docx-layout/probe.py $out @cases
+          Get-Content "$out\layout.md" -ErrorAction SilentlyContinue | Add-Content $env:GITHUB_STEP_SUMMARY
+
+      - name: Publish the results to the docx-layout-results-windows branch
+        if: always()
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          out="$RUNNER_TEMP/out"
+          rm -rf "$RUNNER_TEMP/pub" && mkdir -p "$RUNNER_TEMP/pub" && cd "$RUNNER_TEMP/pub"
+          cp -r "$out/shots" "$out/layout.md" "$out/layout.json" . 2>/dev/null || true
+          git init -q -b docx-layout-results-windows
+          git -c user.name=github-actions -c user.email=github-actions@users.noreply.github.com add -A
+          git -c user.name=github-actions -c user.email=github-actions@users.noreply.github.com commit -qm "docx-layout results (Windows) for ${{ github.sha }}"
+          git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/docx-layout-results-windows
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: docx-layout-windows
+          path: ${{ runner.temp }}/out
+
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
