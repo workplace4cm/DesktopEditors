@@ -46,8 +46,10 @@ for (var j=0;j<dr.length;j++){
     if (g.spPr&&g.spPr.xfrm){var x=g.spPr.xfrm;o.xfrm=[mm(x.offX),mm(x.offY),mm(x.extX),mm(x.extY)];}
     if (g.getDrawing){ var dd=g.getDrawing(); o.hasDrawingPart=!!dd;
       if (dd){ o.drawingPos=tr(dd); o.drawingExt=[mm(dd.extX),mm(dd.extY)];
-        o.shapes=dd.spTree.map(function(s){return {pos:tr(s), ext:[mm(s.extX),mm(s.extY)],
-          text:(s.getDocContent&&s.getDocContent()?s.getDocContent().GetText():'').slice(0,12)};});
+        o.shapes=dd.spTree.map(function(s){var c=s.getDocContent&&s.getDocContent(); var sz=null, ln=0;
+          if(c){c.SetApplyToAll(true); sz=c.GetCalculatedTextPr().FontSize; c.SetApplyToAll(false);
+            c.Content.forEach(function(p){ln+=p.Lines?p.Lines.length:0;});}
+          return {pos:tr(s), ext:[mm(s.extX),mm(s.extY)], text:(c?c.GetText():'').slice(0,12), fontSize:sz, lines:ln};});
         var b={l:1e9,t:1e9,r:-1e9,b:-1e9};
         dd.spTree.forEach(function(s){var t=s.transform; if(!t)return; b.l=Math.min(b.l,t.tx);b.t=Math.min(b.t,t.ty);
           b.r=Math.max(b.r,t.tx+s.extX);b.b=Math.max(b.b,t.ty+s.extY);});
@@ -100,6 +102,17 @@ def overlaps(lay):
                     if x0 < box[2] - 0.5 and x1 > box[0] + 0.5:
                         found.append({'drawing': k, 'para': p['i'], 'line': [ln['top'], ln['bottom'], x0, x1], 'box': box})
     return found
+
+
+def broken_words(lay):
+    """SmartArt blocks holding one word that is laid out on more than one line"""
+    out = []
+    for k, d in enumerate(lay.get('drawings', [])):
+        for j, sh in enumerate(d.get('shapes') or []):
+            words = sh['text'].split()
+            if len(words) == 1 and sh.get('lines', 0) > 1:
+                out.append({'drawing': k, 'shape': j, 'text': words[0], 'lines': sh['lines'], 'fontSize': sh.get('fontSize')})
+    return out
 
 
 def shot(ed, name):
@@ -225,10 +238,35 @@ def main(out, files):
             pass
         ed.close()
         sos.kill_all()
+    problems = []
+    for r in results:
+        if not r.get('ready'):
+            problems.append('%s: did not open' % r['file'])
+        if r.get('errors'):
+            problems.append('%s: JavaScript errors %s' % (r['file'], r['errors'][:3]))
+        if r.get('overlaps'):
+            problems.append('%s: text over a drawing %s' % (r['file'], r['overlaps'][:3]))
+        if r.get('open') and broken_words(r['open']):
+            problems.append('%s: words broken inside SmartArt blocks %s' % (r['file'], broken_words(r['open'])))
+        if r.get('reopen_overlaps'):
+            problems.append('%s: text over a drawing after save + reopen' % r['file'])
+        for k, st in (r.get('steps') or {}).items():
+            if st and 'error' not in st:
+                if overlaps(st):
+                    problems.append('%s %s: text over a drawing' % (r['file'], k))
+                bw = broken_words(st)
+                if bw:
+                    problems.append('%s %s: words broken inside SmartArt blocks %s' % (r['file'], k, bw))
+            elif st:
+                problems.append('%s %s: %s' % (r['file'], k, st['error']))
     with open(os.path.join(out, 'layout.json'), 'w') as fh:
         json.dump(results, fh, indent=1)
     with open(os.path.join(out, 'layout.md'), 'w') as fh:
         fh.write('## DOCX layout probe\n\n')
+        fh.write('**%s**\n\n' % ('PASS: no problems found' if not problems else 'FAIL'))
+        for pr in problems:
+            fh.write('- %s\n' % pr)
+        fh.write('\n')
         for r in results:
             lay = r.get('open') or {}
             fh.write('### %s\n\n' % r['file'])
@@ -251,12 +289,14 @@ def main(out, files):
                     fh.write('- %s: %s\n' % (k, s))
                     continue
                 d = s['drawings'][0] if s.get('drawings') else {}
-                fh.write('- %s: paras %s; drawing para %s pos %s ext %s shapesBox %s; overlaps %s\n' % (
+                fh.write('- %s: paras %s; drawing para %s pos %s ext %s shapesBox %s; overlaps %s; block fonts %s lines %s\n' % (
                     k, [(p['i'], p['pages'][0]['top'] if p['pages'] else None) for p in s['paras']],
-                    d.get('para'), d.get('pos'), d.get('ext'), d.get('shapesBox'), len(overlaps(s))))
+                    d.get('para'), d.get('pos'), d.get('ext'), d.get('shapesBox'), len(overlaps(s)),
+                    [x.get('fontSize') for x in d.get('shapes') or []], [x.get('lines') for x in d.get('shapes') or []]))
             fh.write('\n')
     print(open(os.path.join(out, 'layout.md')).read())
+    return 1 if problems else 0
 
 
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2:])
+    sys.exit(main(sys.argv[1], sys.argv[2:]))
