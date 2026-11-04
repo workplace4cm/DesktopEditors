@@ -1,0 +1,11639 @@
+[
+ {
+  "file": "01-sample.docx",
+  "ready": true,
+  "open": {
+   "pages": 2,
+   "paras": [
+    {
+     "i": 0,
+     "text": "On the Insert tab, the g",
+     "pages": [
+      {
+       "page": 0,
+       "top": 25.4,
+       "bottom": 61.6
+      }
+     ],
+     "lines": 6,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 25.4,
+       "bottom": 30.8,
+       "ranges": [
+        [
+         25.4,
+         184.2
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 30.8,
+       "bottom": 36.3,
+       "ranges": [
+        [
+         25.4,
+         183.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 36.3,
+       "bottom": 41.7,
+       "ranges": [
+        [
+         25.4,
+         185
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 41.7,
+       "bottom": 47.2,
+       "ranges": [
+        [
+         25.4,
+         190.8
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 47.2,
+       "bottom": 52.6,
+       "ranges": [
+        [
+         25.4,
+         190.2
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 52.6,
+       "bottom": 61.6,
+       "ranges": [
+        [
+         25.4,
+         130.1
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 1,
+     "text": "Most controls offer a ch",
+     "pages": [
+      {
+       "page": 0,
+       "top": 61.6,
+       "bottom": 103.3
+      }
+     ],
+     "lines": 7,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 61.6,
+       "bottom": 67.1,
+       "ranges": [
+        [
+         25.4,
+         189.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 67.1,
+       "bottom": 72.5,
+       "ranges": [
+        [
+         25.4,
+         189.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 72.5,
+       "bottom": 78,
+       "ranges": [
+        [
+         25.4,
+         182.6
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 78,
+       "bottom": 83.4,
+       "ranges": [
+        [
+         25.4,
+         185.1
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 83.4,
+       "bottom": 88.9,
+       "ranges": [
+        [
+         25.4,
+         190.6
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 88.9,
+       "bottom": 94.3,
+       "ranges": [
+        [
+         25.4,
+         180.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 94.3,
+       "bottom": 103.3,
+       "ranges": [
+        [
+         25.4,
+         44.8
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 2,
+     "text": "You can use these galler",
+     "pages": [
+      {
+       "page": 0,
+       "top": 103.3,
+       "bottom": 139.5
+      }
+     ],
+     "lines": 6,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 103.3,
+       "bottom": 108.7,
+       "ranges": [
+        [
+         25.4,
+         183.8
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 108.7,
+       "bottom": 114.2,
+       "ranges": [
+        [
+         25.4,
+         186.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 114.2,
+       "bottom": 119.6,
+       "ranges": [
+        [
+         25.4,
+         189
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 119.6,
+       "bottom": 125.1,
+       "ranges": [
+        [
+         25.4,
+         182.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 125.1,
+       "bottom": 130.5,
+       "ranges": [
+        [
+         25.4,
+         190.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 130.5,
+       "bottom": 139.5,
+       "ranges": [
+        [
+         25.4,
+         124.2
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 3,
+     "text": "\r\n",
+     "pages": [
+      {
+       "page": 0,
+       "top": 139.5,
+       "bottom": 232.6
+      }
+     ],
+     "lines": 1,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 139.5,
+       "bottom": 232.6,
+       "ranges": [
+        [
+         25.4,
+         181.1
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 4,
+     "text": "To change the overall lo",
+     "pages": [
+      {
+       "page": 0,
+       "top": 232.6,
+       "bottom": 254.4
+      },
+      {
+       "page": 1,
+       "top": 25.4,
+       "bottom": 45.3
+      }
+     ],
+     "lines": 7,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 232.6,
+       "bottom": 238.1,
+       "ranges": [
+        [
+         25.4,
+         187.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 238.1,
+       "bottom": 243.5,
+       "ranges": [
+        [
+         25.4,
+         188.5
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 243.5,
+       "bottom": 249,
+       "ranges": [
+        [
+         25.4,
+         185.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 249,
+       "bottom": 254.4,
+       "ranges": [
+        [
+         25.4,
+         189.7
+        ]
+       ]
+      },
+      {
+       "page": 1,
+       "top": 25.4,
+       "bottom": 30.8,
+       "ranges": [
+        [
+         25.4,
+         188.5
+        ]
+       ]
+      },
+      {
+       "page": 1,
+       "top": 30.8,
+       "bottom": 36.3,
+       "ranges": [
+        [
+         25.4,
+         190.5
+        ]
+       ]
+      },
+      {
+       "page": 1,
+       "top": 36.3,
+       "bottom": 45.3,
+       "ranges": [
+        [
+         25.4,
+         38.6
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 5,
+     "text": "\r\n",
+     "pages": [
+      {
+       "page": 1,
+       "top": 45.3,
+       "bottom": 54.2
+      }
+     ],
+     "lines": 1,
+     "textLines": [
+      {
+       "page": 1,
+       "top": 45.3,
+       "bottom": 54.2,
+       "ranges": [
+        [
+         25.4,
+         27.7
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "drawings": [
+    {
+     "inline": true,
+     "wrap": 2,
+     "behind": false,
+     "page": 0,
+     "para": 3,
+     "X": 25.9,
+     "Y": 139.5,
+     "W": 152.4,
+     "H": 88.9,
+     "type": 136839168,
+     "name": "SmartArt",
+     "pos": [
+      25.9,
+      139.5
+     ],
+     "ext": [
+      152.4,
+      88.9
+     ],
+     "xfrm": [
+      0,
+      0,
+      152.4,
+      88.9
+     ],
+     "hasDrawingPart": true,
+     "drawingPos": [
+      25.9,
+      139.5
+     ],
+     "drawingExt": [
+      152.4,
+      88.9
+     ],
+     "shapes": [
+      {
+       "pos": [
+        25.9,
+        153
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        78.3,
+        153
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        130.7,
+        153
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        52.1,
+        186.3
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "wewer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        104.5,
+        186.3
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwerwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      }
+     ],
+     "shapesBox": [
+      25.9,
+      153,
+      178.3,
+      214.9
+     ],
+     "canGenerate": true
+    }
+   ],
+   "modified": false
+  },
+  "overlaps": [],
+  "steps": {
+   "enter_above": {
+    "pages": 2,
+    "paras": [
+     {
+      "i": 0,
+      "text": "On the Insert tab, the g",
+      "pages": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 61.6
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          184.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          183.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          185
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 47.2,
+        "bottom": 52.6,
+        "ranges": [
+         [
+          25.4,
+          190.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 52.6,
+        "bottom": 61.6,
+        "ranges": [
+         [
+          25.4,
+          130.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 1,
+      "text": "Most controls offer a ch",
+      "pages": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 103.3
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 67.1,
+        "ranges": [
+         [
+          25.4,
+          189.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 67.1,
+        "bottom": 72.5,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 72.5,
+        "bottom": 78,
+        "ranges": [
+         [
+          25.4,
+          182.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 78,
+        "bottom": 83.4,
+        "ranges": [
+         [
+          25.4,
+          185.1
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 83.4,
+        "bottom": 88.9,
+        "ranges": [
+         [
+          25.4,
+          190.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 88.9,
+        "bottom": 94.3,
+        "ranges": [
+         [
+          25.4,
+          180.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 94.3,
+        "bottom": 103.3,
+        "ranges": [
+         [
+          25.4,
+          44.8
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 2,
+      "text": "You can use these galler",
+      "pages": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 139.5
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 108.7,
+        "ranges": [
+         [
+          25.4,
+          183.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 108.7,
+        "bottom": 114.2,
+        "ranges": [
+         [
+          25.4,
+          186.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 114.2,
+        "bottom": 119.6,
+        "ranges": [
+         [
+          25.4,
+          189
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 119.6,
+        "bottom": 125.1,
+        "ranges": [
+         [
+          25.4,
+          182.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 125.1,
+        "bottom": 130.5,
+        "ranges": [
+         [
+          25.4,
+          190.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 130.5,
+        "bottom": 139.5,
+        "ranges": [
+         [
+          25.4,
+          124.2
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 3,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 148.5
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 148.5,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 4,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 148.5,
+        "bottom": 241.6
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 148.5,
+        "bottom": 241.6,
+        "ranges": [
+         [
+          25.4,
+          181.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 5,
+      "text": "To change the overall lo",
+      "pages": [
+       {
+        "page": 0,
+        "top": 241.6,
+        "bottom": 252.5
+       },
+       {
+        "page": 1,
+        "top": 25.4,
+        "bottom": 56.2
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 241.6,
+        "bottom": 247,
+        "ranges": [
+         [
+          25.4,
+          187.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 247,
+        "bottom": 252.5,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          185.3
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 47.2,
+        "bottom": 56.2,
+        "ranges": [
+         [
+          25.4,
+          38.6
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 6,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 1,
+        "top": 56.2,
+        "bottom": 65.1
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 1,
+        "top": 56.2,
+        "bottom": 65.1,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     }
+    ],
+    "drawings": [
+     {
+      "inline": true,
+      "wrap": 2,
+      "behind": false,
+      "page": 0,
+      "para": 4,
+      "X": 25.9,
+      "Y": 148.5,
+      "W": 152.4,
+      "H": 88.9,
+      "type": 136839168,
+      "name": "SmartArt",
+      "pos": [
+       25.9,
+       148.5
+      ],
+      "ext": [
+       152.4,
+       88.9
+      ],
+      "xfrm": [
+       0,
+       0,
+       152.4,
+       88.9
+      ],
+      "hasDrawingPart": true,
+      "drawingPos": [
+       25.9,
+       148.5
+      ],
+      "drawingExt": [
+       152.4,
+       88.9
+      ],
+      "shapes": [
+       {
+        "pos": [
+         25.9,
+         162
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         78.3,
+         162
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         130.7,
+         162
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         52.1,
+         195.3
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "wewer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         104.5,
+         195.3
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwerwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       }
+      ],
+      "shapesBox": [
+       25.9,
+       162,
+       178.3,
+       223.9
+      ],
+      "canGenerate": true
+     }
+    ],
+    "modified": true
+   },
+   "enter_before": {
+    "pages": 2,
+    "paras": [
+     {
+      "i": 0,
+      "text": "On the Insert tab, the g",
+      "pages": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 61.6
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          184.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          183.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          185
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 47.2,
+        "bottom": 52.6,
+        "ranges": [
+         [
+          25.4,
+          190.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 52.6,
+        "bottom": 61.6,
+        "ranges": [
+         [
+          25.4,
+          130.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 1,
+      "text": "Most controls offer a ch",
+      "pages": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 103.3
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 67.1,
+        "ranges": [
+         [
+          25.4,
+          189.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 67.1,
+        "bottom": 72.5,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 72.5,
+        "bottom": 78,
+        "ranges": [
+         [
+          25.4,
+          182.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 78,
+        "bottom": 83.4,
+        "ranges": [
+         [
+          25.4,
+          185.1
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 83.4,
+        "bottom": 88.9,
+        "ranges": [
+         [
+          25.4,
+          190.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 88.9,
+        "bottom": 94.3,
+        "ranges": [
+         [
+          25.4,
+          180.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 94.3,
+        "bottom": 103.3,
+        "ranges": [
+         [
+          25.4,
+          44.8
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 2,
+      "text": "You can use these galler",
+      "pages": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 139.5
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 108.7,
+        "ranges": [
+         [
+          25.4,
+          183.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 108.7,
+        "bottom": 114.2,
+        "ranges": [
+         [
+          25.4,
+          186.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 114.2,
+        "bottom": 119.6,
+        "ranges": [
+         [
+          25.4,
+          189
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 119.6,
+        "bottom": 125.1,
+        "ranges": [
+         [
+          25.4,
+          182.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 125.1,
+        "bottom": 130.5,
+        "ranges": [
+         [
+          25.4,
+          190.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 130.5,
+        "bottom": 139.5,
+        "ranges": [
+         [
+          25.4,
+          124.2
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 3,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 148.5
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 148.5,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 4,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 148.5,
+        "bottom": 241.6
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 148.5,
+        "bottom": 241.6,
+        "ranges": [
+         [
+          25.4,
+          181.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 5,
+      "text": "To change the overall lo",
+      "pages": [
+       {
+        "page": 0,
+        "top": 241.6,
+        "bottom": 252.5
+       },
+       {
+        "page": 1,
+        "top": 25.4,
+        "bottom": 56.2
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 241.6,
+        "bottom": 247,
+        "ranges": [
+         [
+          25.4,
+          187.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 247,
+        "bottom": 252.5,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          185.3
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 47.2,
+        "bottom": 56.2,
+        "ranges": [
+         [
+          25.4,
+          38.6
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 6,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 1,
+        "top": 56.2,
+        "bottom": 65.1
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 1,
+        "top": 56.2,
+        "bottom": 65.1,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     }
+    ],
+    "drawings": [
+     {
+      "inline": true,
+      "wrap": 2,
+      "behind": false,
+      "page": 0,
+      "para": 4,
+      "X": 25.9,
+      "Y": 148.5,
+      "W": 152.4,
+      "H": 88.9,
+      "type": 136839168,
+      "name": "SmartArt",
+      "pos": [
+       25.9,
+       148.5
+      ],
+      "ext": [
+       152.4,
+       88.9
+      ],
+      "xfrm": [
+       0,
+       0,
+       152.4,
+       88.9
+      ],
+      "hasDrawingPart": true,
+      "drawingPos": [
+       25.9,
+       148.5
+      ],
+      "drawingExt": [
+       152.4,
+       88.9
+      ],
+      "shapes": [
+       {
+        "pos": [
+         25.9,
+         162
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         78.3,
+         162
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         130.7,
+         162
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         52.1,
+         195.3
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "wewer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         104.5,
+         195.3
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwerwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       }
+      ],
+      "shapesBox": [
+       25.9,
+       162,
+       178.3,
+       223.9
+      ],
+      "canGenerate": true
+     }
+    ],
+    "modified": true
+   },
+   "enter_after": {
+    "pages": 2,
+    "paras": [
+     {
+      "i": 0,
+      "text": "On the Insert tab, the g",
+      "pages": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 61.6
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          184.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          183.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          185
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 47.2,
+        "bottom": 52.6,
+        "ranges": [
+         [
+          25.4,
+          190.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 52.6,
+        "bottom": 61.6,
+        "ranges": [
+         [
+          25.4,
+          130.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 1,
+      "text": "Most controls offer a ch",
+      "pages": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 103.3
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 67.1,
+        "ranges": [
+         [
+          25.4,
+          189.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 67.1,
+        "bottom": 72.5,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 72.5,
+        "bottom": 78,
+        "ranges": [
+         [
+          25.4,
+          182.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 78,
+        "bottom": 83.4,
+        "ranges": [
+         [
+          25.4,
+          185.1
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 83.4,
+        "bottom": 88.9,
+        "ranges": [
+         [
+          25.4,
+          190.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 88.9,
+        "bottom": 94.3,
+        "ranges": [
+         [
+          25.4,
+          180.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 94.3,
+        "bottom": 103.3,
+        "ranges": [
+         [
+          25.4,
+          44.8
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 2,
+      "text": "You can use these galler",
+      "pages": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 139.5
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 108.7,
+        "ranges": [
+         [
+          25.4,
+          183.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 108.7,
+        "bottom": 114.2,
+        "ranges": [
+         [
+          25.4,
+          186.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 114.2,
+        "bottom": 119.6,
+        "ranges": [
+         [
+          25.4,
+          189
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 119.6,
+        "bottom": 125.1,
+        "ranges": [
+         [
+          25.4,
+          182.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 125.1,
+        "bottom": 130.5,
+        "ranges": [
+         [
+          25.4,
+          190.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 130.5,
+        "bottom": 139.5,
+        "ranges": [
+         [
+          25.4,
+          124.2
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 3,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 232.6
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 232.6,
+        "ranges": [
+         [
+          25.4,
+          181.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 4,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 232.6,
+        "bottom": 241.6
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 232.6,
+        "bottom": 241.6,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 5,
+      "text": "To change the overall lo",
+      "pages": [
+       {
+        "page": 0,
+        "top": 241.6,
+        "bottom": 252.5
+       },
+       {
+        "page": 1,
+        "top": 25.4,
+        "bottom": 56.2
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 241.6,
+        "bottom": 247,
+        "ranges": [
+         [
+          25.4,
+          187.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 247,
+        "bottom": 252.5,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          185.3
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 47.2,
+        "bottom": 56.2,
+        "ranges": [
+         [
+          25.4,
+          38.6
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 6,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 1,
+        "top": 56.2,
+        "bottom": 65.1
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 1,
+        "top": 56.2,
+        "bottom": 65.1,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     }
+    ],
+    "drawings": [
+     {
+      "inline": true,
+      "wrap": 2,
+      "behind": false,
+      "page": 0,
+      "para": 3,
+      "X": 25.9,
+      "Y": 139.5,
+      "W": 152.4,
+      "H": 88.9,
+      "type": 136839168,
+      "name": "SmartArt",
+      "pos": [
+       25.9,
+       139.5
+      ],
+      "ext": [
+       152.4,
+       88.9
+      ],
+      "xfrm": [
+       0,
+       0,
+       152.4,
+       88.9
+      ],
+      "hasDrawingPart": true,
+      "drawingPos": [
+       25.9,
+       139.5
+      ],
+      "drawingExt": [
+       152.4,
+       88.9
+      ],
+      "shapes": [
+       {
+        "pos": [
+         25.9,
+         153
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         78.3,
+         153
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         130.7,
+         153
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         52.1,
+         186.3
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "wewer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         104.5,
+         186.3
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwerwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       }
+      ],
+      "shapesBox": [
+       25.9,
+       153,
+       178.3,
+       214.9
+      ],
+      "canGenerate": true
+     }
+    ],
+    "modified": true
+   },
+   "resize": {
+    "pages": 1,
+    "paras": [
+     {
+      "i": 0,
+      "text": "On the Insert tab, the g",
+      "pages": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 61.6
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          184.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          183.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          185
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 47.2,
+        "bottom": 52.6,
+        "ranges": [
+         [
+          25.4,
+          190.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 52.6,
+        "bottom": 61.6,
+        "ranges": [
+         [
+          25.4,
+          130.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 1,
+      "text": "Most controls offer a ch",
+      "pages": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 103.3
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 67.1,
+        "ranges": [
+         [
+          25.4,
+          189.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 67.1,
+        "bottom": 72.5,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 72.5,
+        "bottom": 78,
+        "ranges": [
+         [
+          25.4,
+          182.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 78,
+        "bottom": 83.4,
+        "ranges": [
+         [
+          25.4,
+          185.1
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 83.4,
+        "bottom": 88.9,
+        "ranges": [
+         [
+          25.4,
+          190.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 88.9,
+        "bottom": 94.3,
+        "ranges": [
+         [
+          25.4,
+          180.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 94.3,
+        "bottom": 103.3,
+        "ranges": [
+         [
+          25.4,
+          44.8
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 2,
+      "text": "You can use these galler",
+      "pages": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 139.5
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 108.7,
+        "ranges": [
+         [
+          25.4,
+          183.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 108.7,
+        "bottom": 114.2,
+        "ranges": [
+         [
+          25.4,
+          186.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 114.2,
+        "bottom": 119.6,
+        "ranges": [
+         [
+          25.4,
+          189
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 119.6,
+        "bottom": 125.1,
+        "ranges": [
+         [
+          25.4,
+          182.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 125.1,
+        "bottom": 130.5,
+        "ranges": [
+         [
+          25.4,
+          190.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 130.5,
+        "bottom": 139.5,
+        "ranges": [
+         [
+          25.4,
+          124.2
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 3,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 203
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 203,
+        "ranges": [
+         [
+          25.4,
+          129.3
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 4,
+      "text": "To change the overall lo",
+      "pages": [
+       {
+        "page": 0,
+        "top": 203,
+        "bottom": 244.7
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 203,
+        "bottom": 208.4,
+        "ranges": [
+         [
+          25.4,
+          187.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 208.4,
+        "bottom": 213.9,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 213.9,
+        "bottom": 219.3,
+        "ranges": [
+         [
+          25.4,
+          185.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 219.3,
+        "bottom": 224.8,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 224.8,
+        "bottom": 230.2,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 230.2,
+        "bottom": 235.7,
+        "ranges": [
+         [
+          25.4,
+          190.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 235.7,
+        "bottom": 244.7,
+        "ranges": [
+         [
+          25.4,
+          38.6
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 5,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 244.7,
+        "bottom": 253.6
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 244.7,
+        "bottom": 253.6,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     }
+    ],
+    "drawings": [
+     {
+      "inline": true,
+      "wrap": 2,
+      "behind": false,
+      "page": 0,
+      "para": 3,
+      "X": 26.5,
+      "Y": 139.5,
+      "W": 101.6,
+      "H": 59.3,
+      "type": 136839168,
+      "name": "SmartArt",
+      "pos": [
+       26.5,
+       139.5
+      ],
+      "ext": [
+       101.6,
+       59.3
+      ],
+      "xfrm": [
+       0,
+       0,
+       101.6,
+       59.3
+      ],
+      "hasDrawingPart": true,
+      "drawingPos": [
+       26.5,
+       139.5
+      ],
+      "drawingExt": [
+       101.6,
+       59.3
+      ],
+      "shapes": [
+       {
+        "pos": [
+         26.5,
+         148.5
+        ],
+        "ext": [
+         31.7,
+         19.1
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 17,
+        "lines": 1
+       },
+       {
+        "pos": [
+         61.4,
+         148.5
+        ],
+        "ext": [
+         31.7,
+         19.1
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 17,
+        "lines": 1
+       },
+       {
+        "pos": [
+         96.3,
+         148.5
+        ],
+        "ext": [
+         31.7,
+         19.1
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 17,
+        "lines": 1
+       },
+       {
+        "pos": [
+         43.9,
+         170.7
+        ],
+        "ext": [
+         31.7,
+         19.1
+        ],
+        "text": "wewer\r\n",
+        "fontSize": 17,
+        "lines": 1
+       },
+       {
+        "pos": [
+         78.8,
+         170.7
+        ],
+        "ext": [
+         31.7,
+         19.1
+        ],
+        "text": "werwerwer\r\n",
+        "fontSize": 17,
+        "lines": 1
+       }
+      ],
+      "shapesBox": [
+       26.5,
+       148.5,
+       128.1,
+       189.8
+      ],
+      "canGenerate": true
+     }
+    ],
+    "modified": true
+   },
+   "after_undo": {
+    "pages": 2,
+    "paras": [
+     {
+      "i": 0,
+      "text": "On the Insert tab, the g",
+      "pages": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 61.6
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          184.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          183.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          185
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 47.2,
+        "bottom": 52.6,
+        "ranges": [
+         [
+          25.4,
+          190.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 52.6,
+        "bottom": 61.6,
+        "ranges": [
+         [
+          25.4,
+          130.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 1,
+      "text": "Most controls offer a ch",
+      "pages": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 103.3
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 67.1,
+        "ranges": [
+         [
+          25.4,
+          189.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 67.1,
+        "bottom": 72.5,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 72.5,
+        "bottom": 78,
+        "ranges": [
+         [
+          25.4,
+          182.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 78,
+        "bottom": 83.4,
+        "ranges": [
+         [
+          25.4,
+          185.1
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 83.4,
+        "bottom": 88.9,
+        "ranges": [
+         [
+          25.4,
+          190.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 88.9,
+        "bottom": 94.3,
+        "ranges": [
+         [
+          25.4,
+          180.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 94.3,
+        "bottom": 103.3,
+        "ranges": [
+         [
+          25.4,
+          44.8
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 2,
+      "text": "You can use these galler",
+      "pages": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 139.5
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 108.7,
+        "ranges": [
+         [
+          25.4,
+          183.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 108.7,
+        "bottom": 114.2,
+        "ranges": [
+         [
+          25.4,
+          186.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 114.2,
+        "bottom": 119.6,
+        "ranges": [
+         [
+          25.4,
+          189
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 119.6,
+        "bottom": 125.1,
+        "ranges": [
+         [
+          25.4,
+          182.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 125.1,
+        "bottom": 130.5,
+        "ranges": [
+         [
+          25.4,
+          190.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 130.5,
+        "bottom": 139.5,
+        "ranges": [
+         [
+          25.4,
+          124.2
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 3,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 232.6
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 232.6,
+        "ranges": [
+         [
+          25.4,
+          181.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 4,
+      "text": "To change the overall lo",
+      "pages": [
+       {
+        "page": 0,
+        "top": 232.6,
+        "bottom": 254.4
+       },
+       {
+        "page": 1,
+        "top": 25.4,
+        "bottom": 45.3
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 232.6,
+        "bottom": 238.1,
+        "ranges": [
+         [
+          25.4,
+          187.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 238.1,
+        "bottom": 243.5,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 243.5,
+        "bottom": 249,
+        "ranges": [
+         [
+          25.4,
+          185.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 249,
+        "bottom": 254.4,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          190.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 36.3,
+        "bottom": 45.3,
+        "ranges": [
+         [
+          25.4,
+          38.6
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 5,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 1,
+        "top": 45.3,
+        "bottom": 54.2
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 1,
+        "top": 45.3,
+        "bottom": 54.2,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     }
+    ],
+    "drawings": [
+     {
+      "inline": true,
+      "wrap": 2,
+      "behind": false,
+      "page": 0,
+      "para": 3,
+      "X": 25.9,
+      "Y": 139.5,
+      "W": 152.4,
+      "H": 88.9,
+      "type": 136839168,
+      "name": "SmartArt",
+      "pos": [
+       25.9,
+       139.5
+      ],
+      "ext": [
+       152.4,
+       88.9
+      ],
+      "xfrm": [
+       0,
+       0,
+       152.4,
+       88.9
+      ],
+      "hasDrawingPart": true,
+      "drawingPos": [
+       25.9,
+       139.5
+      ],
+      "drawingExt": [
+       152.4,
+       88.9
+      ],
+      "shapes": [
+       {
+        "pos": [
+         25.9,
+         153
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         78.3,
+         153
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         130.7,
+         153
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         52.1,
+         186.3
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "wewer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         104.5,
+         186.3
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwerwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       }
+      ],
+      "shapesBox": [
+       25.9,
+       153,
+       178.3,
+       214.9
+      ],
+      "canGenerate": true
+     }
+    ],
+    "modified": false
+   }
+  },
+  "saved": true,
+  "errors_before_reopen": [],
+  "reopen_ready": true,
+  "reopen": {
+   "pages": 2,
+   "paras": [
+    {
+     "i": 0,
+     "text": "On the Insert tab, the g",
+     "pages": [
+      {
+       "page": 0,
+       "top": 25.4,
+       "bottom": 61.6
+      }
+     ],
+     "lines": 6,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 25.4,
+       "bottom": 30.8,
+       "ranges": [
+        [
+         25.4,
+         184.2
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 30.8,
+       "bottom": 36.3,
+       "ranges": [
+        [
+         25.4,
+         183.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 36.3,
+       "bottom": 41.7,
+       "ranges": [
+        [
+         25.4,
+         185
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 41.7,
+       "bottom": 47.2,
+       "ranges": [
+        [
+         25.4,
+         190.8
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 47.2,
+       "bottom": 52.6,
+       "ranges": [
+        [
+         25.4,
+         190.2
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 52.6,
+       "bottom": 61.6,
+       "ranges": [
+        [
+         25.4,
+         130.1
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 1,
+     "text": "Most controls offer a ch",
+     "pages": [
+      {
+       "page": 0,
+       "top": 61.6,
+       "bottom": 103.3
+      }
+     ],
+     "lines": 7,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 61.6,
+       "bottom": 67.1,
+       "ranges": [
+        [
+         25.4,
+         189.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 67.1,
+       "bottom": 72.5,
+       "ranges": [
+        [
+         25.4,
+         189.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 72.5,
+       "bottom": 78,
+       "ranges": [
+        [
+         25.4,
+         182.6
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 78,
+       "bottom": 83.4,
+       "ranges": [
+        [
+         25.4,
+         185.1
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 83.4,
+       "bottom": 88.9,
+       "ranges": [
+        [
+         25.4,
+         190.6
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 88.9,
+       "bottom": 94.3,
+       "ranges": [
+        [
+         25.4,
+         180.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 94.3,
+       "bottom": 103.3,
+       "ranges": [
+        [
+         25.4,
+         44.8
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 2,
+     "text": "You can use these galler",
+     "pages": [
+      {
+       "page": 0,
+       "top": 103.3,
+       "bottom": 139.5
+      }
+     ],
+     "lines": 6,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 103.3,
+       "bottom": 108.7,
+       "ranges": [
+        [
+         25.4,
+         183.8
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 108.7,
+       "bottom": 114.2,
+       "ranges": [
+        [
+         25.4,
+         186.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 114.2,
+       "bottom": 119.6,
+       "ranges": [
+        [
+         25.4,
+         189
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 119.6,
+       "bottom": 125.1,
+       "ranges": [
+        [
+         25.4,
+         182.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 125.1,
+       "bottom": 130.5,
+       "ranges": [
+        [
+         25.4,
+         190.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 130.5,
+       "bottom": 139.5,
+       "ranges": [
+        [
+         25.4,
+         124.2
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 3,
+     "text": "\r\n",
+     "pages": [
+      {
+       "page": 0,
+       "top": 139.5,
+       "bottom": 232.6
+      }
+     ],
+     "lines": 1,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 139.5,
+       "bottom": 232.6,
+       "ranges": [
+        [
+         25.4,
+         181.1
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 4,
+     "text": "To change the overall lo",
+     "pages": [
+      {
+       "page": 0,
+       "top": 232.6,
+       "bottom": 254.4
+      },
+      {
+       "page": 1,
+       "top": 25.4,
+       "bottom": 45.3
+      }
+     ],
+     "lines": 7,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 232.6,
+       "bottom": 238.1,
+       "ranges": [
+        [
+         25.4,
+         187.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 238.1,
+       "bottom": 243.5,
+       "ranges": [
+        [
+         25.4,
+         188.5
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 243.5,
+       "bottom": 249,
+       "ranges": [
+        [
+         25.4,
+         185.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 249,
+       "bottom": 254.4,
+       "ranges": [
+        [
+         25.4,
+         189.7
+        ]
+       ]
+      },
+      {
+       "page": 1,
+       "top": 25.4,
+       "bottom": 30.8,
+       "ranges": [
+        [
+         25.4,
+         188.5
+        ]
+       ]
+      },
+      {
+       "page": 1,
+       "top": 30.8,
+       "bottom": 36.3,
+       "ranges": [
+        [
+         25.4,
+         190.5
+        ]
+       ]
+      },
+      {
+       "page": 1,
+       "top": 36.3,
+       "bottom": 45.3,
+       "ranges": [
+        [
+         25.4,
+         38.6
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 5,
+     "text": "x\r\n",
+     "pages": [
+      {
+       "page": 1,
+       "top": 45.3,
+       "bottom": 54.2
+      }
+     ],
+     "lines": 1,
+     "textLines": [
+      {
+       "page": 1,
+       "top": 45.3,
+       "bottom": 54.2,
+       "ranges": [
+        [
+         25.4,
+         29.4
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "drawings": [
+    {
+     "inline": true,
+     "wrap": 2,
+     "behind": false,
+     "page": 0,
+     "para": 3,
+     "X": 25.9,
+     "Y": 139.5,
+     "W": 152.4,
+     "H": 88.9,
+     "type": 136839168,
+     "name": "SmartArt",
+     "pos": [
+      25.9,
+      139.5
+     ],
+     "ext": [
+      152.4,
+      88.9
+     ],
+     "xfrm": [
+      0,
+      0,
+      152.4,
+      88.9
+     ],
+     "hasDrawingPart": true,
+     "drawingPos": [
+      25.9,
+      139.5
+     ],
+     "drawingExt": [
+      152.4,
+      88.9
+     ],
+     "shapes": [
+      {
+       "pos": [
+        25.9,
+        153
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        78.3,
+        153
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        130.7,
+        153
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        52.1,
+        186.3
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "wewer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        104.5,
+        186.3
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwerwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      }
+     ],
+     "shapesBox": [
+      25.9,
+      153,
+      178.3,
+      214.9
+     ],
+     "canGenerate": true
+    }
+   ],
+   "modified": false
+  },
+  "reopen_overlaps": [],
+  "errors": []
+ },
+ {
+  "file": "02-smartart-anchor-square.docx",
+  "ready": true,
+  "open": {
+   "pages": 1,
+   "paras": [
+    {
+     "i": 0,
+     "text": "On the Insert tab, the g",
+     "pages": [
+      {
+       "page": 0,
+       "top": 25.4,
+       "bottom": 61.6
+      }
+     ],
+     "lines": 6,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 25.4,
+       "bottom": 30.8,
+       "ranges": [
+        [
+         25.4,
+         184.2
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 30.8,
+       "bottom": 36.3,
+       "ranges": [
+        [
+         25.4,
+         183.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 36.3,
+       "bottom": 41.7,
+       "ranges": [
+        [
+         25.4,
+         185
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 41.7,
+       "bottom": 47.2,
+       "ranges": [
+        [
+         25.4,
+         190.8
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 47.2,
+       "bottom": 52.6,
+       "ranges": [
+        [
+         25.4,
+         190.2
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 52.6,
+       "bottom": 61.6,
+       "ranges": [
+        [
+         25.4,
+         130.1
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 1,
+     "text": "Most controls offer a ch",
+     "pages": [
+      {
+       "page": 0,
+       "top": 61.6,
+       "bottom": 125.1
+      }
+     ],
+     "lines": 11,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 61.6,
+       "bottom": 67.1,
+       "ranges": [
+        [
+         104.8,
+         185.6
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 67.1,
+       "bottom": 72.5,
+       "ranges": [
+        [
+         104.8,
+         188.5
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 72.5,
+       "bottom": 78,
+       "ranges": [
+        [
+         104.8,
+         191
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 78,
+       "bottom": 83.4,
+       "ranges": [
+        [
+         104.8,
+         189.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 83.4,
+       "bottom": 88.9,
+       "ranges": [
+        [
+         104.8,
+         180.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 88.9,
+       "bottom": 94.3,
+       "ranges": [
+        [
+         104.8,
+         179.5
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 94.3,
+       "bottom": 99.7,
+       "ranges": [
+        [
+         104.8,
+         184.4
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 99.7,
+       "bottom": 105.2,
+       "ranges": [
+        [
+         104.8,
+         191.2
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 105.2,
+       "bottom": 110.6,
+       "ranges": [
+        [
+         104.8,
+         181.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 110.6,
+       "bottom": 116.1,
+       "ranges": [
+        [
+         25.4,
+         179.5
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 116.1,
+       "bottom": 125.1,
+       "ranges": [
+        [
+         25.4,
+         127.6
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 2,
+     "text": "You can use these galler",
+     "pages": [
+      {
+       "page": 0,
+       "top": 125.1,
+       "bottom": 161.3
+      }
+     ],
+     "lines": 6,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 125.1,
+       "bottom": 130.5,
+       "ranges": [
+        [
+         25.4,
+         183.8
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 130.5,
+       "bottom": 136,
+       "ranges": [
+        [
+         25.4,
+         186.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 136,
+       "bottom": 141.4,
+       "ranges": [
+        [
+         25.4,
+         189
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 141.4,
+       "bottom": 146.9,
+       "ranges": [
+        [
+         25.4,
+         182.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 146.9,
+       "bottom": 152.3,
+       "ranges": [
+        [
+         25.4,
+         190.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 152.3,
+       "bottom": 161.3,
+       "ranges": [
+        [
+         25.4,
+         124.2
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 3,
+     "text": "To change the overall lo",
+     "pages": [
+      {
+       "page": 0,
+       "top": 161.3,
+       "bottom": 202.9
+      }
+     ],
+     "lines": 7,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 161.3,
+       "bottom": 166.7,
+       "ranges": [
+        [
+         25.4,
+         187.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 166.7,
+       "bottom": 172.2,
+       "ranges": [
+        [
+         25.4,
+         188.5
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 172.2,
+       "bottom": 177.6,
+       "ranges": [
+        [
+         25.4,
+         185.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 177.6,
+       "bottom": 183.1,
+       "ranges": [
+        [
+         25.4,
+         189.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 183.1,
+       "bottom": 188.5,
+       "ranges": [
+        [
+         25.4,
+         188.5
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 188.5,
+       "bottom": 194,
+       "ranges": [
+        [
+         25.4,
+         190.5
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 194,
+       "bottom": 202.9,
+       "ranges": [
+        [
+         25.4,
+         38.6
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 4,
+     "text": "\r\n",
+     "pages": [
+      {
+       "page": 0,
+       "top": 202.9,
+       "bottom": 211.9
+      }
+     ],
+     "lines": 1,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 202.9,
+       "bottom": 211.9,
+       "ranges": [
+        [
+         25.4,
+         27.7
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "drawings": [
+    {
+     "inline": false,
+     "wrap": 1,
+     "behind": false,
+     "page": 0,
+     "para": 1,
+     "X": 25.4,
+     "Y": 61.6,
+     "W": 76.2,
+     "H": 44.5,
+     "type": 136839168,
+     "name": "SmartArt",
+     "pos": [
+      25.4,
+      61.6
+     ],
+     "ext": [
+      76.2,
+      44.5
+     ],
+     "xfrm": [
+      0,
+      0,
+      76.2,
+      44.5
+     ],
+     "hasDrawingPart": true,
+     "drawingPos": [
+      25.4,
+      61.6
+     ],
+     "drawingExt": [
+      76.2,
+      44.5
+     ],
+     "shapes": [
+      {
+       "pos": [
+        25.4,
+        68.4
+       ],
+       "ext": [
+        23.8,
+        14.3
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 12,
+       "lines": 1
+      },
+      {
+       "pos": [
+        51.6,
+        68.4
+       ],
+       "ext": [
+        23.8,
+        14.3
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 12,
+       "lines": 1
+      },
+      {
+       "pos": [
+        77.8,
+        68.4
+       ],
+       "ext": [
+        23.8,
+        14.3
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 12,
+       "lines": 1
+      },
+      {
+       "pos": [
+        38.5,
+        85
+       ],
+       "ext": [
+        23.8,
+        14.3
+       ],
+       "text": "wewer\r\n",
+       "fontSize": 12,
+       "lines": 1
+      },
+      {
+       "pos": [
+        64.7,
+        85
+       ],
+       "ext": [
+        23.8,
+        14.3
+       ],
+       "text": "werwerwer\r\n",
+       "fontSize": 12,
+       "lines": 1
+      }
+     ],
+     "shapesBox": [
+      25.4,
+      68.4,
+      101.6,
+      99.3
+     ],
+     "canGenerate": true
+    }
+   ],
+   "modified": false
+  },
+  "overlaps": [],
+  "errors": []
+ },
+ {
+  "file": "03-smartart-anchor-topbottom.docx",
+  "ready": true,
+  "open": {
+   "pages": 2,
+   "paras": [
+    {
+     "i": 0,
+     "text": "On the Insert tab, the g",
+     "pages": [
+      {
+       "page": 0,
+       "top": 25.4,
+       "bottom": 61.6
+      }
+     ],
+     "lines": 6,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 25.4,
+       "bottom": 30.8,
+       "ranges": [
+        [
+         25.4,
+         184.2
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 30.8,
+       "bottom": 36.3,
+       "ranges": [
+        [
+         25.4,
+         183.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 36.3,
+       "bottom": 41.7,
+       "ranges": [
+        [
+         25.4,
+         185
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 41.7,
+       "bottom": 47.2,
+       "ranges": [
+        [
+         25.4,
+         190.8
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 47.2,
+       "bottom": 52.6,
+       "ranges": [
+        [
+         25.4,
+         190.2
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 52.6,
+       "bottom": 61.6,
+       "ranges": [
+        [
+         25.4,
+         130.1
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 1,
+     "text": "Most controls offer a ch",
+     "pages": [
+      {
+       "page": 0,
+       "top": 61.6,
+       "bottom": 192.2
+      }
+     ],
+     "lines": 7,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 150.5,
+       "bottom": 156,
+       "ranges": [
+        [
+         25.4,
+         189.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 156,
+       "bottom": 161.4,
+       "ranges": [
+        [
+         25.4,
+         189.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 161.4,
+       "bottom": 166.9,
+       "ranges": [
+        [
+         25.4,
+         182.6
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 166.9,
+       "bottom": 172.3,
+       "ranges": [
+        [
+         25.4,
+         185.1
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 172.3,
+       "bottom": 177.8,
+       "ranges": [
+        [
+         25.4,
+         190.6
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 177.8,
+       "bottom": 183.2,
+       "ranges": [
+        [
+         25.4,
+         180.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 183.2,
+       "bottom": 192.2,
+       "ranges": [
+        [
+         25.4,
+         44.8
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 2,
+     "text": "You can use these galler",
+     "pages": [
+      {
+       "page": 0,
+       "top": 192.2,
+       "bottom": 228.4
+      }
+     ],
+     "lines": 6,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 192.2,
+       "bottom": 197.6,
+       "ranges": [
+        [
+         25.4,
+         183.8
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 197.6,
+       "bottom": 203.1,
+       "ranges": [
+        [
+         25.4,
+         186.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 203.1,
+       "bottom": 208.5,
+       "ranges": [
+        [
+         25.4,
+         189
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 208.5,
+       "bottom": 214,
+       "ranges": [
+        [
+         25.4,
+         182.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 214,
+       "bottom": 219.4,
+       "ranges": [
+        [
+         25.4,
+         190.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 219.4,
+       "bottom": 228.4,
+       "ranges": [
+        [
+         25.4,
+         124.2
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 3,
+     "text": "To change the overall lo",
+     "pages": [
+      {
+       "page": 0,
+       "top": 228.4,
+       "bottom": 250.2
+      },
+      {
+       "page": 1,
+       "top": 25.4,
+       "bottom": 45.3
+      }
+     ],
+     "lines": 7,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 228.4,
+       "bottom": 233.9,
+       "ranges": [
+        [
+         25.4,
+         187.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 233.9,
+       "bottom": 239.3,
+       "ranges": [
+        [
+         25.4,
+         188.5
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 239.3,
+       "bottom": 244.7,
+       "ranges": [
+        [
+         25.4,
+         185.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 244.7,
+       "bottom": 250.2,
+       "ranges": [
+        [
+         25.4,
+         189.7
+        ]
+       ]
+      },
+      {
+       "page": 1,
+       "top": 25.4,
+       "bottom": 30.8,
+       "ranges": [
+        [
+         25.4,
+         188.5
+        ]
+       ]
+      },
+      {
+       "page": 1,
+       "top": 30.8,
+       "bottom": 36.3,
+       "ranges": [
+        [
+         25.4,
+         190.5
+        ]
+       ]
+      },
+      {
+       "page": 1,
+       "top": 36.3,
+       "bottom": 45.3,
+       "ranges": [
+        [
+         25.4,
+         38.6
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 4,
+     "text": "\r\n",
+     "pages": [
+      {
+       "page": 1,
+       "top": 45.3,
+       "bottom": 54.2
+      }
+     ],
+     "lines": 1,
+     "textLines": [
+      {
+       "page": 1,
+       "top": 45.3,
+       "bottom": 54.2,
+       "ranges": [
+        [
+         25.4,
+         27.7
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "drawings": [
+    {
+     "inline": false,
+     "wrap": 4,
+     "behind": false,
+     "page": 0,
+     "para": 1,
+     "X": 25.4,
+     "Y": 61.6,
+     "W": 152.4,
+     "H": 88.9,
+     "type": 136839168,
+     "name": "SmartArt",
+     "pos": [
+      25.4,
+      61.6
+     ],
+     "ext": [
+      152.4,
+      88.9
+     ],
+     "xfrm": [
+      0,
+      0,
+      152.4,
+      88.9
+     ],
+     "hasDrawingPart": true,
+     "drawingPos": [
+      25.4,
+      61.6
+     ],
+     "drawingExt": [
+      152.4,
+      88.9
+     ],
+     "shapes": [
+      {
+       "pos": [
+        25.4,
+        75.1
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        77.8,
+        75.1
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        130.2,
+        75.1
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        51.6,
+        108.4
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "wewer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        104,
+        108.4
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwerwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      }
+     ],
+     "shapesBox": [
+      25.4,
+      75.1,
+      177.8,
+      137
+     ],
+     "canGenerate": true
+    }
+   ],
+   "modified": false
+  },
+  "overlaps": [],
+  "errors": []
+ },
+ {
+  "file": "04-smartart-with-drawing.docx",
+  "ready": true,
+  "open": {
+   "pages": 2,
+   "paras": [
+    {
+     "i": 0,
+     "text": "On the Insert tab, the g",
+     "pages": [
+      {
+       "page": 0,
+       "top": 25.4,
+       "bottom": 61.6
+      }
+     ],
+     "lines": 6,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 25.4,
+       "bottom": 30.8,
+       "ranges": [
+        [
+         25.4,
+         184.2
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 30.8,
+       "bottom": 36.3,
+       "ranges": [
+        [
+         25.4,
+         183.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 36.3,
+       "bottom": 41.7,
+       "ranges": [
+        [
+         25.4,
+         185
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 41.7,
+       "bottom": 47.2,
+       "ranges": [
+        [
+         25.4,
+         190.8
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 47.2,
+       "bottom": 52.6,
+       "ranges": [
+        [
+         25.4,
+         190.2
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 52.6,
+       "bottom": 61.6,
+       "ranges": [
+        [
+         25.4,
+         130.1
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 1,
+     "text": "Most controls offer a ch",
+     "pages": [
+      {
+       "page": 0,
+       "top": 61.6,
+       "bottom": 103.3
+      }
+     ],
+     "lines": 7,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 61.6,
+       "bottom": 67.1,
+       "ranges": [
+        [
+         25.4,
+         189.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 67.1,
+       "bottom": 72.5,
+       "ranges": [
+        [
+         25.4,
+         189.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 72.5,
+       "bottom": 78,
+       "ranges": [
+        [
+         25.4,
+         182.6
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 78,
+       "bottom": 83.4,
+       "ranges": [
+        [
+         25.4,
+         185.1
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 83.4,
+       "bottom": 88.9,
+       "ranges": [
+        [
+         25.4,
+         190.6
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 88.9,
+       "bottom": 94.3,
+       "ranges": [
+        [
+         25.4,
+         180.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 94.3,
+       "bottom": 103.3,
+       "ranges": [
+        [
+         25.4,
+         44.8
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 2,
+     "text": "You can use these galler",
+     "pages": [
+      {
+       "page": 0,
+       "top": 103.3,
+       "bottom": 139.5
+      }
+     ],
+     "lines": 6,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 103.3,
+       "bottom": 108.7,
+       "ranges": [
+        [
+         25.4,
+         183.8
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 108.7,
+       "bottom": 114.2,
+       "ranges": [
+        [
+         25.4,
+         186.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 114.2,
+       "bottom": 119.6,
+       "ranges": [
+        [
+         25.4,
+         189
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 119.6,
+       "bottom": 125.1,
+       "ranges": [
+        [
+         25.4,
+         182.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 125.1,
+       "bottom": 130.5,
+       "ranges": [
+        [
+         25.4,
+         190.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 130.5,
+       "bottom": 139.5,
+       "ranges": [
+        [
+         25.4,
+         124.2
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 3,
+     "text": "\r\n",
+     "pages": [
+      {
+       "page": 0,
+       "top": 139.5,
+       "bottom": 232.6
+      }
+     ],
+     "lines": 1,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 139.5,
+       "bottom": 232.6,
+       "ranges": [
+        [
+         25.4,
+         181.1
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 4,
+     "text": "To change the overall lo",
+     "pages": [
+      {
+       "page": 0,
+       "top": 232.6,
+       "bottom": 254.4
+      },
+      {
+       "page": 1,
+       "top": 25.4,
+       "bottom": 45.3
+      }
+     ],
+     "lines": 7,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 232.6,
+       "bottom": 238.1,
+       "ranges": [
+        [
+         25.4,
+         187.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 238.1,
+       "bottom": 243.5,
+       "ranges": [
+        [
+         25.4,
+         188.5
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 243.5,
+       "bottom": 249,
+       "ranges": [
+        [
+         25.4,
+         185.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 249,
+       "bottom": 254.4,
+       "ranges": [
+        [
+         25.4,
+         189.7
+        ]
+       ]
+      },
+      {
+       "page": 1,
+       "top": 25.4,
+       "bottom": 30.8,
+       "ranges": [
+        [
+         25.4,
+         188.5
+        ]
+       ]
+      },
+      {
+       "page": 1,
+       "top": 30.8,
+       "bottom": 36.3,
+       "ranges": [
+        [
+         25.4,
+         190.5
+        ]
+       ]
+      },
+      {
+       "page": 1,
+       "top": 36.3,
+       "bottom": 45.3,
+       "ranges": [
+        [
+         25.4,
+         38.6
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 5,
+     "text": "\r\n",
+     "pages": [
+      {
+       "page": 1,
+       "top": 45.3,
+       "bottom": 54.2
+      }
+     ],
+     "lines": 1,
+     "textLines": [
+      {
+       "page": 1,
+       "top": 45.3,
+       "bottom": 54.2,
+       "ranges": [
+        [
+         25.4,
+         27.7
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "drawings": [
+    {
+     "inline": true,
+     "wrap": 2,
+     "behind": false,
+     "page": 0,
+     "para": 3,
+     "X": 25.9,
+     "Y": 139.5,
+     "W": 152.4,
+     "H": 88.9,
+     "type": 136839168,
+     "name": "SmartArt",
+     "pos": [
+      25.9,
+      139.5
+     ],
+     "ext": [
+      152.4,
+      88.9
+     ],
+     "xfrm": [
+      0,
+      0,
+      152.4,
+      88.9
+     ],
+     "hasDrawingPart": true,
+     "drawingPos": [
+      25.9,
+      139.5
+     ],
+     "drawingExt": [
+      152.4,
+      88.9
+     ],
+     "shapes": [
+      {
+       "pos": [
+        25.9,
+        153
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        78.3,
+        153
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        130.7,
+        153
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        52.1,
+        186.3
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "wewer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        104.5,
+        186.3
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwerwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      }
+     ],
+     "shapesBox": [
+      25.9,
+      153,
+      178.3,
+      214.9
+     ],
+     "canGenerate": true
+    }
+   ],
+   "modified": false
+  },
+  "overlaps": [],
+  "steps": {
+   "enter_above": {
+    "pages": 2,
+    "paras": [
+     {
+      "i": 0,
+      "text": "On the Insert tab, the g",
+      "pages": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 61.6
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          184.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          183.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          185
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 47.2,
+        "bottom": 52.6,
+        "ranges": [
+         [
+          25.4,
+          190.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 52.6,
+        "bottom": 61.6,
+        "ranges": [
+         [
+          25.4,
+          130.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 1,
+      "text": "Most controls offer a ch",
+      "pages": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 103.3
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 67.1,
+        "ranges": [
+         [
+          25.4,
+          189.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 67.1,
+        "bottom": 72.5,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 72.5,
+        "bottom": 78,
+        "ranges": [
+         [
+          25.4,
+          182.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 78,
+        "bottom": 83.4,
+        "ranges": [
+         [
+          25.4,
+          185.1
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 83.4,
+        "bottom": 88.9,
+        "ranges": [
+         [
+          25.4,
+          190.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 88.9,
+        "bottom": 94.3,
+        "ranges": [
+         [
+          25.4,
+          180.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 94.3,
+        "bottom": 103.3,
+        "ranges": [
+         [
+          25.4,
+          44.8
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 2,
+      "text": "You can use these galler",
+      "pages": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 139.5
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 108.7,
+        "ranges": [
+         [
+          25.4,
+          183.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 108.7,
+        "bottom": 114.2,
+        "ranges": [
+         [
+          25.4,
+          186.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 114.2,
+        "bottom": 119.6,
+        "ranges": [
+         [
+          25.4,
+          189
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 119.6,
+        "bottom": 125.1,
+        "ranges": [
+         [
+          25.4,
+          182.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 125.1,
+        "bottom": 130.5,
+        "ranges": [
+         [
+          25.4,
+          190.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 130.5,
+        "bottom": 139.5,
+        "ranges": [
+         [
+          25.4,
+          124.2
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 3,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 148.5
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 148.5,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 4,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 148.5,
+        "bottom": 241.6
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 148.5,
+        "bottom": 241.6,
+        "ranges": [
+         [
+          25.4,
+          181.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 5,
+      "text": "To change the overall lo",
+      "pages": [
+       {
+        "page": 0,
+        "top": 241.6,
+        "bottom": 252.5
+       },
+       {
+        "page": 1,
+        "top": 25.4,
+        "bottom": 56.2
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 241.6,
+        "bottom": 247,
+        "ranges": [
+         [
+          25.4,
+          187.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 247,
+        "bottom": 252.5,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          185.3
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 47.2,
+        "bottom": 56.2,
+        "ranges": [
+         [
+          25.4,
+          38.6
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 6,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 1,
+        "top": 56.2,
+        "bottom": 65.1
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 1,
+        "top": 56.2,
+        "bottom": 65.1,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     }
+    ],
+    "drawings": [
+     {
+      "inline": true,
+      "wrap": 2,
+      "behind": false,
+      "page": 0,
+      "para": 4,
+      "X": 25.9,
+      "Y": 148.5,
+      "W": 152.4,
+      "H": 88.9,
+      "type": 136839168,
+      "name": "SmartArt",
+      "pos": [
+       25.9,
+       148.5
+      ],
+      "ext": [
+       152.4,
+       88.9
+      ],
+      "xfrm": [
+       0,
+       0,
+       152.4,
+       88.9
+      ],
+      "hasDrawingPart": true,
+      "drawingPos": [
+       25.9,
+       148.5
+      ],
+      "drawingExt": [
+       152.4,
+       88.9
+      ],
+      "shapes": [
+       {
+        "pos": [
+         25.9,
+         162
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         78.3,
+         162
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         130.7,
+         162
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         52.1,
+         195.3
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "wewer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         104.5,
+         195.3
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwerwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       }
+      ],
+      "shapesBox": [
+       25.9,
+       162,
+       178.3,
+       223.9
+      ],
+      "canGenerate": true
+     }
+    ],
+    "modified": true
+   },
+   "enter_before": {
+    "pages": 2,
+    "paras": [
+     {
+      "i": 0,
+      "text": "On the Insert tab, the g",
+      "pages": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 61.6
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          184.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          183.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          185
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 47.2,
+        "bottom": 52.6,
+        "ranges": [
+         [
+          25.4,
+          190.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 52.6,
+        "bottom": 61.6,
+        "ranges": [
+         [
+          25.4,
+          130.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 1,
+      "text": "Most controls offer a ch",
+      "pages": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 103.3
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 67.1,
+        "ranges": [
+         [
+          25.4,
+          189.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 67.1,
+        "bottom": 72.5,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 72.5,
+        "bottom": 78,
+        "ranges": [
+         [
+          25.4,
+          182.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 78,
+        "bottom": 83.4,
+        "ranges": [
+         [
+          25.4,
+          185.1
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 83.4,
+        "bottom": 88.9,
+        "ranges": [
+         [
+          25.4,
+          190.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 88.9,
+        "bottom": 94.3,
+        "ranges": [
+         [
+          25.4,
+          180.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 94.3,
+        "bottom": 103.3,
+        "ranges": [
+         [
+          25.4,
+          44.8
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 2,
+      "text": "You can use these galler",
+      "pages": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 139.5
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 108.7,
+        "ranges": [
+         [
+          25.4,
+          183.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 108.7,
+        "bottom": 114.2,
+        "ranges": [
+         [
+          25.4,
+          186.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 114.2,
+        "bottom": 119.6,
+        "ranges": [
+         [
+          25.4,
+          189
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 119.6,
+        "bottom": 125.1,
+        "ranges": [
+         [
+          25.4,
+          182.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 125.1,
+        "bottom": 130.5,
+        "ranges": [
+         [
+          25.4,
+          190.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 130.5,
+        "bottom": 139.5,
+        "ranges": [
+         [
+          25.4,
+          124.2
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 3,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 148.5
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 148.5,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 4,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 148.5,
+        "bottom": 241.6
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 148.5,
+        "bottom": 241.6,
+        "ranges": [
+         [
+          25.4,
+          181.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 5,
+      "text": "To change the overall lo",
+      "pages": [
+       {
+        "page": 0,
+        "top": 241.6,
+        "bottom": 252.5
+       },
+       {
+        "page": 1,
+        "top": 25.4,
+        "bottom": 56.2
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 241.6,
+        "bottom": 247,
+        "ranges": [
+         [
+          25.4,
+          187.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 247,
+        "bottom": 252.5,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          185.3
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 47.2,
+        "bottom": 56.2,
+        "ranges": [
+         [
+          25.4,
+          38.6
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 6,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 1,
+        "top": 56.2,
+        "bottom": 65.1
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 1,
+        "top": 56.2,
+        "bottom": 65.1,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     }
+    ],
+    "drawings": [
+     {
+      "inline": true,
+      "wrap": 2,
+      "behind": false,
+      "page": 0,
+      "para": 4,
+      "X": 25.9,
+      "Y": 148.5,
+      "W": 152.4,
+      "H": 88.9,
+      "type": 136839168,
+      "name": "SmartArt",
+      "pos": [
+       25.9,
+       148.5
+      ],
+      "ext": [
+       152.4,
+       88.9
+      ],
+      "xfrm": [
+       0,
+       0,
+       152.4,
+       88.9
+      ],
+      "hasDrawingPart": true,
+      "drawingPos": [
+       25.9,
+       148.5
+      ],
+      "drawingExt": [
+       152.4,
+       88.9
+      ],
+      "shapes": [
+       {
+        "pos": [
+         25.9,
+         162
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         78.3,
+         162
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         130.7,
+         162
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         52.1,
+         195.3
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "wewer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         104.5,
+         195.3
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwerwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       }
+      ],
+      "shapesBox": [
+       25.9,
+       162,
+       178.3,
+       223.9
+      ],
+      "canGenerate": true
+     }
+    ],
+    "modified": true
+   },
+   "enter_after": {
+    "pages": 2,
+    "paras": [
+     {
+      "i": 0,
+      "text": "On the Insert tab, the g",
+      "pages": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 61.6
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          184.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          183.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          185
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 47.2,
+        "bottom": 52.6,
+        "ranges": [
+         [
+          25.4,
+          190.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 52.6,
+        "bottom": 61.6,
+        "ranges": [
+         [
+          25.4,
+          130.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 1,
+      "text": "Most controls offer a ch",
+      "pages": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 103.3
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 67.1,
+        "ranges": [
+         [
+          25.4,
+          189.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 67.1,
+        "bottom": 72.5,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 72.5,
+        "bottom": 78,
+        "ranges": [
+         [
+          25.4,
+          182.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 78,
+        "bottom": 83.4,
+        "ranges": [
+         [
+          25.4,
+          185.1
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 83.4,
+        "bottom": 88.9,
+        "ranges": [
+         [
+          25.4,
+          190.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 88.9,
+        "bottom": 94.3,
+        "ranges": [
+         [
+          25.4,
+          180.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 94.3,
+        "bottom": 103.3,
+        "ranges": [
+         [
+          25.4,
+          44.8
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 2,
+      "text": "You can use these galler",
+      "pages": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 139.5
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 108.7,
+        "ranges": [
+         [
+          25.4,
+          183.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 108.7,
+        "bottom": 114.2,
+        "ranges": [
+         [
+          25.4,
+          186.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 114.2,
+        "bottom": 119.6,
+        "ranges": [
+         [
+          25.4,
+          189
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 119.6,
+        "bottom": 125.1,
+        "ranges": [
+         [
+          25.4,
+          182.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 125.1,
+        "bottom": 130.5,
+        "ranges": [
+         [
+          25.4,
+          190.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 130.5,
+        "bottom": 139.5,
+        "ranges": [
+         [
+          25.4,
+          124.2
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 3,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 232.6
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 232.6,
+        "ranges": [
+         [
+          25.4,
+          181.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 4,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 232.6,
+        "bottom": 241.6
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 232.6,
+        "bottom": 241.6,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 5,
+      "text": "To change the overall lo",
+      "pages": [
+       {
+        "page": 0,
+        "top": 241.6,
+        "bottom": 252.5
+       },
+       {
+        "page": 1,
+        "top": 25.4,
+        "bottom": 56.2
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 241.6,
+        "bottom": 247,
+        "ranges": [
+         [
+          25.4,
+          187.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 247,
+        "bottom": 252.5,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          185.3
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 47.2,
+        "bottom": 56.2,
+        "ranges": [
+         [
+          25.4,
+          38.6
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 6,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 1,
+        "top": 56.2,
+        "bottom": 65.1
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 1,
+        "top": 56.2,
+        "bottom": 65.1,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     }
+    ],
+    "drawings": [
+     {
+      "inline": true,
+      "wrap": 2,
+      "behind": false,
+      "page": 0,
+      "para": 3,
+      "X": 25.9,
+      "Y": 139.5,
+      "W": 152.4,
+      "H": 88.9,
+      "type": 136839168,
+      "name": "SmartArt",
+      "pos": [
+       25.9,
+       139.5
+      ],
+      "ext": [
+       152.4,
+       88.9
+      ],
+      "xfrm": [
+       0,
+       0,
+       152.4,
+       88.9
+      ],
+      "hasDrawingPart": true,
+      "drawingPos": [
+       25.9,
+       139.5
+      ],
+      "drawingExt": [
+       152.4,
+       88.9
+      ],
+      "shapes": [
+       {
+        "pos": [
+         25.9,
+         153
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         78.3,
+         153
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         130.7,
+         153
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         52.1,
+         186.3
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "wewer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         104.5,
+         186.3
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwerwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       }
+      ],
+      "shapesBox": [
+       25.9,
+       153,
+       178.3,
+       214.9
+      ],
+      "canGenerate": true
+     }
+    ],
+    "modified": true
+   },
+   "resize": {
+    "pages": 1,
+    "paras": [
+     {
+      "i": 0,
+      "text": "On the Insert tab, the g",
+      "pages": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 61.6
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          184.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          183.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          185
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 47.2,
+        "bottom": 52.6,
+        "ranges": [
+         [
+          25.4,
+          190.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 52.6,
+        "bottom": 61.6,
+        "ranges": [
+         [
+          25.4,
+          130.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 1,
+      "text": "Most controls offer a ch",
+      "pages": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 103.3
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 67.1,
+        "ranges": [
+         [
+          25.4,
+          189.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 67.1,
+        "bottom": 72.5,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 72.5,
+        "bottom": 78,
+        "ranges": [
+         [
+          25.4,
+          182.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 78,
+        "bottom": 83.4,
+        "ranges": [
+         [
+          25.4,
+          185.1
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 83.4,
+        "bottom": 88.9,
+        "ranges": [
+         [
+          25.4,
+          190.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 88.9,
+        "bottom": 94.3,
+        "ranges": [
+         [
+          25.4,
+          180.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 94.3,
+        "bottom": 103.3,
+        "ranges": [
+         [
+          25.4,
+          44.8
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 2,
+      "text": "You can use these galler",
+      "pages": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 139.5
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 108.7,
+        "ranges": [
+         [
+          25.4,
+          183.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 108.7,
+        "bottom": 114.2,
+        "ranges": [
+         [
+          25.4,
+          186.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 114.2,
+        "bottom": 119.6,
+        "ranges": [
+         [
+          25.4,
+          189
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 119.6,
+        "bottom": 125.1,
+        "ranges": [
+         [
+          25.4,
+          182.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 125.1,
+        "bottom": 130.5,
+        "ranges": [
+         [
+          25.4,
+          190.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 130.5,
+        "bottom": 139.5,
+        "ranges": [
+         [
+          25.4,
+          124.2
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 3,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 203
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 203,
+        "ranges": [
+         [
+          25.4,
+          129.3
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 4,
+      "text": "To change the overall lo",
+      "pages": [
+       {
+        "page": 0,
+        "top": 203,
+        "bottom": 244.7
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 203,
+        "bottom": 208.4,
+        "ranges": [
+         [
+          25.4,
+          187.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 208.4,
+        "bottom": 213.9,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 213.9,
+        "bottom": 219.3,
+        "ranges": [
+         [
+          25.4,
+          185.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 219.3,
+        "bottom": 224.8,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 224.8,
+        "bottom": 230.2,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 230.2,
+        "bottom": 235.7,
+        "ranges": [
+         [
+          25.4,
+          190.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 235.7,
+        "bottom": 244.7,
+        "ranges": [
+         [
+          25.4,
+          38.6
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 5,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 244.7,
+        "bottom": 253.6
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 244.7,
+        "bottom": 253.6,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     }
+    ],
+    "drawings": [
+     {
+      "inline": true,
+      "wrap": 2,
+      "behind": false,
+      "page": 0,
+      "para": 3,
+      "X": 26.5,
+      "Y": 139.5,
+      "W": 101.6,
+      "H": 59.3,
+      "type": 136839168,
+      "name": "SmartArt",
+      "pos": [
+       26.5,
+       139.5
+      ],
+      "ext": [
+       101.6,
+       59.3
+      ],
+      "xfrm": [
+       0,
+       0,
+       101.6,
+       59.3
+      ],
+      "hasDrawingPart": true,
+      "drawingPos": [
+       26.5,
+       139.5
+      ],
+      "drawingExt": [
+       101.6,
+       59.3
+      ],
+      "shapes": [
+       {
+        "pos": [
+         26.5,
+         148.5
+        ],
+        "ext": [
+         31.7,
+         19.1
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 17,
+        "lines": 1
+       },
+       {
+        "pos": [
+         61.4,
+         148.5
+        ],
+        "ext": [
+         31.7,
+         19.1
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 17,
+        "lines": 1
+       },
+       {
+        "pos": [
+         96.3,
+         148.5
+        ],
+        "ext": [
+         31.7,
+         19.1
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 17,
+        "lines": 1
+       },
+       {
+        "pos": [
+         43.9,
+         170.7
+        ],
+        "ext": [
+         31.7,
+         19.1
+        ],
+        "text": "wewer\r\n",
+        "fontSize": 17,
+        "lines": 1
+       },
+       {
+        "pos": [
+         78.8,
+         170.7
+        ],
+        "ext": [
+         31.7,
+         19.1
+        ],
+        "text": "werwerwer\r\n",
+        "fontSize": 17,
+        "lines": 1
+       }
+      ],
+      "shapesBox": [
+       26.5,
+       148.5,
+       128.1,
+       189.8
+      ],
+      "canGenerate": true
+     }
+    ],
+    "modified": true
+   },
+   "after_undo": {
+    "pages": 2,
+    "paras": [
+     {
+      "i": 0,
+      "text": "On the Insert tab, the g",
+      "pages": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 61.6
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          184.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          183.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          185
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 47.2,
+        "bottom": 52.6,
+        "ranges": [
+         [
+          25.4,
+          190.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 52.6,
+        "bottom": 61.6,
+        "ranges": [
+         [
+          25.4,
+          130.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 1,
+      "text": "Most controls offer a ch",
+      "pages": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 103.3
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 67.1,
+        "ranges": [
+         [
+          25.4,
+          189.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 67.1,
+        "bottom": 72.5,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 72.5,
+        "bottom": 78,
+        "ranges": [
+         [
+          25.4,
+          182.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 78,
+        "bottom": 83.4,
+        "ranges": [
+         [
+          25.4,
+          185.1
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 83.4,
+        "bottom": 88.9,
+        "ranges": [
+         [
+          25.4,
+          190.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 88.9,
+        "bottom": 94.3,
+        "ranges": [
+         [
+          25.4,
+          180.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 94.3,
+        "bottom": 103.3,
+        "ranges": [
+         [
+          25.4,
+          44.8
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 2,
+      "text": "You can use these galler",
+      "pages": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 139.5
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 108.7,
+        "ranges": [
+         [
+          25.4,
+          183.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 108.7,
+        "bottom": 114.2,
+        "ranges": [
+         [
+          25.4,
+          186.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 114.2,
+        "bottom": 119.6,
+        "ranges": [
+         [
+          25.4,
+          189
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 119.6,
+        "bottom": 125.1,
+        "ranges": [
+         [
+          25.4,
+          182.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 125.1,
+        "bottom": 130.5,
+        "ranges": [
+         [
+          25.4,
+          190.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 130.5,
+        "bottom": 139.5,
+        "ranges": [
+         [
+          25.4,
+          124.2
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 3,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 232.6
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 232.6,
+        "ranges": [
+         [
+          25.4,
+          181.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 4,
+      "text": "To change the overall lo",
+      "pages": [
+       {
+        "page": 0,
+        "top": 232.6,
+        "bottom": 254.4
+       },
+       {
+        "page": 1,
+        "top": 25.4,
+        "bottom": 45.3
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 232.6,
+        "bottom": 238.1,
+        "ranges": [
+         [
+          25.4,
+          187.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 238.1,
+        "bottom": 243.5,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 243.5,
+        "bottom": 249,
+        "ranges": [
+         [
+          25.4,
+          185.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 249,
+        "bottom": 254.4,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          190.5
+         ]
+        ]
+       },
+       {
+        "page": 1,
+        "top": 36.3,
+        "bottom": 45.3,
+        "ranges": [
+         [
+          25.4,
+          38.6
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 5,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 1,
+        "top": 45.3,
+        "bottom": 54.2
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 1,
+        "top": 45.3,
+        "bottom": 54.2,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     }
+    ],
+    "drawings": [
+     {
+      "inline": true,
+      "wrap": 2,
+      "behind": false,
+      "page": 0,
+      "para": 3,
+      "X": 25.9,
+      "Y": 139.5,
+      "W": 152.4,
+      "H": 88.9,
+      "type": 136839168,
+      "name": "SmartArt",
+      "pos": [
+       25.9,
+       139.5
+      ],
+      "ext": [
+       152.4,
+       88.9
+      ],
+      "xfrm": [
+       0,
+       0,
+       152.4,
+       88.9
+      ],
+      "hasDrawingPart": true,
+      "drawingPos": [
+       25.9,
+       139.5
+      ],
+      "drawingExt": [
+       152.4,
+       88.9
+      ],
+      "shapes": [
+       {
+        "pos": [
+         25.9,
+         153
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         78.3,
+         153
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         130.7,
+         153
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         52.1,
+         186.3
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "wewer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       },
+       {
+        "pos": [
+         104.5,
+         186.3
+        ],
+        "ext": [
+         47.6,
+         28.6
+        ],
+        "text": "werwerwer\r\n",
+        "fontSize": 25,
+        "lines": 1
+       }
+      ],
+      "shapesBox": [
+       25.9,
+       153,
+       178.3,
+       214.9
+      ],
+      "canGenerate": true
+     }
+    ],
+    "modified": false
+   }
+  },
+  "errors": []
+ },
+ {
+  "file": "05-picture-inline.docx",
+  "ready": true,
+  "open": {
+   "pages": 1,
+   "paras": [
+    {
+     "i": 0,
+     "text": "On the Insert tab, the g",
+     "pages": [
+      {
+       "page": 0,
+       "top": 25.4,
+       "bottom": 61.6
+      }
+     ],
+     "lines": 6,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 25.4,
+       "bottom": 30.8,
+       "ranges": [
+        [
+         25.4,
+         184.2
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 30.8,
+       "bottom": 36.3,
+       "ranges": [
+        [
+         25.4,
+         183.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 36.3,
+       "bottom": 41.7,
+       "ranges": [
+        [
+         25.4,
+         185
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 41.7,
+       "bottom": 47.2,
+       "ranges": [
+        [
+         25.4,
+         190.8
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 47.2,
+       "bottom": 52.6,
+       "ranges": [
+        [
+         25.4,
+         190.2
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 52.6,
+       "bottom": 61.6,
+       "ranges": [
+        [
+         25.4,
+         130.1
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 1,
+     "text": "Most controls offer a ch",
+     "pages": [
+      {
+       "page": 0,
+       "top": 61.6,
+       "bottom": 103.3
+      }
+     ],
+     "lines": 7,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 61.6,
+       "bottom": 67.1,
+       "ranges": [
+        [
+         25.4,
+         189.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 67.1,
+       "bottom": 72.5,
+       "ranges": [
+        [
+         25.4,
+         189.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 72.5,
+       "bottom": 78,
+       "ranges": [
+        [
+         25.4,
+         182.6
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 78,
+       "bottom": 83.4,
+       "ranges": [
+        [
+         25.4,
+         185.1
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 83.4,
+       "bottom": 88.9,
+       "ranges": [
+        [
+         25.4,
+         190.6
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 88.9,
+       "bottom": 94.3,
+       "ranges": [
+        [
+         25.4,
+         180.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 94.3,
+       "bottom": 103.3,
+       "ranges": [
+        [
+         25.4,
+         44.8
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 2,
+     "text": "You can use these galler",
+     "pages": [
+      {
+       "page": 0,
+       "top": 103.3,
+       "bottom": 139.5
+      }
+     ],
+     "lines": 6,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 103.3,
+       "bottom": 108.7,
+       "ranges": [
+        [
+         25.4,
+         183.8
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 108.7,
+       "bottom": 114.2,
+       "ranges": [
+        [
+         25.4,
+         186.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 114.2,
+       "bottom": 119.6,
+       "ranges": [
+        [
+         25.4,
+         189
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 119.6,
+       "bottom": 125.1,
+       "ranges": [
+        [
+         25.4,
+         182.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 125.1,
+       "bottom": 130.5,
+       "ranges": [
+        [
+         25.4,
+         190.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 130.5,
+       "bottom": 139.5,
+       "ranges": [
+        [
+         25.4,
+         124.2
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 3,
+     "text": "\r\n",
+     "pages": [
+      {
+       "page": 0,
+       "top": 139.5,
+       "bottom": 188.2
+      }
+     ],
+     "lines": 1,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 139.5,
+       "bottom": 188.2,
+       "ranges": [
+        [
+         25.4,
+         103.9
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 4,
+     "text": "To change the overall lo",
+     "pages": [
+      {
+       "page": 0,
+       "top": 188.2,
+       "bottom": 229.8
+      }
+     ],
+     "lines": 7,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 188.2,
+       "bottom": 193.6,
+       "ranges": [
+        [
+         25.4,
+         187.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 193.6,
+       "bottom": 199.1,
+       "ranges": [
+        [
+         25.4,
+         188.5
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 199.1,
+       "bottom": 204.5,
+       "ranges": [
+        [
+         25.4,
+         185.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 204.5,
+       "bottom": 210,
+       "ranges": [
+        [
+         25.4,
+         189.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 210,
+       "bottom": 215.4,
+       "ranges": [
+        [
+         25.4,
+         188.5
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 215.4,
+       "bottom": 220.9,
+       "ranges": [
+        [
+         25.4,
+         190.5
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 220.9,
+       "bottom": 229.8,
+       "ranges": [
+        [
+         25.4,
+         38.6
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 5,
+     "text": "\r\n",
+     "pages": [
+      {
+       "page": 0,
+       "top": 229.8,
+       "bottom": 238.8
+      }
+     ],
+     "lines": 1,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 229.8,
+       "bottom": 238.8,
+       "ranges": [
+        [
+         25.4,
+         27.7
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "drawings": [
+    {
+     "inline": true,
+     "wrap": 2,
+     "behind": false,
+     "page": 0,
+     "para": 3,
+     "X": 25.4,
+     "Y": 139.5,
+     "W": 76.2,
+     "H": 44.5,
+     "type": 72548352,
+     "pos": [
+      25.4,
+      139.5
+     ],
+     "ext": [
+      76.2,
+      44.5
+     ],
+     "xfrm": [
+      0,
+      0,
+      76.2,
+      44.5
+     ]
+    }
+   ],
+   "modified": false
+  },
+  "overlaps": [],
+  "steps": {
+   "enter_above": {
+    "pages": 1,
+    "paras": [
+     {
+      "i": 0,
+      "text": "On the Insert tab, the g",
+      "pages": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 61.6
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          184.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          183.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          185
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 47.2,
+        "bottom": 52.6,
+        "ranges": [
+         [
+          25.4,
+          190.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 52.6,
+        "bottom": 61.6,
+        "ranges": [
+         [
+          25.4,
+          130.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 1,
+      "text": "Most controls offer a ch",
+      "pages": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 103.3
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 67.1,
+        "ranges": [
+         [
+          25.4,
+          189.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 67.1,
+        "bottom": 72.5,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 72.5,
+        "bottom": 78,
+        "ranges": [
+         [
+          25.4,
+          182.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 78,
+        "bottom": 83.4,
+        "ranges": [
+         [
+          25.4,
+          185.1
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 83.4,
+        "bottom": 88.9,
+        "ranges": [
+         [
+          25.4,
+          190.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 88.9,
+        "bottom": 94.3,
+        "ranges": [
+         [
+          25.4,
+          180.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 94.3,
+        "bottom": 103.3,
+        "ranges": [
+         [
+          25.4,
+          44.8
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 2,
+      "text": "You can use these galler",
+      "pages": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 139.5
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 108.7,
+        "ranges": [
+         [
+          25.4,
+          183.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 108.7,
+        "bottom": 114.2,
+        "ranges": [
+         [
+          25.4,
+          186.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 114.2,
+        "bottom": 119.6,
+        "ranges": [
+         [
+          25.4,
+          189
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 119.6,
+        "bottom": 125.1,
+        "ranges": [
+         [
+          25.4,
+          182.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 125.1,
+        "bottom": 130.5,
+        "ranges": [
+         [
+          25.4,
+          190.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 130.5,
+        "bottom": 139.5,
+        "ranges": [
+         [
+          25.4,
+          124.2
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 3,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 148.5
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 148.5,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 4,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 148.5,
+        "bottom": 197.2
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 148.5,
+        "bottom": 197.2,
+        "ranges": [
+         [
+          25.4,
+          103.9
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 5,
+      "text": "To change the overall lo",
+      "pages": [
+       {
+        "page": 0,
+        "top": 197.2,
+        "bottom": 238.8
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 197.2,
+        "bottom": 202.6,
+        "ranges": [
+         [
+          25.4,
+          187.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 202.6,
+        "bottom": 208,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 208,
+        "bottom": 213.5,
+        "ranges": [
+         [
+          25.4,
+          185.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 213.5,
+        "bottom": 218.9,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 218.9,
+        "bottom": 224.4,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 224.4,
+        "bottom": 229.8,
+        "ranges": [
+         [
+          25.4,
+          190.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 229.8,
+        "bottom": 238.8,
+        "ranges": [
+         [
+          25.4,
+          38.6
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 6,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 238.8,
+        "bottom": 247.8
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 238.8,
+        "bottom": 247.8,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     }
+    ],
+    "drawings": [
+     {
+      "inline": true,
+      "wrap": 2,
+      "behind": false,
+      "page": 0,
+      "para": 4,
+      "X": 25.4,
+      "Y": 148.5,
+      "W": 76.2,
+      "H": 44.5,
+      "type": 72548352,
+      "pos": [
+       25.4,
+       148.5
+      ],
+      "ext": [
+       76.2,
+       44.5
+      ],
+      "xfrm": [
+       0,
+       0,
+       76.2,
+       44.5
+      ]
+     }
+    ],
+    "modified": true
+   },
+   "enter_before": {
+    "pages": 1,
+    "paras": [
+     {
+      "i": 0,
+      "text": "On the Insert tab, the g",
+      "pages": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 61.6
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          184.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          183.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          185
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 47.2,
+        "bottom": 52.6,
+        "ranges": [
+         [
+          25.4,
+          190.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 52.6,
+        "bottom": 61.6,
+        "ranges": [
+         [
+          25.4,
+          130.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 1,
+      "text": "Most controls offer a ch",
+      "pages": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 103.3
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 67.1,
+        "ranges": [
+         [
+          25.4,
+          189.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 67.1,
+        "bottom": 72.5,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 72.5,
+        "bottom": 78,
+        "ranges": [
+         [
+          25.4,
+          182.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 78,
+        "bottom": 83.4,
+        "ranges": [
+         [
+          25.4,
+          185.1
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 83.4,
+        "bottom": 88.9,
+        "ranges": [
+         [
+          25.4,
+          190.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 88.9,
+        "bottom": 94.3,
+        "ranges": [
+         [
+          25.4,
+          180.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 94.3,
+        "bottom": 103.3,
+        "ranges": [
+         [
+          25.4,
+          44.8
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 2,
+      "text": "You can use these galler",
+      "pages": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 139.5
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 108.7,
+        "ranges": [
+         [
+          25.4,
+          183.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 108.7,
+        "bottom": 114.2,
+        "ranges": [
+         [
+          25.4,
+          186.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 114.2,
+        "bottom": 119.6,
+        "ranges": [
+         [
+          25.4,
+          189
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 119.6,
+        "bottom": 125.1,
+        "ranges": [
+         [
+          25.4,
+          182.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 125.1,
+        "bottom": 130.5,
+        "ranges": [
+         [
+          25.4,
+          190.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 130.5,
+        "bottom": 139.5,
+        "ranges": [
+         [
+          25.4,
+          124.2
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 3,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 148.5
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 148.5,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 4,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 148.5,
+        "bottom": 197.2
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 148.5,
+        "bottom": 197.2,
+        "ranges": [
+         [
+          25.4,
+          103.9
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 5,
+      "text": "To change the overall lo",
+      "pages": [
+       {
+        "page": 0,
+        "top": 197.2,
+        "bottom": 238.8
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 197.2,
+        "bottom": 202.6,
+        "ranges": [
+         [
+          25.4,
+          187.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 202.6,
+        "bottom": 208,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 208,
+        "bottom": 213.5,
+        "ranges": [
+         [
+          25.4,
+          185.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 213.5,
+        "bottom": 218.9,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 218.9,
+        "bottom": 224.4,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 224.4,
+        "bottom": 229.8,
+        "ranges": [
+         [
+          25.4,
+          190.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 229.8,
+        "bottom": 238.8,
+        "ranges": [
+         [
+          25.4,
+          38.6
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 6,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 238.8,
+        "bottom": 247.8
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 238.8,
+        "bottom": 247.8,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     }
+    ],
+    "drawings": [
+     {
+      "inline": true,
+      "wrap": 2,
+      "behind": false,
+      "page": 0,
+      "para": 4,
+      "X": 25.4,
+      "Y": 148.5,
+      "W": 76.2,
+      "H": 44.5,
+      "type": 72548352,
+      "pos": [
+       25.4,
+       148.5
+      ],
+      "ext": [
+       76.2,
+       44.5
+      ],
+      "xfrm": [
+       0,
+       0,
+       76.2,
+       44.5
+      ]
+     }
+    ],
+    "modified": true
+   },
+   "enter_after": {
+    "pages": 1,
+    "paras": [
+     {
+      "i": 0,
+      "text": "On the Insert tab, the g",
+      "pages": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 61.6
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          184.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          183.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          185
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 47.2,
+        "bottom": 52.6,
+        "ranges": [
+         [
+          25.4,
+          190.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 52.6,
+        "bottom": 61.6,
+        "ranges": [
+         [
+          25.4,
+          130.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 1,
+      "text": "Most controls offer a ch",
+      "pages": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 103.3
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 67.1,
+        "ranges": [
+         [
+          25.4,
+          189.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 67.1,
+        "bottom": 72.5,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 72.5,
+        "bottom": 78,
+        "ranges": [
+         [
+          25.4,
+          182.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 78,
+        "bottom": 83.4,
+        "ranges": [
+         [
+          25.4,
+          185.1
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 83.4,
+        "bottom": 88.9,
+        "ranges": [
+         [
+          25.4,
+          190.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 88.9,
+        "bottom": 94.3,
+        "ranges": [
+         [
+          25.4,
+          180.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 94.3,
+        "bottom": 103.3,
+        "ranges": [
+         [
+          25.4,
+          44.8
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 2,
+      "text": "You can use these galler",
+      "pages": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 139.5
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 108.7,
+        "ranges": [
+         [
+          25.4,
+          183.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 108.7,
+        "bottom": 114.2,
+        "ranges": [
+         [
+          25.4,
+          186.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 114.2,
+        "bottom": 119.6,
+        "ranges": [
+         [
+          25.4,
+          189
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 119.6,
+        "bottom": 125.1,
+        "ranges": [
+         [
+          25.4,
+          182.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 125.1,
+        "bottom": 130.5,
+        "ranges": [
+         [
+          25.4,
+          190.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 130.5,
+        "bottom": 139.5,
+        "ranges": [
+         [
+          25.4,
+          124.2
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 3,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 188.2
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 188.2,
+        "ranges": [
+         [
+          25.4,
+          103.9
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 4,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 188.2,
+        "bottom": 197.2
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 188.2,
+        "bottom": 197.2,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 5,
+      "text": "To change the overall lo",
+      "pages": [
+       {
+        "page": 0,
+        "top": 197.2,
+        "bottom": 238.8
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 197.2,
+        "bottom": 202.6,
+        "ranges": [
+         [
+          25.4,
+          187.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 202.6,
+        "bottom": 208,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 208,
+        "bottom": 213.5,
+        "ranges": [
+         [
+          25.4,
+          185.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 213.5,
+        "bottom": 218.9,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 218.9,
+        "bottom": 224.4,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 224.4,
+        "bottom": 229.8,
+        "ranges": [
+         [
+          25.4,
+          190.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 229.8,
+        "bottom": 238.8,
+        "ranges": [
+         [
+          25.4,
+          38.6
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 6,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 238.8,
+        "bottom": 247.8
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 238.8,
+        "bottom": 247.8,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     }
+    ],
+    "drawings": [
+     {
+      "inline": true,
+      "wrap": 2,
+      "behind": false,
+      "page": 0,
+      "para": 3,
+      "X": 25.4,
+      "Y": 139.5,
+      "W": 76.2,
+      "H": 44.5,
+      "type": 72548352,
+      "pos": [
+       25.4,
+       139.5
+      ],
+      "ext": [
+       76.2,
+       44.5
+      ],
+      "xfrm": [
+       0,
+       0,
+       76.2,
+       44.5
+      ]
+     }
+    ],
+    "modified": true
+   },
+   "resize": {
+    "pages": 1,
+    "paras": [
+     {
+      "i": 0,
+      "text": "On the Insert tab, the g",
+      "pages": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 61.6
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          184.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          183.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          185
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 47.2,
+        "bottom": 52.6,
+        "ranges": [
+         [
+          25.4,
+          190.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 52.6,
+        "bottom": 61.6,
+        "ranges": [
+         [
+          25.4,
+          130.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 1,
+      "text": "Most controls offer a ch",
+      "pages": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 103.3
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 67.1,
+        "ranges": [
+         [
+          25.4,
+          189.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 67.1,
+        "bottom": 72.5,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 72.5,
+        "bottom": 78,
+        "ranges": [
+         [
+          25.4,
+          182.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 78,
+        "bottom": 83.4,
+        "ranges": [
+         [
+          25.4,
+          185.1
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 83.4,
+        "bottom": 88.9,
+        "ranges": [
+         [
+          25.4,
+          190.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 88.9,
+        "bottom": 94.3,
+        "ranges": [
+         [
+          25.4,
+          180.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 94.3,
+        "bottom": 103.3,
+        "ranges": [
+         [
+          25.4,
+          44.8
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 2,
+      "text": "You can use these galler",
+      "pages": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 139.5
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 108.7,
+        "ranges": [
+         [
+          25.4,
+          183.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 108.7,
+        "bottom": 114.2,
+        "ranges": [
+         [
+          25.4,
+          186.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 114.2,
+        "bottom": 119.6,
+        "ranges": [
+         [
+          25.4,
+          189
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 119.6,
+        "bottom": 125.1,
+        "ranges": [
+         [
+          25.4,
+          182.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 125.1,
+        "bottom": 130.5,
+        "ranges": [
+         [
+          25.4,
+          190.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 130.5,
+        "bottom": 139.5,
+        "ranges": [
+         [
+          25.4,
+          124.2
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 3,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 173.4
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 173.4,
+        "ranges": [
+         [
+          25.4,
+          78.5
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 4,
+      "text": "To change the overall lo",
+      "pages": [
+       {
+        "page": 0,
+        "top": 173.4,
+        "bottom": 215.1
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 173.4,
+        "bottom": 178.8,
+        "ranges": [
+         [
+          25.4,
+          187.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 178.8,
+        "bottom": 184.3,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 184.3,
+        "bottom": 189.7,
+        "ranges": [
+         [
+          25.4,
+          185.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 189.7,
+        "bottom": 195.2,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 195.2,
+        "bottom": 200.6,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 200.6,
+        "bottom": 206.1,
+        "ranges": [
+         [
+          25.4,
+          190.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 206.1,
+        "bottom": 215.1,
+        "ranges": [
+         [
+          25.4,
+          38.6
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 5,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 215.1,
+        "bottom": 224
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 215.1,
+        "bottom": 224,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     }
+    ],
+    "drawings": [
+     {
+      "inline": true,
+      "wrap": 2,
+      "behind": false,
+      "page": 0,
+      "para": 3,
+      "X": 25.4,
+      "Y": 139.5,
+      "W": 50.8,
+      "H": 29.7,
+      "type": 72548352,
+      "pos": [
+       25.4,
+       139.5
+      ],
+      "ext": [
+       50.8,
+       29.7
+      ],
+      "xfrm": [
+       0,
+       0,
+       50.8,
+       29.7
+      ]
+     }
+    ],
+    "modified": true
+   },
+   "after_undo": {
+    "pages": 1,
+    "paras": [
+     {
+      "i": 0,
+      "text": "On the Insert tab, the g",
+      "pages": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 61.6
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 25.4,
+        "bottom": 30.8,
+        "ranges": [
+         [
+          25.4,
+          184.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 30.8,
+        "bottom": 36.3,
+        "ranges": [
+         [
+          25.4,
+          183.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 36.3,
+        "bottom": 41.7,
+        "ranges": [
+         [
+          25.4,
+          185
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 41.7,
+        "bottom": 47.2,
+        "ranges": [
+         [
+          25.4,
+          190.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 47.2,
+        "bottom": 52.6,
+        "ranges": [
+         [
+          25.4,
+          190.2
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 52.6,
+        "bottom": 61.6,
+        "ranges": [
+         [
+          25.4,
+          130.1
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 1,
+      "text": "Most controls offer a ch",
+      "pages": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 103.3
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 61.6,
+        "bottom": 67.1,
+        "ranges": [
+         [
+          25.4,
+          189.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 67.1,
+        "bottom": 72.5,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 72.5,
+        "bottom": 78,
+        "ranges": [
+         [
+          25.4,
+          182.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 78,
+        "bottom": 83.4,
+        "ranges": [
+         [
+          25.4,
+          185.1
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 83.4,
+        "bottom": 88.9,
+        "ranges": [
+         [
+          25.4,
+          190.6
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 88.9,
+        "bottom": 94.3,
+        "ranges": [
+         [
+          25.4,
+          180.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 94.3,
+        "bottom": 103.3,
+        "ranges": [
+         [
+          25.4,
+          44.8
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 2,
+      "text": "You can use these galler",
+      "pages": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 139.5
+       }
+      ],
+      "lines": 6,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 103.3,
+        "bottom": 108.7,
+        "ranges": [
+         [
+          25.4,
+          183.8
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 108.7,
+        "bottom": 114.2,
+        "ranges": [
+         [
+          25.4,
+          186.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 114.2,
+        "bottom": 119.6,
+        "ranges": [
+         [
+          25.4,
+          189
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 119.6,
+        "bottom": 125.1,
+        "ranges": [
+         [
+          25.4,
+          182.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 125.1,
+        "bottom": 130.5,
+        "ranges": [
+         [
+          25.4,
+          190.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 130.5,
+        "bottom": 139.5,
+        "ranges": [
+         [
+          25.4,
+          124.2
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 3,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 188.2
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 139.5,
+        "bottom": 188.2,
+        "ranges": [
+         [
+          25.4,
+          103.9
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 4,
+      "text": "To change the overall lo",
+      "pages": [
+       {
+        "page": 0,
+        "top": 188.2,
+        "bottom": 229.8
+       }
+      ],
+      "lines": 7,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 188.2,
+        "bottom": 193.6,
+        "ranges": [
+         [
+          25.4,
+          187.9
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 193.6,
+        "bottom": 199.1,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 199.1,
+        "bottom": 204.5,
+        "ranges": [
+         [
+          25.4,
+          185.3
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 204.5,
+        "bottom": 210,
+        "ranges": [
+         [
+          25.4,
+          189.7
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 210,
+        "bottom": 215.4,
+        "ranges": [
+         [
+          25.4,
+          188.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 215.4,
+        "bottom": 220.9,
+        "ranges": [
+         [
+          25.4,
+          190.5
+         ]
+        ]
+       },
+       {
+        "page": 0,
+        "top": 220.9,
+        "bottom": 229.8,
+        "ranges": [
+         [
+          25.4,
+          38.6
+         ]
+        ]
+       }
+      ]
+     },
+     {
+      "i": 5,
+      "text": "\r\n",
+      "pages": [
+       {
+        "page": 0,
+        "top": 229.8,
+        "bottom": 238.8
+       }
+      ],
+      "lines": 1,
+      "textLines": [
+       {
+        "page": 0,
+        "top": 229.8,
+        "bottom": 238.8,
+        "ranges": [
+         [
+          25.4,
+          27.7
+         ]
+        ]
+       }
+      ]
+     }
+    ],
+    "drawings": [
+     {
+      "inline": true,
+      "wrap": 2,
+      "behind": false,
+      "page": 0,
+      "para": 3,
+      "X": 25.4,
+      "Y": 139.5,
+      "W": 76.2,
+      "H": 44.5,
+      "type": 72548352,
+      "pos": [
+       25.4,
+       139.5
+      ],
+      "ext": [
+       76.2,
+       44.5
+      ],
+      "xfrm": [
+       0,
+       0,
+       76.2,
+       44.5
+      ]
+     }
+    ],
+    "modified": false
+   }
+  },
+  "errors": []
+ },
+ {
+  "file": "06-picture-anchor-square.docx",
+  "ready": true,
+  "open": {
+   "pages": 1,
+   "paras": [
+    {
+     "i": 0,
+     "text": "On the Insert tab, the g",
+     "pages": [
+      {
+       "page": 0,
+       "top": 25.4,
+       "bottom": 61.6
+      }
+     ],
+     "lines": 6,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 25.4,
+       "bottom": 30.8,
+       "ranges": [
+        [
+         25.4,
+         184.2
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 30.8,
+       "bottom": 36.3,
+       "ranges": [
+        [
+         25.4,
+         183.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 36.3,
+       "bottom": 41.7,
+       "ranges": [
+        [
+         25.4,
+         185
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 41.7,
+       "bottom": 47.2,
+       "ranges": [
+        [
+         25.4,
+         190.8
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 47.2,
+       "bottom": 52.6,
+       "ranges": [
+        [
+         25.4,
+         190.2
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 52.6,
+       "bottom": 61.6,
+       "ranges": [
+        [
+         25.4,
+         130.1
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 1,
+     "text": "Most controls offer a ch",
+     "pages": [
+      {
+       "page": 0,
+       "top": 61.6,
+       "bottom": 125.1
+      }
+     ],
+     "lines": 11,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 61.6,
+       "bottom": 67.1,
+       "ranges": [
+        [
+         104.8,
+         185.6
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 67.1,
+       "bottom": 72.5,
+       "ranges": [
+        [
+         104.8,
+         188.5
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 72.5,
+       "bottom": 78,
+       "ranges": [
+        [
+         104.8,
+         191
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 78,
+       "bottom": 83.4,
+       "ranges": [
+        [
+         104.8,
+         189.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 83.4,
+       "bottom": 88.9,
+       "ranges": [
+        [
+         104.8,
+         180.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 88.9,
+       "bottom": 94.3,
+       "ranges": [
+        [
+         104.8,
+         179.5
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 94.3,
+       "bottom": 99.7,
+       "ranges": [
+        [
+         104.8,
+         184.4
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 99.7,
+       "bottom": 105.2,
+       "ranges": [
+        [
+         104.8,
+         191.2
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 105.2,
+       "bottom": 110.6,
+       "ranges": [
+        [
+         104.8,
+         181.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 110.6,
+       "bottom": 116.1,
+       "ranges": [
+        [
+         25.4,
+         179.5
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 116.1,
+       "bottom": 125.1,
+       "ranges": [
+        [
+         25.4,
+         127.6
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 2,
+     "text": "You can use these galler",
+     "pages": [
+      {
+       "page": 0,
+       "top": 125.1,
+       "bottom": 161.3
+      }
+     ],
+     "lines": 6,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 125.1,
+       "bottom": 130.5,
+       "ranges": [
+        [
+         25.4,
+         183.8
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 130.5,
+       "bottom": 136,
+       "ranges": [
+        [
+         25.4,
+         186.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 136,
+       "bottom": 141.4,
+       "ranges": [
+        [
+         25.4,
+         189
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 141.4,
+       "bottom": 146.9,
+       "ranges": [
+        [
+         25.4,
+         182.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 146.9,
+       "bottom": 152.3,
+       "ranges": [
+        [
+         25.4,
+         190.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 152.3,
+       "bottom": 161.3,
+       "ranges": [
+        [
+         25.4,
+         124.2
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 3,
+     "text": "To change the overall lo",
+     "pages": [
+      {
+       "page": 0,
+       "top": 161.3,
+       "bottom": 202.9
+      }
+     ],
+     "lines": 7,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 161.3,
+       "bottom": 166.7,
+       "ranges": [
+        [
+         25.4,
+         187.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 166.7,
+       "bottom": 172.2,
+       "ranges": [
+        [
+         25.4,
+         188.5
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 172.2,
+       "bottom": 177.6,
+       "ranges": [
+        [
+         25.4,
+         185.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 177.6,
+       "bottom": 183.1,
+       "ranges": [
+        [
+         25.4,
+         189.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 183.1,
+       "bottom": 188.5,
+       "ranges": [
+        [
+         25.4,
+         188.5
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 188.5,
+       "bottom": 194,
+       "ranges": [
+        [
+         25.4,
+         190.5
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 194,
+       "bottom": 202.9,
+       "ranges": [
+        [
+         25.4,
+         38.6
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 4,
+     "text": "\r\n",
+     "pages": [
+      {
+       "page": 0,
+       "top": 202.9,
+       "bottom": 211.9
+      }
+     ],
+     "lines": 1,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 202.9,
+       "bottom": 211.9,
+       "ranges": [
+        [
+         25.4,
+         27.7
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "drawings": [
+    {
+     "inline": false,
+     "wrap": 1,
+     "behind": false,
+     "page": 0,
+     "para": 1,
+     "X": 25.4,
+     "Y": 61.6,
+     "W": 76.2,
+     "H": 44.5,
+     "type": 72548352,
+     "pos": [
+      25.4,
+      61.6
+     ],
+     "ext": [
+      76.2,
+      44.5
+     ],
+     "xfrm": [
+      0,
+      0,
+      76.2,
+      44.5
+     ]
+    }
+   ],
+   "modified": false
+  },
+  "overlaps": [],
+  "errors": []
+ },
+ {
+  "file": "07-two-smartarts.docx",
+  "ready": true,
+  "open": {
+   "pages": 2,
+   "paras": [
+    {
+     "i": 0,
+     "text": "On the Insert tab, the g",
+     "pages": [
+      {
+       "page": 0,
+       "top": 25.4,
+       "bottom": 61.6
+      }
+     ],
+     "lines": 6,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 25.4,
+       "bottom": 30.8,
+       "ranges": [
+        [
+         25.4,
+         184.2
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 30.8,
+       "bottom": 36.3,
+       "ranges": [
+        [
+         25.4,
+         183.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 36.3,
+       "bottom": 41.7,
+       "ranges": [
+        [
+         25.4,
+         185
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 41.7,
+       "bottom": 47.2,
+       "ranges": [
+        [
+         25.4,
+         190.8
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 47.2,
+       "bottom": 52.6,
+       "ranges": [
+        [
+         25.4,
+         190.2
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 52.6,
+       "bottom": 61.6,
+       "ranges": [
+        [
+         25.4,
+         130.1
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 1,
+     "text": "Most controls offer a ch",
+     "pages": [
+      {
+       "page": 0,
+       "top": 61.6,
+       "bottom": 103.3
+      }
+     ],
+     "lines": 7,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 61.6,
+       "bottom": 67.1,
+       "ranges": [
+        [
+         25.4,
+         189.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 67.1,
+       "bottom": 72.5,
+       "ranges": [
+        [
+         25.4,
+         189.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 72.5,
+       "bottom": 78,
+       "ranges": [
+        [
+         25.4,
+         182.6
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 78,
+       "bottom": 83.4,
+       "ranges": [
+        [
+         25.4,
+         185.1
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 83.4,
+       "bottom": 88.9,
+       "ranges": [
+        [
+         25.4,
+         190.6
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 88.9,
+       "bottom": 94.3,
+       "ranges": [
+        [
+         25.4,
+         180.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 94.3,
+       "bottom": 103.3,
+       "ranges": [
+        [
+         25.4,
+         44.8
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 2,
+     "text": "You can use these galler",
+     "pages": [
+      {
+       "page": 0,
+       "top": 103.3,
+       "bottom": 139.5
+      }
+     ],
+     "lines": 6,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 103.3,
+       "bottom": 108.7,
+       "ranges": [
+        [
+         25.4,
+         183.8
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 108.7,
+       "bottom": 114.2,
+       "ranges": [
+        [
+         25.4,
+         186.9
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 114.2,
+       "bottom": 119.6,
+       "ranges": [
+        [
+         25.4,
+         189
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 119.6,
+       "bottom": 125.1,
+       "ranges": [
+        [
+         25.4,
+         182.3
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 125.1,
+       "bottom": 130.5,
+       "ranges": [
+        [
+         25.4,
+         190.7
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 130.5,
+       "bottom": 139.5,
+       "ranges": [
+        [
+         25.4,
+         124.2
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 3,
+     "text": "\r\n",
+     "pages": [
+      {
+       "page": 0,
+       "top": 139.5,
+       "bottom": 232.6
+      }
+     ],
+     "lines": 1,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 139.5,
+       "bottom": 232.6,
+       "ranges": [
+        [
+         25.4,
+         181.1
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 4,
+     "text": "To change the overall lo",
+     "pages": [
+      {
+       "page": 0,
+       "top": 232.6,
+       "bottom": 254.4
+      },
+      {
+       "page": 1,
+       "top": 25.4,
+       "bottom": 56.2
+      }
+     ],
+     "lines": 9,
+     "textLines": [
+      {
+       "page": 0,
+       "top": 232.6,
+       "bottom": 238.1,
+       "ranges": [
+        [
+         25.4,
+         98
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 238.1,
+       "bottom": 243.5,
+       "ranges": [
+        [
+         25.4,
+         92
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 243.5,
+       "bottom": 249,
+       "ranges": [
+        [
+         25.4,
+         94.9
+        ],
+        [
+         181,
+         187.1
+        ]
+       ]
+      },
+      {
+       "page": 0,
+       "top": 249,
+       "bottom": 254.4,
+       "ranges": [
+        [
+         25.4,
+         94.2
+        ],
+        [
+         181,
+         190.8
+        ]
+       ]
+      },
+      {
+       "page": 1,
+       "top": 25.4,
+       "bottom": 30.8,
+       "ranges": [
+        [
+         25.4,
+         185.4
+        ]
+       ]
+      },
+      {
+       "page": 1,
+       "top": 30.8,
+       "bottom": 36.3,
+       "ranges": [
+        [
+         25.4,
+         176.8
+        ]
+       ]
+      },
+      {
+       "page": 1,
+       "top": 36.3,
+       "bottom": 41.7,
+       "ranges": [
+        [
+         25.4,
+         188.7
+        ]
+       ]
+      },
+      {
+       "page": 1,
+       "top": 41.7,
+       "bottom": 47.2,
+       "ranges": [
+        [
+         25.4,
+         188.2
+        ]
+       ]
+      },
+      {
+       "page": 1,
+       "top": 47.2,
+       "bottom": 56.2,
+       "ranges": [
+        [
+         25.4,
+         85.5
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "i": 5,
+     "text": "\r\n",
+     "pages": [
+      {
+       "page": 1,
+       "top": 56.2,
+       "bottom": 65.1
+      }
+     ],
+     "lines": 1,
+     "textLines": [
+      {
+       "page": 1,
+       "top": 56.2,
+       "bottom": 65.1,
+       "ranges": [
+        [
+         25.4,
+         27.7
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "drawings": [
+    {
+     "inline": true,
+     "wrap": 2,
+     "behind": false,
+     "page": 0,
+     "para": 3,
+     "X": 25.9,
+     "Y": 139.5,
+     "W": 152.4,
+     "H": 88.9,
+     "type": 136839168,
+     "name": "SmartArt",
+     "pos": [
+      25.9,
+      139.5
+     ],
+     "ext": [
+      152.4,
+      88.9
+     ],
+     "xfrm": [
+      0,
+      0,
+      152.4,
+      88.9
+     ],
+     "hasDrawingPart": true,
+     "drawingPos": [
+      25.9,
+      139.5
+     ],
+     "drawingExt": [
+      152.4,
+      88.9
+     ],
+     "shapes": [
+      {
+       "pos": [
+        25.9,
+        153
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        78.3,
+        153
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        130.7,
+        153
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        52.1,
+        186.3
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "wewer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      },
+      {
+       "pos": [
+        104.5,
+        186.3
+       ],
+       "ext": [
+        47.6,
+        28.6
+       ],
+       "text": "werwerwer\r\n",
+       "fontSize": 25,
+       "lines": 1
+      }
+     ],
+     "shapesBox": [
+      25.9,
+      153,
+      178.3,
+      214.9
+     ],
+     "canGenerate": true
+    },
+    {
+     "inline": false,
+     "wrap": 1,
+     "behind": false,
+     "page": 0,
+     "para": 4,
+     "X": 101.6,
+     "Y": 232.6,
+     "W": 76.2,
+     "H": 44.5,
+     "type": 136839168,
+     "name": "SmartArt",
+     "pos": [
+      101.6,
+      232.6
+     ],
+     "ext": [
+      76.2,
+      44.5
+     ],
+     "xfrm": [
+      0,
+      0,
+      76.2,
+      44.5
+     ],
+     "hasDrawingPart": true,
+     "drawingPos": [
+      101.6,
+      232.6
+     ],
+     "drawingExt": [
+      76.2,
+      44.5
+     ],
+     "shapes": [
+      {
+       "pos": [
+        101.6,
+        239.4
+       ],
+       "ext": [
+        23.8,
+        14.3
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 12,
+       "lines": 1
+      },
+      {
+       "pos": [
+        127.8,
+        239.4
+       ],
+       "ext": [
+        23.8,
+        14.3
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 12,
+       "lines": 1
+      },
+      {
+       "pos": [
+        154,
+        239.4
+       ],
+       "ext": [
+        23.8,
+        14.3
+       ],
+       "text": "werwer\r\n",
+       "fontSize": 12,
+       "lines": 1
+      },
+      {
+       "pos": [
+        114.7,
+        256
+       ],
+       "ext": [
+        23.8,
+        14.3
+       ],
+       "text": "wewer\r\n",
+       "fontSize": 12,
+       "lines": 1
+      },
+      {
+       "pos": [
+        140.9,
+        256
+       ],
+       "ext": [
+        23.8,
+        14.3
+       ],
+       "text": "werwerwer\r\n",
+       "fontSize": 12,
+       "lines": 1
+      }
+     ],
+     "shapesBox": [
+      101.6,
+      239.4,
+      177.8,
+      270.3
+     ],
+     "canGenerate": true
+    }
+   ],
+   "modified": false
+  },
+  "overlaps": [],
+  "errors": []
+ }
+]
