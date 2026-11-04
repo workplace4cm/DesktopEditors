@@ -67,8 +67,11 @@ jobs:
           sudo apt-get install -y -qq "./$deb" >/dev/null
           dpkg -s libpulse0 >/dev/null 2>&1 || sudo apt-get install -y -qq libpulse0 >/dev/null
           sudo useradd -m -s /bin/bash qa
-          sudo mkdir -p /tmp/out/cases /tmp/out/x2t && sudo chown -R qa /tmp/out
-          sudo -u qa python3 tests/docx-layout/make_cases.py /tmp/out/cases
+          # the test user cannot read the workspace under /home/runner
+          sudo mkdir -p /opt/docx-qa && sudo cp -r desktop-apps/tools/sos-apps/regression tests/docx-layout /opt/docx-qa/
+          sudo chmod -R a+rX /opt/docx-qa
+          sudo mkdir -p /tmp/out/cases /tmp/out/x2t && sudo chown -R qa /tmp/out && sudo chmod a+rwx /tmp/out/x2t
+          sudo -u qa python3 /opt/docx-qa/docx-layout/make_cases.py /tmp/out/cases
 
       - name: Round-trip the cases through x2t
         run: |
@@ -91,9 +94,13 @@ jobs:
           openbox >/dev/null 2>&1 & sleep 2
           xhost +SI:localuser:qa
           sudo -u qa -H env DISPLAY=:99 LIBGL_ALWAYS_SOFTWARE=1 QT_QPA_PLATFORM=xcb NO_AT_BRIDGE=1 \
-               PYTHONPATH="$PWD/desktop-apps/tools/sos-apps/regression" SOS_OUT=/tmp/out \
-               dbus-run-session -- python3 tests/docx-layout/probe.py /tmp/out /tmp/out/cases/*.docx
+               PYTHONPATH=/opt/docx-qa/regression SOS_OUT=/tmp/out \
+               dbus-run-session -- python3 /opt/docx-qa/docx-layout/probe.py /tmp/out /tmp/out/cases/*.docx
           cat /tmp/out/layout.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Make the results readable
+        if: always()
+        run: sudo chmod -R a+rX /tmp/out || true
 
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
