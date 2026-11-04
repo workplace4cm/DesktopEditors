@@ -205,7 +205,9 @@ jobs:
           $env:SOS_OUT = $out
           $cases = Get-ChildItem "$out\cases\*.docx" | ForEach-Object FullName
           python tests/docx-layout/probe.py $out @cases
+          $status = $LASTEXITCODE
           Get-Content "$out\layout.md" -ErrorAction SilentlyContinue | Add-Content $env:GITHUB_STEP_SUMMARY
+          exit $status
 
       - name: Publish the results to the docx-layout-results-windows branch
         if: always()
