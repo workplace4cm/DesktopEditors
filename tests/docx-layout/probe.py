@@ -29,6 +29,11 @@ for (var i=0;i<ld.Content.length;i++){
   for (var k=0;el.Pages&&k<el.Pages.length;k++){var b=el.Pages[k].Bounds;
     r.pages.push({page:el.GetAbsolutePage(k), top:mm(b.Top), bottom:mm(b.Bottom)});}
   r.lines=el.Lines?el.Lines.length:null;
+  r.textLines=[];
+  for (var k=0;el.Pages&&k<el.Pages.length;k++){var pg=el.Pages[k];
+    for (var l=pg.StartLine;l<=pg.EndLine&&l<el.Lines.length;l++){var ln=el.Lines[l];
+      var rs=ln.Ranges.filter(function(q){return q.XEndVisible>q.XVisible+0.5;}).map(function(q){return [mm(q.XVisible),mm(q.XEndVisible)];});
+      if(rs.length) r.textLines.push({page:el.GetAbsolutePage(k), top:mm(pg.Y+ln.Top), bottom:mm(pg.Y+ln.Bottom), ranges:rs});}}
   out.paras.push(r);
 }
 var dr=ld.GetAllDrawingObjects([]);
@@ -76,21 +81,23 @@ api.ImgApply(pr); return true;
 
 
 def overlaps(lay):
-    """paragraph text lines that share vertical space with a drawing that
-    does not reserve it (an inline drawing is part of its own paragraph)"""
+    """text that is drawn on top of a drawing: a line range of a paragraph
+    (other than an inline drawing's own paragraph) that crosses the box of
+    the drawing's shapes on the same page"""
     found = []
     for k, d in enumerate(lay['drawings']):
-        box = d.get('shapesBox') or (d['pos'] and [d['pos'][0], d['pos'][1], d['pos'][0] + d['ext'][0], d['pos'][1] + d['ext'][1]])
-        if not box:
+        box = d.get('shapesBox') or (d.get('pos') and [d['pos'][0], d['pos'][1], d['pos'][0] + d['ext'][0], d['pos'][1] + d['ext'][1]])
+        if not box or d.get('behind'):
             continue
         for p in lay['paras']:
             if p['i'] == d['para'] and d['inline']:
                 continue
-            for pg in p['pages']:
-                if pg['page'] != d['page'] or not p['text'].strip():
+            for ln in p.get('textLines', []):
+                if ln['page'] != d['page'] or ln['top'] >= box[3] - 0.5 or ln['bottom'] <= box[1] + 0.5:
                     continue
-                if pg['top'] < box[3] - 0.5 and pg['bottom'] > box[1] + 0.5:
-                    found.append({'drawing': k, 'para': p['i'], 'para_top': pg['top'], 'para_bottom': pg['bottom'], 'box': box})
+                for x0, x1 in ln['ranges']:
+                    if x0 < box[2] - 0.5 and x1 > box[0] + 0.5:
+                        found.append({'drawing': k, 'para': p['i'], 'line': [ln['top'], ln['bottom'], x0, x1], 'box': box})
     return found
 
 
@@ -180,6 +187,30 @@ def main(out, files):
                 steps['resize'] = {'error': str(e)}
             steps['after_undo'] = dump(ed)
             r['steps'] = steps
+            if name.startswith('01'):
+                # save as DOCX the way a user does, reopen, compare
+                m0 = os.path.getmtime(f)
+                # one character in the empty last paragraph, so there is a change to save
+                ed.js(PLACE % (len(lay['paras']) - 1, 'true'))
+                time.sleep(0.5)
+                ed.page.type_text('x')
+                time.sleep(1)
+                ed.page.shortcut('S')
+                saved = sos.wait_file(f, since=m0 + 0.001, secs=60)
+                r['saved'] = bool(saved)
+                r['errors_before_reopen'] = errors(ed)
+                ed.close()
+                sos.kill_all()
+                before = sos.doc_ids()
+                sos.launch('writer', f)
+                t = sos.wait_target(sos.is_doc, 150, exclude=before)
+                if t:
+                    ed = sos.Editor(t, 'writer')
+                    r['reopen_ready'] = ed.wait_ready()
+                    time.sleep(3)
+                    r['reopen'] = dump(ed)
+                    r['reopen_overlaps'] = overlaps(r['reopen']) if r['reopen'] else None
+                    shot(ed, name + '-5-reopened')
         r['errors'] = errors(ed)
         try:
             ed.js("api.asc_setDocumentModified && api.asc_setDocumentModified(false); return 1")
@@ -202,6 +233,12 @@ def main(out, files):
             for d in lay.get('drawings', []):
                 fh.write('- drawing: %s\n' % json.dumps({k: d.get(k) for k in ('name', 'inline', 'wrap', 'para', 'page', 'X', 'Y', 'W', 'H', 'pos', 'ext', 'xfrm', 'hasDrawingPart', 'drawingPos', 'drawingExt', 'shapesBox', 'canGenerate')}))
             fh.write('- overlaps: %s\n' % json.dumps(r.get('overlaps')))
+            if 'saved' in r:
+                ro = r.get('reopen') or {}
+                fh.write('- saved with Ctrl+S: %s; reopened: %s, pages %s; drawings %s; overlaps %s\n' % (
+                    r['saved'], r.get('reopen_ready'), ro.get('pages'),
+                    json.dumps([{k: d.get(k) for k in ('inline', 'para', 'pos', 'ext', 'shapesBox')} for d in ro.get('drawings', [])]),
+                    json.dumps(r.get('reopen_overlaps'))))
             for k, s in (r.get('steps') or {}).items():
                 if not s or 'error' in s:
                     fh.write('- %s: %s\n' % (k, s))

@@ -18,7 +18,7 @@ on:
         required: false
 
 permissions:
-  contents: read
+  contents: write          # the docx-layout-results branch
   actions: read            # download the packages of another run
 
 concurrency:
@@ -100,7 +100,29 @@ jobs:
 
       - name: Make the results readable
         if: always()
-        run: sudo chmod -R a+rX /tmp/out || true
+        run: |
+          sudo chmod -R a+rX /tmp/out || true
+          # what x2t makes of the file Writer saved
+          if [ -f /tmp/out/cases/01-sample.docx ]; then
+            mkdir -p /tmp/saved && cd /tmp/saved
+            unzip -o -q /tmp/out/cases/01-sample.docx -d saved && ls -R saved/word | tee /tmp/saved/listing.txt
+            sudo cp -r /tmp/saved /tmp/out/saved-01
+          fi
+
+      # Screenshots and layout dumps on a branch of their own, so they can be
+      # read without downloading the artifact.
+      - name: Publish the results to the docx-layout-results branch
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rm -rf /tmp/pub && mkdir -p /tmp/pub && cd /tmp/pub
+          cp -r /tmp/out/shots /tmp/out/layout.md /tmp/out/layout.json . 2>/dev/null || true
+          cp -r /tmp/out/saved-01 . 2>/dev/null || true
+          git init -q -b docx-layout-results
+          git -c user.name=github-actions -c user.email=github-actions@users.noreply.github.com add -A
+          git -c user.name=github-actions -c user.email=github-actions@users.noreply.github.com commit -qm "docx-layout results for ${{ github.sha }}"
+          git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/docx-layout-results
 
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
