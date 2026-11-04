@@ -1,0 +1,102 @@
+name: DOCX layout (SmartArt and drawings)
+
+# Opens the DOCX layout test cases (tests/docx-layout) in EuroOffice Writer
+# from the Ubuntu package of a build run and records where every paragraph
+# and drawing lands, what Enter and resizing do around a SmartArt, and the
+# editor's JavaScript errors. Results: the job summary and the "docx-layout"
+# artifact (layout.md / layout.json, screenshots, x2t round trips).
+
+on:
+  pull_request:
+    paths:
+      - tests/docx-layout/**
+      - .github/workflows/docx-layout.yml
+  workflow_dispatch:
+    inputs:
+      run-id:
+        description: build.yml run whose Ubuntu package to test (empty = latest successful build)
+        required: false
+
+permissions:
+  contents: read
+  actions: read            # download the packages of another run
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  docx-layout:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          token: ${{ github.token }}
+
+      - name: Check out desktop-apps
+        run: git submodule update --init --depth 1 desktop-apps
+
+      - name: Find the build
+        id: run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ inputs.run-id }}
+        run: |
+          id=$RUN_ID
+          [ -n "$id" ] || id=$(gh run list -R "$GITHUB_REPOSITORY" --workflow build.yml \
+                 --status success -L 1 --json databaseId -q '.[0].databaseId')
+          test -n "$id"
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+          echo "Package from build run $id: $(gh run view -R "$GITHUB_REPOSITORY" "$id" --json headBranch,headSha,displayTitle \
+                 -q '"\(.headBranch) \(.headSha[0:7]) \(.displayTitle)"')" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: linux-packages-secure-office-suite-amd64
+          run-id: ${{ steps.run.outputs.id }}
+          github-token: ${{ github.token }}
+          path: packages
+
+      - name: Install the package, a virtual display and the test tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq xvfb openbox xdotool x11-utils x11-xserver-utils imagemagick \
+               python3-websocket dbus-x11 libglib2.0-bin >/dev/null
+          deb=$(ls packages/*.deb | grep -v -- -help | head -1)
+          sudo apt-get install -y -qq "./$deb" >/dev/null
+          dpkg -s libpulse0 >/dev/null 2>&1 || sudo apt-get install -y -qq libpulse0 >/dev/null
+          sudo useradd -m -s /bin/bash qa
+          sudo mkdir -p /tmp/out/cases /tmp/out/x2t && sudo chown -R qa /tmp/out
+          sudo -u qa python3 tests/docx-layout/make_cases.py /tmp/out/cases
+
+      - name: Round-trip the cases through x2t
+        run: |
+          x2t=$(ls /opt/*/desktopeditors/converter/x2t | head -1)
+          cd /tmp/out/x2t
+          for f in /tmp/out/cases/*.docx; do
+            n=$(basename "$f" .docx)
+            sudo -u qa "$x2t" "$f" "$PWD/$n.roundtrip.docx" > "$n.log" 2>&1 || echo "x2t $n exit $?" | tee -a "$GITHUB_STEP_SUMMARY"
+            if [ -f "$n.roundtrip.docx" ]; then
+              mkdir -p "$n" && unzip -o -q "$n.roundtrip.docx" -d "$n"
+              echo "$n: $(ls "$n/word/diagrams" 2>/dev/null | tr '\n' ' ')" >> diagrams.txt
+            fi
+          done
+          cat diagrams.txt || true
+
+      - name: Open the cases in Writer
+        run: |
+          Xvfb :99 -screen 0 1600x1000x24 >/dev/null 2>&1 & sleep 3
+          export DISPLAY=:99
+          openbox >/dev/null 2>&1 & sleep 2
+          xhost +SI:localuser:qa
+          sudo -u qa -H env DISPLAY=:99 LIBGL_ALWAYS_SOFTWARE=1 QT_QPA_PLATFORM=xcb NO_AT_BRIDGE=1 \
+               PYTHONPATH="$PWD/desktop-apps/tools/sos-apps/regression" SOS_OUT=/tmp/out \
+               dbus-run-session -- python3 tests/docx-layout/probe.py /tmp/out /tmp/out/cases/*.docx
+          cat /tmp/out/layout.md >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: docx-layout
+          path: /tmp/out

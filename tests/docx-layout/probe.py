@@ -1,0 +1,218 @@
+#!/usr/bin/env python3
+"""Opens DOCX files in the installed EuroOffice Writer and records how it laid
+them out: every paragraph's page and vertical extent, every drawing's place,
+size, wrapping, and (SmartArt) the shapes it contains. On the SmartArt
+documents it also presses Enter around the SmartArt and resizes it, and
+records what moved. Writes OUT/layout.json, OUT/layout.md and screenshots.
+
+  probe.py OUT_DIR DOCX...
+
+Needs the regression helpers of desktop-apps (tools/sos-apps/regression) on
+PYTHONPATH, an X display and a test user, like regression.yml.
+"""
+import json
+import os
+import sys
+import time
+
+import cdp
+import sos
+
+DUMP = r"""
+var ld = api.WordControl.m_oLogicDocument;
+function mm(v){return typeof v==='number'?Math.round(v*10)/10:v;}
+function tr(o){var t=o&&o.transform;return t?[mm(t.tx),mm(t.ty)]:null;}
+var out={pages: ld.Pages.length, paras:[], drawings:[], modified: !!(api.isDocumentModified&&api.isDocumentModified())};
+for (var i=0;i<ld.Content.length;i++){
+  var el=ld.Content[i]; var r={i:i, text:(el.GetText?el.GetText():'').slice(0,24)};
+  r.pages=[];
+  for (var k=0;el.Pages&&k<el.Pages.length;k++){var b=el.Pages[k].Bounds;
+    r.pages.push({page:el.GetAbsolutePage(k), top:mm(b.Top), bottom:mm(b.Bottom)});}
+  r.lines=el.Lines?el.Lines.length:null;
+  out.paras.push(r);
+}
+var dr=ld.GetAllDrawingObjects([]);
+for (var j=0;j<dr.length;j++){
+  var d=dr[j], g=d.GraphicObj, p=d.GetParagraph&&d.GetParagraph();
+  var o={inline:d.IsInline(), wrap:d.wrappingType, behind:d.behindDoc, page:d.PageNum,
+         para: p?ld.Content.indexOf(p):null, X:mm(d.X), Y:mm(d.Y), W:mm(d.Extent.W), H:mm(d.Extent.H),
+         type:g&&g.getObjectType&&g.getObjectType(), name:g&&g.getName&&g.getName()};
+  if (g){ o.pos=tr(g); o.ext=[mm(g.extX),mm(g.extY)];
+    if (g.spPr&&g.spPr.xfrm){var x=g.spPr.xfrm;o.xfrm=[mm(x.offX),mm(x.offY),mm(x.extX),mm(x.extY)];}
+    if (g.getDrawing){ var dd=g.getDrawing(); o.hasDrawingPart=!!dd;
+      if (dd){ o.drawingPos=tr(dd); o.drawingExt=[mm(dd.extX),mm(dd.extY)];
+        o.shapes=dd.spTree.map(function(s){return {pos:tr(s), ext:[mm(s.extX),mm(s.extY)],
+          text:(s.getDocContent&&s.getDocContent()?s.getDocContent().GetText():'').slice(0,12)};});
+        var b={l:1e9,t:1e9,r:-1e9,b:-1e9};
+        dd.spTree.forEach(function(s){var t=s.transform; if(!t)return; b.l=Math.min(b.l,t.tx);b.t=Math.min(b.t,t.ty);
+          b.r=Math.max(b.r,t.tx+s.extX);b.b=Math.max(b.b,t.ty+s.extY);});
+        o.shapesBox=[mm(b.l),mm(b.t),mm(b.r),mm(b.b)];
+      }
+      o.canGenerate=g.isCanGenerateSmartArt?g.isCanGenerateSmartArt():null;
+    }
+  }
+  out.drawings.push(o);
+}
+return JSON.stringify(out);
+"""
+
+PLACE = r"""
+var ld = api.WordControl.m_oLogicDocument; var i=%d, end=%s;
+ld.RemoveSelection();
+var p=ld.Content[i];
+if (end) p.MoveCursorToEndPos(false); else p.MoveCursorToStartPos(false);
+ld.CurPos.ContentPos=i; ld.Selection.Use=false;
+ld.UpdateSelection(); ld.UpdateInterface(); ld.UpdateRulers();
+var a=document.getElementById('area_id'); if(a) a.focus();
+return true;
+"""
+
+RESIZE = r"""
+var ld = api.WordControl.m_oLogicDocument; var dr=ld.GetAllDrawingObjects([]); var d=dr[%d];
+ld.RemoveSelection(); ld.SelectDrawings([d], d.GetParagraph().GetParent());
+var pr=new Asc.asc_CImgProperty(); pr.put_Width(%f); pr.put_Height(%f);
+api.ImgApply(pr); return true;
+"""
+
+
+def overlaps(lay):
+    """paragraph text lines that share vertical space with a drawing that
+    does not reserve it (an inline drawing is part of its own paragraph)"""
+    found = []
+    for k, d in enumerate(lay['drawings']):
+        box = d.get('shapesBox') or (d['pos'] and [d['pos'][0], d['pos'][1], d['pos'][0] + d['ext'][0], d['pos'][1] + d['ext'][1]])
+        if not box:
+            continue
+        for p in lay['paras']:
+            if p['i'] == d['para'] and d['inline']:
+                continue
+            for pg in p['pages']:
+                if pg['page'] != d['page'] or not p['text'].strip():
+                    continue
+                if pg['top'] < box[3] - 0.5 and pg['bottom'] > box[1] + 0.5:
+                    found.append({'drawing': k, 'para': p['i'], 'para_top': pg['top'], 'para_bottom': pg['bottom'], 'box': box})
+    return found
+
+
+def shot(ed, name):
+    os.makedirs(os.path.join(sos.OUT, 'shots'), exist_ok=True)
+    ed.page.screenshot(os.path.join(sos.OUT, 'shots', name + '.png'))
+
+
+def dump(ed):
+    s = ed.js(DUMP)
+    return json.loads(s) if s else None
+
+
+def errors(ed):
+    ed.page.pump(0.5)
+    out = []
+    for e in ed.page.events:
+        if e.get('method') == 'Runtime.exceptionThrown':
+            d = e['params']['exceptionDetails']
+            out.append((d.get('exception', {}).get('description') or d.get('text', ''))[:400])
+        elif e.get('method') == 'Runtime.consoleAPICalled' and e['params'].get('type') == 'error':
+            out.append(' '.join(str(a.get('value', a.get('description', ''))) for a in e['params'].get('args', []))[:400])
+    return out
+
+
+def undo(ed):
+    ed.js("api.Undo(); return true;")
+    time.sleep(1.5)
+
+
+def press_enter(ed, para, end=False):
+    ed.js(PLACE % (para, 'true' if end else 'false'))
+    time.sleep(0.5)
+    ed.page.key('Enter', 'Enter', 13, text='\r')
+    time.sleep(2)
+
+
+def main(out, files):
+    sos.OUT = out
+    os.makedirs(out, exist_ok=True)
+    sos.enable_devtools()
+    results = []
+    for f in files:
+        name = os.path.splitext(os.path.basename(f))[0]
+        r = {'file': os.path.basename(f)}
+        results.append(r)
+        sos.kill_all()
+        before = sos.doc_ids()
+        sos.launch('writer', f)
+        t = sos.wait_target(sos.is_doc, 150, exclude=before)
+        if not t:
+            r['error'] = 'no editor'
+            continue
+        ed = sos.Editor(t, 'writer')
+        r['ready'] = ed.wait_ready()
+        time.sleep(3)
+        r['open'] = lay = dump(ed)
+        r['overlaps'] = overlaps(lay) if lay else None
+        shot(ed, name + '-0-open')
+        if lay and lay['drawings'] and name.startswith(('01', '04', '05')):
+            dp = lay['drawings'][0]['para']
+            steps = {}
+            # Enter at the end of the paragraph above the drawing
+            press_enter(ed, dp - 1, end=True)
+            steps['enter_above'] = dump(ed)
+            shot(ed, name + '-1-enter-above')
+            undo(ed)
+            # Enter right before the drawing (start of its paragraph)
+            press_enter(ed, dp, end=False)
+            steps['enter_before'] = dump(ed)
+            shot(ed, name + '-2-enter-before')
+            undo(ed)
+            # Enter at the start of the paragraph after the drawing
+            press_enter(ed, dp + 1, end=False)
+            steps['enter_after'] = dump(ed)
+            shot(ed, name + '-3-enter-after')
+            undo(ed)
+            # resize the drawing to 2/3 of its size
+            d0 = lay['drawings'][0]
+            try:
+                ed.js_strict(RESIZE % (0, d0['W'] * 2 / 3, d0['H'] * 2 / 3))
+                time.sleep(2)
+                steps['resize'] = dump(ed)
+                shot(ed, name + '-4-resize')
+                undo(ed)
+            except Exception as e:
+                steps['resize'] = {'error': str(e)}
+            steps['after_undo'] = dump(ed)
+            r['steps'] = steps
+        r['errors'] = errors(ed)
+        try:
+            ed.js("api.asc_setDocumentModified && api.asc_setDocumentModified(false); return 1")
+        except Exception:
+            pass
+        ed.close()
+        sos.kill_all()
+    with open(os.path.join(out, 'layout.json'), 'w') as fh:
+        json.dump(results, fh, indent=1)
+    with open(os.path.join(out, 'layout.md'), 'w') as fh:
+        fh.write('## DOCX layout probe\n\n')
+        for r in results:
+            lay = r.get('open') or {}
+            fh.write('### %s\n\n' % r['file'])
+            fh.write('- loaded: %s, pages: %s, JS errors: %d\n' % (r.get('ready'), lay.get('pages'), len(r.get('errors') or [])))
+            for e in (r.get('errors') or [])[:5]:
+                fh.write('  - `%s`\n' % e.replace('\n', ' ')[:300])
+            for p in lay.get('paras', []):
+                fh.write('- para %d `%s` %s lines=%s\n' % (p['i'], p['text'], p['pages'], p['lines']))
+            for d in lay.get('drawings', []):
+                fh.write('- drawing: %s\n' % json.dumps({k: d.get(k) for k in ('name', 'inline', 'wrap', 'para', 'page', 'X', 'Y', 'W', 'H', 'pos', 'ext', 'xfrm', 'hasDrawingPart', 'drawingPos', 'drawingExt', 'shapesBox', 'canGenerate')}))
+            fh.write('- overlaps: %s\n' % json.dumps(r.get('overlaps')))
+            for k, s in (r.get('steps') or {}).items():
+                if not s or 'error' in s:
+                    fh.write('- %s: %s\n' % (k, s))
+                    continue
+                d = s['drawings'][0] if s.get('drawings') else {}
+                fh.write('- %s: paras %s; drawing para %s pos %s ext %s shapesBox %s; overlaps %s\n' % (
+                    k, [(p['i'], p['pages'][0]['top'] if p['pages'] else None) for p in s['paras']],
+                    d.get('para'), d.get('pos'), d.get('ext'), d.get('shapesBox'), len(overlaps(s))))
+            fh.write('\n')
+    print(open(os.path.join(out, 'layout.md')).read())
+
+
+if __name__ == '__main__':
+    main(sys.argv[1], sys.argv[2:])
