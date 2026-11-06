@@ -805,6 +805,12 @@ jobs:
           export DISPLAY=:99 LIBGL_ALWAYS_SOFTWARE=1 QT_QPA_PLATFORM=xcb
           desktop-apps/tools/sos-apps/verify_integration.sh secure-office-suite-desktopeditors "$DEB" "$RUNNER_TEMP/apps/integration"
 
+      # owners, setuid, world-writable files, maintainer scripts, curl/wget
+      # dependencies, URL handlers, relative library paths
+      - name: Package security audit
+        if: ${{ !cancelled() }}
+        run: desktop-apps/tools/sos-apps/audit_package_ubuntu.sh "$DEB" "$RUNNER_TEMP/apps/audit"
+
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
@@ -842,6 +848,15 @@ jobs:
         run: |
           $setup = Get-ChildItem packages -Recurse -Filter '*.exe' | Select-Object -First 1
           desktop-apps/tools/sos-apps/verify_windows.ps1 -Installer $setup.FullName -Out "$env:RUNNER_TEMP\windows"
+
+      # DEP/ASLR, permissions of an install folder outside Program Files,
+      # quoted open commands, no URL protocol/service/task/ProgramData folder
+      - name: Installer security audit
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: |
+          $setup = Get-ChildItem packages -Recurse -Filter '*.exe' | Select-Object -First 1
+          desktop-apps/tools/sos-apps/audit_installer_windows.ps1 -Installer $setup.FullName -Out "$env:RUNNER_TEMP\windows\audit"
 
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()

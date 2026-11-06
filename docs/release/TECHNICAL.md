@@ -113,6 +113,13 @@ These come from the October 2026 security review (`/mnt/project-files/rebrand/se
 
 Open items are listed in [KNOWN-LIMITATIONS.md](KNOWN-LIMITATIONS.md): the Chromium (CEF) upgrade, older image and XML libraries, and code signing.
 
+### Installers (November 2026 review)
+
+- **Windows**: setup and the uninstaller are built with DEP and ASLR. An install folder outside Program Files (`/DIR=` or the Folder page) gets the permissions of Program Files before any file is copied: owned by Administrators, SYSTEM and Administrators full control, Users read and run, nothing inherited, so a standard user cannot plant a DLL or swap a program that setup, the uninstaller or other users run. `vc_redist` is unpacked into setup's private temporary folder and must carry a valid Microsoft signature at build time. Setup makes nothing in `C:\ProgramData`, registers no URL protocol, service or scheduled task, and the uninstaller starts no program from the application folder.
+- **Ubuntu**: the `.deb` has no dependency on `curl` or `wget`, no setuid or world-writable file, no URL handler, and its maintainer scripts only edit `/etc/xdg/mimeapps.list` between their own markers. *Open file location* no longer goes through a shell (a folder named like `$(command)` used to run it).
+- **Build**: the Linux packaging image installs only Ubuntu's own packages (the NodeSource script piped into a shell and the unused npm package are gone).
+- **Checks**: every build runs `desktop-apps/tools/sos-apps/audit_package_ubuntu.sh` (job `verify-apps`) and `audit_installer_windows.ps1` (job `verify-windows`, and the quick *Windows installer* workflow).
+
 ### Code signing
 
 `build-windows` signs the build when a certificate is configured in the repository's **Settings > Secrets and variables > Actions**. The step *Prepare code signing* picks the method; `build/windows/build.ps1 -Sign -SignArgs …` then signs every `.exe` and `.dll` before packaging (`make.ps1 -Sign`) and the installer and uninstaller (`make_inno.ps1 -Sign`), and fails if the installer carries no signature. With no secrets the build is unsigned, as before. The job summary says which applies.

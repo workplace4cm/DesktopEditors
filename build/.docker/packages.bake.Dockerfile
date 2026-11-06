@@ -29,13 +29,12 @@ FROM ubuntu:24.04 AS package
     ENV BUNDLE_BASE=${BUNDLE_BASE}
     ENV OUT_DIR=${OUT_DIR}
 
+    # Only Ubuntu's own signed packages: no third-party repository script
+    # piped into a shell and no npm packages (nothing here used Node.js).
     RUN apt-get update && \
         DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
             devscripts dpkg-dev build-essential fakeroot debhelper \
-            rpm m4 curl ca-certificates gnupg symlinks && \
-        curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-        apt-get install -y nodejs && \
-        npm install -g @yao-pkg/pkg && \
+            rpm m4 ca-certificates symlinks && \
         rm -rf /var/lib/apt/lists/*
 
     #Build files
