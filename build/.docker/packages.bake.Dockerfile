@@ -34,7 +34,7 @@ FROM ubuntu:24.04 AS package
     RUN apt-get update && \
         DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
             devscripts dpkg-dev build-essential fakeroot debhelper \
-            rpm m4 ca-certificates symlinks && \
+            rpm m4 ca-certificates symlinks patchelf && \
         rm -rf /var/lib/apt/lists/*
 
     #Build files
