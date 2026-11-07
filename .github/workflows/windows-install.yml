@@ -90,6 +90,13 @@ jobs:
           $setup = Get-ChildItem desktop-apps/package/inno -Filter '*.exe' | Where-Object Name -notlike 'vc_redist*' | Select-Object -First 1
           desktop-apps/tools/sos-apps/verify_windows.ps1 -Installer $setup.FullName -Out "$env:RUNNER_TEMP\windows"
 
+      - name: Installer security audit
+        if: ${{ !cancelled() }}
+        shell: pwsh
+        run: |
+          $setup = Get-ChildItem desktop-apps/package/inno -Filter '*.exe' | Where-Object Name -notlike 'vc_redist*' | Select-Object -First 1
+          desktop-apps/tools/sos-apps/audit_installer_windows.ps1 -Installer $setup.FullName -Out "$env:RUNNER_TEMP\windows\audit"
+
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:

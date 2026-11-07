@@ -119,5 +119,12 @@ function Save-VcRedist([string]$PackageDir, [string]$Arch) {
         }
         if (-not $got) { throw "Could not obtain a valid vc_redist.$Arch.exe after 5 attempts." }
     }
-    Write-Host "VCRedist staged: $((Get-Item $vcRedist).VersionInfo.ProductVersion)"
+    # Setup runs it as administrator on every PC: it must be Microsoft's own,
+    # untouched file, whatever the download path or the runner's cache held.
+    $sig = Get-AuthenticodeSignature $vcRedist
+    if ($sig.Status -ne 'Valid' -or $sig.SignerCertificate.Subject -notmatch 'O=Microsoft Corporation') {
+        Remove-Item $vcRedist -Force -ErrorAction SilentlyContinue
+        throw "vc_redist.$Arch.exe is not validly signed by Microsoft ($($sig.Status): $($sig.SignerCertificate.Subject))"
+    }
+    Write-Host "VCRedist staged: $((Get-Item $vcRedist).VersionInfo.ProductVersion), signed by $($sig.SignerCertificate.Subject)"
 }
