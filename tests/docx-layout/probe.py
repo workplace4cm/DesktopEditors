@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Opens DOCX files in the installed EuroOffice Writer and records how it laid
+"""Opens DOCX files in the installed SecureOffice Writer and records how it laid
 them out: every paragraph's page and vertical extent, every drawing's place,
 size, wrapping, and (SmartArt) the shapes it contains. On the SmartArt
 documents it also presses Enter around the SmartArt and resizes it, and

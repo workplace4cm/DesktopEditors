@@ -1,6 +1,6 @@
 name: Template library
 
-# Opens every start-page template with the EuroOffice engine of the latest
+# Opens every start-page template with the SecureOffice engine of the latest
 # green main build, in minutes instead of a full build. build.yml runs the
 # same check against the packages it has just built.
 

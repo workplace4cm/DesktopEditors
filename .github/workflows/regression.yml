@@ -1,7 +1,7 @@
 name: Regression (four applications)
 
 # Phase 9: cross-application functional and document-format regression test
-# of EuroOffice Writer, Sheet, Presentation and PDF on the Ubuntu package of
+# of SecureOffice Writer, Sheet, Presentation and PDF on the Ubuntu package of
 # an earlier build run. desktop-apps tools/sos-apps/regression drives the
 # real applications (start pages, editors, native file pickers) as a
 # separate user whose network access is blocked except loopback, so the

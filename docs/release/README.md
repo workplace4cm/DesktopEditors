@@ -5,10 +5,10 @@ from Euro-Office Desktop Editors. It installs as four separate applications:
 
 | Application | Opens | Accent |
 |---|---|---|
-| EuroOffice Writer | DOC, DOCX, ODT, RTF, TXT | blue |
-| EuroOffice Sheet | XLS, XLSX, ODS, CSV | green |
-| EuroOffice Presentation | PPT, PPTX, ODP | orange |
-| EuroOffice PDF | PDF, PDF forms | red |
+| SecureOffice Writer | DOC, DOCX, ODT, RTF, TXT | blue |
+| SecureOffice Sheet | XLS, XLSX, ODS, CSV | green |
+| SecureOffice Presentation | PPT, PPTX, ODP | orange |
+| SecureOffice PDF | PDF, PDF forms | red |
 
 | Document | For |
 |---|---|

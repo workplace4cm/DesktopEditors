@@ -266,7 +266,7 @@ jobs:
           cmake --build /tmp/recentdocuments
           /tmp/recentdocuments/tst_recentdocuments
 
-      # EuroOffice Writer, Sheet, Presentation and PDF: which application a
+      # SecureOffice Writer, Sheet, Presentation and PDF: which application a
       # launch or a document belongs to, per-application single-instance,
       # taskbar and data keys, and the installers' file types agree.
       - name: Test application identities

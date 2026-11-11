@@ -39,7 +39,7 @@ The Windows installer is not code-signed yet (see [KNOWN-LIMITATIONS.md](KNOWN-L
 
 The installer creates:
 
-- four Start Menu entries: **EuroOffice Writer**, **EuroOffice Sheet**, **EuroOffice Presentation** and **EuroOffice PDF**;
+- four Start Menu entries: **SecureOffice Writer**, **SecureOffice Sheet**, **SecureOffice Presentation** and **SecureOffice PDF**;
 - four desktop shortcuts with the same names, each with its own icon;
 - the file types: DOC, DOCX, ODT, RTF and TXT go to Writer; XLS, XLSX, ODS and CSV to Sheet; PPT, PPTX and ODP to Presentation; PDF to PDF;
 - all four applications in **Settings > Apps > Default apps**.
@@ -98,7 +98,7 @@ When `dpkg` reports missing dependencies, the PC isn't a standard Ubuntu Desktop
 
 The package installs:
 
-- four applications in the app grid (**Show Apps**), in the Office category: EuroOffice Writer, Sheet, Presentation and PDF, each with its own icon. The suite entry itself is hidden.
+- four applications in the app grid (**Show Apps**), in the Office category: SecureOffice Writer, Sheet, Presentation and PDF, each with its own icon. The suite entry itself is hidden.
 - commands: `secure-office-suite-desktopeditors-writer`, `-sheet`, `-presentation` and `-pdf`, each taking file names;
 - the default applications for DOC, DOCX, ODT, RTF, TXT, XLS, XLSX, ODS, CSV, PPT, PPTX, ODP and PDF, for every user (`/etc/xdg/mimeapps.list`). A user's own choice in **Settings** or in the file manager's **Open With** still wins.
 
@@ -131,7 +131,7 @@ Neither command touches anything in users' home folders. The applications, menu 
 
 ### Starting an application
 
-Start **EuroOffice Writer**, **Sheet**, **Presentation** or **PDF** from the Start Menu, the app grid, the desktop shortcut, or by double-clicking a document. Each application is independent:
+Start **SecureOffice Writer**, **Sheet**, **Presentation** or **PDF** from the Start Menu, the app grid, the desktop shortcut, or by double-clicking a document. Each application is independent:
 
 - It has its own window, taskbar or dock icon, and start page.
 - Double-clicking a document opens it in the application it belongs to, in the copy that is already running if there is one.
@@ -183,7 +183,7 @@ Back up these folders together with your documents. Upgrades and uninstalls keep
 | Problem | What to do |
 |---|---|
 | SmartScreen blocks the installer | Check the checksum, then **More info > Run anyway**. Signing the installer would remove this warning; see the limitations. |
-| A PDF still opens in Edge, or a TXT asks which app to use, after installing | Sign out and back in once. Or right-click a PDF, choose **Open with > Choose another app**, pick **EuroOffice PDF** and tick **Always**. |
+| A PDF still opens in Edge, or a TXT asks which app to use, after installing | Sign out and back in once. Or right-click a PDF, choose **Open with > Choose another app**, pick **SecureOffice PDF** and tick **Always**. |
 | Windows asks at first start whether to make the suite the default | Answer once. Administrators can set `ignoreAssocMsg` = `true` (string) under the settings key above to skip the question. |
 | `dpkg: dependency problems` on Ubuntu | The PC isn't a standard Ubuntu Desktop install. See [Install, without internet](#install-without-internet). |
 | An application doesn't start on Ubuntu | Run its command from a terminal (`secure-office-suite-desktopeditors-writer`) and read the messages. A missing `libpulse0` or `libopengl0` means a minimal install. |

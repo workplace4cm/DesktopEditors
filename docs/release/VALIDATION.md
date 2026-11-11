@@ -53,7 +53,7 @@ This document records how the Phase 10 installation tests were run and what they
 
 ## Phase 9 finding D3 (medium): closed, not reproduced
 
-*"EuroOffice Sheet may close after a CSV double-click on a fresh Windows install."* The release validation double-clicks a CSV six times on each Windows machine, three of them on a brand-new profile (settings and data wiped first), and checks that Sheet is still running 15 seconds later.
+*"SecureOffice Sheet may close after a CSV double-click on a fresh Windows install."* The release validation double-clicks a CSV six times on each Windows machine, three of them on a brand-new profile (settings and data wiped first), and checks that Sheet is still running 15 seconds later.
 
 | Run | Windows 2022 | Windows 2025 |
 |---|---|---|

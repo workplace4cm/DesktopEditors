@@ -1,6 +1,6 @@
 # Secure Office Suite 1.0.0
 
-An offline office suite for Windows and Ubuntu: **EuroOffice Writer**, **Sheet**, **Presentation** and **PDF**, four independent applications with their own launchers, icons, start pages, recent documents, local templates and file types. Nothing in the suite connects to the internet.
+An offline office suite for Windows and Ubuntu: **SecureOffice Writer**, **Sheet**, **Presentation** and **PDF**, four independent applications with their own launchers, icons, start pages, recent documents, local templates and file types. Nothing in the suite connects to the internet.
 
 ## Downloads
 
