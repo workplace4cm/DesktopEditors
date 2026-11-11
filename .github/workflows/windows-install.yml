@@ -2,7 +2,7 @@ name: Windows installer
 
 # Rebuilds the Windows installer from this branch's desktop-apps packaging
 # (Inno Setup project) around the program files of an earlier build run, then
-# installs it and checks the Windows integration of EuroOffice Writer, Sheet,
+# installs it and checks the Windows integration of SecureOffice Writer, Sheet,
 # Presentation and PDF (desktop-apps tools/sos-apps/verify_windows.ps1): in
 # minutes instead of a full build. build.yml runs the same check against the
 # installer it builds.

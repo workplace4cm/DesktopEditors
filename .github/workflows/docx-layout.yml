@@ -1,6 +1,6 @@
 name: DOCX layout (SmartArt and drawings)
 
-# Opens the DOCX layout test cases (tests/docx-layout) in EuroOffice Writer
+# Opens the DOCX layout test cases (tests/docx-layout) in SecureOffice Writer
 # from the Ubuntu package of a build run and records where every paragraph
 # and drawing lands, what Enter and resizing do around a SmartArt, and the
 # editor's JavaScript errors. Results: the job summary and the "docx-layout"

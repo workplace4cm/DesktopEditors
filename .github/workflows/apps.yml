@@ -1,6 +1,6 @@
 name: Four applications
 
-# Launches EuroOffice Writer, Sheet, Presentation and PDF from the Ubuntu
+# Launches SecureOffice Writer, Sheet, Presentation and PDF from the Ubuntu
 # package of an earlier build run, in minutes instead of a full build, and
 # checks their Ubuntu integration (menus, default applications, double-click,
 # upgrade, uninstall). The package's menu entries and install scripts are
