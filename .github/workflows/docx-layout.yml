@@ -123,7 +123,10 @@ jobs:
           x2t=$(ls /opt/*/desktopeditors/converter/x2t | head -1)
           conv=$(dirname "$x2t")
           allfonts=$(sudo find /home/qa -name AllFonts.js 2>/dev/null | head -1)
-          sel=$(dirname "${allfonts:-/nonexistent}")/font_selection.bin
+          # the font folder the app made for this user (AllFonts.js + font_selection.bin), as
+          # the app passes it to x2t; without it x2t uses converter/font_selection.bin, whose
+          # paths are those of the build machine
+          fontdir=$(dirname "${allfonts:-/nonexistent}")
           echo "AllFonts.js: ${allfonts:-none}" | tee -a "$GITHUB_STEP_SUMMARY"
           sudo mkdir -p /tmp/out/pdf && sudo chmod a+rwx /tmp/out/pdf
           cp tests/docx-layout/doc1.docx /tmp/out/pdf/doc1-original.docx
@@ -137,7 +140,7 @@ jobs:
             <m_sFileFrom>$f</m_sFileFrom>
             <m_sFileTo>/tmp/out/pdf/$n.pdf</m_sFileTo>
             <m_nFormatTo>513</m_nFormatTo>
-            <m_sFontDir>/usr/share/fonts</m_sFontDir>
+            <m_sFontDir>$fontdir</m_sFontDir>
             <m_sAllFontsPath>$allfonts</m_sAllFontsPath>
             <m_sThemeDir>$conv/../editors/sdkjs/slide/themes</m_sThemeDir>
             <m_bIsNoBase64>true</m_bIsNoBase64>
@@ -148,11 +151,15 @@ jobs:
             if [ -f "/tmp/out/pdf/$n.pdf" ]; then
               pdfinfo "/tmp/out/pdf/$n.pdf" | grep -E 'Pages|Page size' | sed "s/^/$n: /" | tee -a "$GITHUB_STEP_SUMMARY"
               pdftoppm -r 60 -png "/tmp/out/pdf/$n.pdf" "/tmp/out/pdf/$n"
+              words=$(pdftotext "/tmp/out/pdf/$n.pdf" - | wc -w)
+              echo "$n: $words words of text" | tee -a "$GITHUB_STEP_SUMMARY"
+              [ "$words" -gt 100 ] || { echo "FAIL: $n PDF has no body text" | tee -a "$GITHUB_STEP_SUMMARY"; pdffail=1; }
             else
               echo "$n: no PDF" | tee -a "$GITHUB_STEP_SUMMARY"; tail -20 "/tmp/out/pdf/$n.log"
             fi
           done
           ls -la /tmp/out/pdf
+          [ -z "${pdffail:-}" ]
 
       - name: Make the results readable
         if: always()
