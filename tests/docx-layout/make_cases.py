@@ -12,6 +12,13 @@ Cases (all keep the four text paragraphs of the sample):
   05-picture-inline.docx         a picture in the same place
   06-picture-anchor-square.docx  a floating picture, wrap square
   07-two-smartarts.docx          inline SmartArt followed by a floating one
+
+From doc1.docx (Word 2007: an inline locked drawing canvas whose own
+coordinates are larger than its wp:extent, and a 3-D column chart on page 2):
+  08-doc1.docx                   the file as Word saved it
+  09-picture-xfrm-mismatch.docx  inline picture whose pic:spPr size is twice
+                                 its wp:extent (Word draws it at wp:extent)
+  10-picture-oversize.docx       inline picture wider than the text column
 """
 import os
 import re
@@ -22,6 +29,7 @@ import zlib
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, 'sample.docx')
+DOC1 = os.path.join(HERE, 'doc1.docx')
 EMU = 914400
 
 def png(w, h):
@@ -200,6 +208,28 @@ def main(out):
     d = d[:at] + '<w:r><w:rPr><w:noProof/></w:rPr><w:drawing>' + anchor(g, cx // 2, cy // 2, 'square', 2, 'Diagram 2', x_emu=cx // 2) + '</w:drawing></w:r>' + d[at:]
     p['word/document.xml'] = d.encode()
     write(os.path.join(out, '07-two-smartarts.docx'), p)
+
+    with zipfile.ZipFile(DOC1) as z:
+        write(os.path.join(out, '08-doc1.docx'), read(z))
+
+    # a picture whose own size disagrees with the size Word lays it out at
+    p = dict(base)
+    add_image(p, 'rId11')
+    pic_inline = ('<wp:inline distT="0" distB="0" distL="0" distR="0"><wp:extent cx="%d" cy="%d"/>'
+                  '<wp:effectExtent l="0" t="0" r="0" b="0"/><wp:docPr id="1" name="Picture 1"/><wp:cNvGraphicFramePr/>%s</wp:inline>'
+                  % (pcx, pcy, pic_graphic('rId11', pcx * 2, pcy * 2)))
+    p['word/document.xml'] = doc.replace(inline, pic_inline).encode()
+    write(os.path.join(out, '09-picture-xfrm-mismatch.docx'), p)
+
+    # an inline picture 9 inches wide on a 6.5-inch text column
+    p = dict(base)
+    add_image(p, 'rId11')
+    ocx, ocy = 9 * EMU, 4 * EMU
+    pic_inline = ('<wp:inline distT="0" distB="0" distL="0" distR="0"><wp:extent cx="%d" cy="%d"/>'
+                  '<wp:effectExtent l="0" t="0" r="0" b="0"/><wp:docPr id="1" name="Picture 1"/><wp:cNvGraphicFramePr/>%s</wp:inline>'
+                  % (ocx, ocy, pic_graphic('rId11', ocx, ocy)))
+    p['word/document.xml'] = doc.replace(inline, pic_inline).encode()
+    write(os.path.join(out, '10-picture-oversize.docx'), p)
     for n in sorted(os.listdir(out)):
         with zipfile.ZipFile(os.path.join(out, n)) as z:
             assert z.testzip() is None
