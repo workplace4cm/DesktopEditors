@@ -125,6 +125,16 @@ jobs:
           allfonts=$(sudo find /home/qa -name AllFonts.js 2>/dev/null | head -1)
           sel=$(dirname "${allfonts:-/nonexistent}")/font_selection.bin
           echo "AllFonts.js: ${allfonts:-none}" | tee -a "$GITHUB_STEP_SUMMARY"
+          # where the font lists point (a path that does not exist means text is dropped from the PDF)
+          {
+            echo "font lists:"
+            for f in "$sel" "$allfonts" $(sudo find /opt -name 'font_selection.bin' -o -name 'AllFonts.js' 2>/dev/null); do
+              [ -f "$f" ] || continue
+              n=$(sudo strings -e l "$f" | grep -c '^/') ; m=$(sudo grep -ao '/[A-Za-z0-9_./ -]*\.\(ttf\|otf\|ttc\)' "$f" | head -3 | tr '\n' ' ')
+              echo "  $f: utf16 paths $n; sample $m $(sudo strings -e l "$f" | grep '^/' | head -2 | tr '\n' ' ')"
+            done
+            echo "Carlito files: $(sudo find / -xdev -iname 'Carlito-Regular.ttf' 2>/dev/null | tr '\n' ' ')"
+          } | tee -a "$GITHUB_STEP_SUMMARY"
           sudo mkdir -p /tmp/out/pdf && sudo chmod a+rwx /tmp/out/pdf
           cp tests/docx-layout/doc1.docx /tmp/out/pdf/doc1-original.docx
           [ -f /tmp/out/cases/08-doc1.docx ] && cp /tmp/out/cases/08-doc1.docx /tmp/out/pdf/doc1-saved-by-writer.docx
