@@ -23,6 +23,9 @@ var ld = api.WordControl.m_oLogicDocument;
 function mm(v){return typeof v==='number'?Math.round(v*10)/10:v;}
 function tr(o){var t=o&&o.transform;return t?[mm(t.tx),mm(t.ty)]:null;}
 var out={pages: ld.Pages.length, paras:[], drawings:[], modified: !!(api.isDocumentModified&&api.isDocumentModified())};
+try { var sp=ld.Content[0].Get_SectPr(); out.frame={W:mm(sp.GetPageWidth()),H:mm(sp.GetPageHeight()),
+  L:mm(sp.GetPageMarginLeft()),R:mm(sp.GetPageWidth()-sp.GetPageMarginRight()),
+  T:mm(sp.GetPageMarginTop()),B:mm(sp.GetPageHeight()-sp.GetPageMarginBottom())}; } catch(e) { out.frame=null; }
 for (var i=0;i<ld.Content.length;i++){
   var el=ld.Content[i]; var r={i:i, text:(el.GetText?el.GetText():'').slice(0,24)};
   r.pages=[];
@@ -43,6 +46,12 @@ for (var j=0;j<dr.length;j++){
          para: p?ld.Content.indexOf(p):null, X:mm(d.X), Y:mm(d.Y), W:mm(d.Extent.W), H:mm(d.Extent.H),
          type:g&&g.getObjectType&&g.getObjectType(), name:g&&g.getName&&g.getName()};
   if (g){ o.pos=tr(g); o.ext=[mm(g.extX),mm(g.extY)];
+    if (g.bounds) o.bounds=[mm(g.bounds.l),mm(g.bounds.t),mm(g.bounds.r),mm(g.bounds.b)];
+    if (g.spPr&&g.spPr.xfrm&&g.spTree){var gx=g.spPr.xfrm;o.chXfrm=[mm(gx.chOffX),mm(gx.chOffY),mm(gx.chExtX),mm(gx.chExtY)];
+      o.children=g.spTree.map(function(c){var b=c.bounds||{};return [mm(c.transform?c.transform.tx:null),mm(c.transform?c.transform.ty:null),mm(c.extX),mm(c.extY)];});
+      var cb={l:1e9,t:1e9,r:-1e9,b:-1e9}; g.spTree.forEach(function(c){var t=c.transform;if(!t)return;cb.l=Math.min(cb.l,t.tx);cb.t=Math.min(cb.t,t.ty);cb.r=Math.max(cb.r,t.tx+c.extX);cb.b=Math.max(cb.b,t.ty+c.extY);});
+      if (g.spTree.length) o.childrenBox=[mm(cb.l),mm(cb.t),mm(cb.r),mm(cb.b)];}
+    o.effect=[mm(d.EffectExtent.L||0),mm(d.EffectExtent.T||0),mm(d.EffectExtent.R||0),mm(d.EffectExtent.B||0)];
     if (g.spPr&&g.spPr.xfrm){var x=g.spPr.xfrm;o.xfrm=[mm(x.offX),mm(x.offY),mm(x.extX),mm(x.extY)];}
     if (g.getDrawing){ var dd=g.getDrawing(); o.hasDrawingPart=!!dd;
       if (dd){ o.drawingPos=tr(dd); o.drawingExt=[mm(dd.extX),mm(dd.extY)];
@@ -89,7 +98,7 @@ def overlaps(lay):
     the drawing's shapes on the same page"""
     found = []
     for k, d in enumerate(lay['drawings']):
-        box = d.get('shapesBox') or (d.get('pos') and [d['pos'][0], d['pos'][1], d['pos'][0] + d['ext'][0], d['pos'][1] + d['ext'][1]])
+        box = d.get('shapesBox') or d.get('childrenBox') or d.get('bounds') or (d.get('pos') and [d['pos'][0], d['pos'][1], d['pos'][0] + d['ext'][0], d['pos'][1] + d['ext'][1]])
         if not box or d.get('behind'):
             continue
         for p in lay['paras']:
@@ -102,6 +111,63 @@ def overlaps(lay):
                     if x0 < box[2] - 0.5 and x1 > box[0] + 0.5:
                         found.append({'drawing': k, 'para': p['i'], 'line': [ln['top'], ln['bottom'], x0, x1], 'box': box})
     return found
+
+
+def outside_page(lay):
+    """an inline drawing (its drawn box) that leaves the text column or is
+    drawn larger than the room the line reserves for it"""
+    out = []
+    f = lay.get('frame')
+    for k, d in enumerate(lay.get('drawings', [])):
+        b = d.get('bounds')
+        cb = d.get('childrenBox')
+        if b and cb:
+            b = [min(b[0], cb[0]), min(b[1], cb[1]), max(b[2], cb[2]), max(b[3], cb[3])]
+        if not b or not d.get('inline') or not f:
+            continue
+        e = d.get('effect') or [0, 0, 0, 0]
+        tol = 1.0
+        if b[0] < f['L'] - e[0] - tol or b[2] > f['R'] + e[2] + tol or b[1] < f['T'] - tol or b[3] > f['B'] + tol:
+            out.append({'drawing': k, 'name': d.get('name'), 'bounds': b, 'frame': f, 'why': 'outside the page margins'})
+        if (b[2] - b[0]) > d['W'] + e[0] + e[2] + tol or (b[3] - b[1]) > d['H'] + e[1] + e[3] + tol:
+            out.append({'drawing': k, 'name': d.get('name'), 'bounds': b, 'reserved': [d['W'], d['H']],
+                        'why': 'drawn larger than the space laid out for it'})
+    return out
+
+
+def word_pages(path):
+    """The page Word put each body paragraph on when it last saved the file
+    (w:lastRenderedPageBreak), or None if Word left no page marks."""
+    import re
+    import zipfile
+    with zipfile.ZipFile(path) as z:
+        doc = z.read('word/document.xml').decode('utf-8', 'replace')
+    body = doc[doc.find('<w:body>'):]
+    if 'lastRenderedPageBreak' not in body:
+        return None
+    page, out = 0, []
+    for m in re.finditer(r'<w:p\b[^>]*?(?:/>|>.*?</w:p>)|<w:tbl>.*?</w:tbl>', body, re.S):
+        xml = m.group(0)
+        first_text = re.search(r'<w:t[ >]|<w:drawing>', xml)
+        head = xml[:first_text.start()] if first_text else xml
+        if 'lastRenderedPageBreak' in head:
+            page += 1
+        out.append(page)
+        page += xml.count('lastRenderedPageBreak') - head.count('lastRenderedPageBreak')
+    return out
+
+
+def pagination(lay, expected):
+    """paragraphs that start on another page than in Word"""
+    if not expected or not lay:
+        return []
+    diff = []
+    for p, want in zip(lay['paras'], expected):
+        filled = [q for q in p['pages'] if q['bottom'] > q['top'] + 0.01]
+        got = (filled or p['pages'])[0]['page'] if p['pages'] else None
+        if got != want:
+            diff.append({'para': p['i'], 'text': p['text'], 'word_page': want + 1, 'page': None if got is None else got + 1})
+    return diff
 
 
 def broken_words(lay):
@@ -135,6 +201,29 @@ def errors(ed):
         elif e.get('method') == 'Runtime.consoleAPICalled' and e['params'].get('type') == 'error':
             out.append(' '.join(str(a.get('value', a.get('description', ''))) for a in e['params'].get('args', []))[:400])
     return out
+
+
+ZOOM = r"""
+api.zoom(%d); return true;
+"""
+
+GOTO = r"""
+api.goToPage(%d); return true;
+"""
+
+
+def page_shots(ed, name, pages):
+    """each page whole (zoom to fit the page), then back to 100 %"""
+    ed.js("var b=document.querySelector('.tip-arrow, .asc-tooltip-popup'); "
+          "document.querySelectorAll('button').forEach(function(x){if(x.textContent.trim()==='Got it')x.click();}); return 1")
+    ed.js("api.zoomFitToPage(); return 1")
+    time.sleep(1.5)
+    for n in range(pages):
+        ed.js(GOTO % n)
+        time.sleep(1.2)
+        shot(ed, '%s-page%d' % (name, n + 1))
+    ed.js(ZOOM % 100)
+    time.sleep(1)
 
 
 def undo(ed):
@@ -172,42 +261,63 @@ def main(out, files):
         time.sleep(3)
         r['open'] = lay = dump(ed)
         r['overlaps'] = overlaps(lay) if lay else None
+        r['outside'] = outside_page(lay) if lay else None
+        # only files as Word saved them carry Word's page marks
+        r['word_pages'] = word_pages(f) if name.startswith(('01', '08')) else None
+        r['pagination'] = pagination(lay, r['word_pages'])
+        if name.startswith('08') and lay:
+            page_shots(ed, name, lay['pages'])
+            # zooming must not change the layout
+            zl = {}
+            for z in (50, 150, 200):
+                ed.js(ZOOM % z)
+                time.sleep(1.5)
+                zd = dump(ed)
+                zl[z] = (zd['pages'], [(p['i'], p['pages']) for p in zd['paras']],
+                         [(d['page'], d['X'], d['Y'], d['W'], d['H']) for d in zd['drawings']])
+            ed.js(ZOOM % 100)
+            time.sleep(1)
+            base_l = (lay['pages'], [(p['i'], p['pages']) for p in lay['paras']],
+                      [(d['page'], d['X'], d['Y'], d['W'], d['H']) for d in lay['drawings']])
+            r['zoom_changes'] = [z for z, v in zl.items() if json.dumps(v) != json.dumps(base_l)]
         if lay and lay['drawings']:
             # bring the first drawing into view (cursor at the end of its paragraph)
             ed.js(PLACE % (lay['drawings'][0]['para'], 'true'))
             time.sleep(1)
         shot(ed, name + '-0-open')
-        if lay and lay['drawings'] and name.startswith(('01', '04', '05')):
-            dp = lay['drawings'][0]['para']
+        if lay and lay['drawings'] and name.startswith(('01', '04', '05', '08')):
             steps = {}
-            # Enter at the end of the paragraph above the drawing
-            press_enter(ed, dp - 1, end=True)
-            steps['enter_above'] = dump(ed)
-            shot(ed, name + '-1-enter-above')
-            undo(ed)
-            # Enter right before the drawing (start of its paragraph)
-            press_enter(ed, dp, end=False)
-            steps['enter_before'] = dump(ed)
-            shot(ed, name + '-2-enter-before')
-            undo(ed)
-            # Enter at the start of the paragraph after the drawing
-            press_enter(ed, dp + 1, end=False)
-            steps['enter_after'] = dump(ed)
-            shot(ed, name + '-3-enter-after')
-            undo(ed)
-            # resize the drawing to 2/3 of its size
-            d0 = lay['drawings'][0]
-            try:
-                ed.js_strict(RESIZE % (0, d0['W'] * 2 / 3, d0['H'] * 2 / 3))
-                time.sleep(2)
-                steps['resize'] = dump(ed)
-                shot(ed, name + '-4-resize')
+            for di in range(len(lay['drawings']) if name.startswith('08') else 1):
+                sfx = '' if di == 0 else '-d%d' % di
+                dp = lay['drawings'][di]['para']
+                # Enter at the end of the paragraph above the drawing
+                press_enter(ed, dp - 1, end=True)
+                steps['enter_above' + sfx] = dump(ed)
+                shot(ed, name + '-1-enter-above' + sfx)
                 undo(ed)
-            except Exception as e:
-                steps['resize'] = {'error': str(e)}
-            steps['after_undo'] = dump(ed)
+                # Enter right before the drawing (start of its paragraph)
+                press_enter(ed, dp, end=False)
+                steps['enter_before' + sfx] = dump(ed)
+                shot(ed, name + '-2-enter-before' + sfx)
+                undo(ed)
+                # Enter at the start of the paragraph after the drawing
+                press_enter(ed, dp + 1, end=False)
+                steps['enter_after' + sfx] = dump(ed)
+                shot(ed, name + '-3-enter-after' + sfx)
+                undo(ed)
+                # resize the drawing to 2/3 of its size
+                d0 = lay['drawings'][di]
+                try:
+                    ed.js_strict(RESIZE % (di, d0['W'] * 2 / 3, d0['H'] * 2 / 3))
+                    time.sleep(2)
+                    steps['resize' + sfx] = dump(ed)
+                    shot(ed, name + '-4-resize' + sfx)
+                    undo(ed)
+                except Exception as e:
+                    steps['resize' + sfx] = {'error': str(e)}
+                steps['after_undo' + sfx] = dump(ed)
             r['steps'] = steps
-            if name.startswith('01'):
+            if name.startswith(('01', '08')):
                 # save as DOCX the way a user does, reopen, compare
                 m0 = os.path.getmtime(f)
                 # one character in the empty last paragraph, so there is a change to save
@@ -230,7 +340,10 @@ def main(out, files):
                     time.sleep(3)
                     r['reopen'] = dump(ed)
                     r['reopen_overlaps'] = overlaps(r['reopen']) if r['reopen'] else None
+                    r['reopen_outside'] = outside_page(r['reopen']) if r['reopen'] else None
                     shot(ed, name + '-5-reopened')
+                    if name.startswith('08') and r['reopen']:
+                        page_shots(ed, name + '-reopened', r['reopen']['pages'])
         r['errors'] = errors(ed)
         try:
             ed.js("api.asc_setDocumentModified && api.asc_setDocumentModified(false); return 1")
@@ -250,10 +363,20 @@ def main(out, files):
             problems.append('%s: words broken inside SmartArt blocks %s' % (r['file'], broken_words(r['open'])))
         if r.get('reopen_overlaps'):
             problems.append('%s: text over a drawing after save + reopen' % r['file'])
+        if r.get('outside'):
+            problems.append('%s: drawing outside its space %s' % (r['file'], r['outside'][:2]))
+        if r.get('reopen_outside'):
+            problems.append('%s: drawing outside its space after save + reopen %s' % (r['file'], r['reopen_outside'][:2]))
+        if r.get('pagination'):
+            problems.append('%s: pages differ from Word %s' % (r['file'], r['pagination'][:4]))
+        if r.get('zoom_changes'):
+            problems.append('%s: layout changes at zoom %s' % (r['file'], r['zoom_changes']))
         for k, st in (r.get('steps') or {}).items():
             if st and 'error' not in st:
                 if overlaps(st):
                     problems.append('%s %s: text over a drawing' % (r['file'], k))
+                if outside_page(st):
+                    problems.append('%s %s: drawing outside its space %s' % (r['file'], k, outside_page(st)[:2]))
                 bw = broken_words(st)
                 if bw:
                     problems.append('%s %s: words broken inside SmartArt blocks %s' % (r['file'], k, bw))
@@ -276,8 +399,14 @@ def main(out, files):
             for p in lay.get('paras', []):
                 fh.write('- para %d `%s` %s lines=%s\n' % (p['i'], p['text'], p['pages'], p['lines']))
             for d in lay.get('drawings', []):
-                fh.write('- drawing: %s\n' % json.dumps({k: d.get(k) for k in ('name', 'inline', 'wrap', 'para', 'page', 'X', 'Y', 'W', 'H', 'pos', 'ext', 'xfrm', 'hasDrawingPart', 'drawingPos', 'drawingExt', 'shapesBox', 'canGenerate')}))
+                fh.write('- drawing: %s\n' % json.dumps({k: d.get(k) for k in ('name', 'inline', 'wrap', 'para', 'page', 'X', 'Y', 'W', 'H', 'pos', 'ext', 'bounds', 'effect', 'xfrm', 'chXfrm', 'childrenBox', 'children', 'hasDrawingPart', 'drawingPos', 'drawingExt', 'shapesBox', 'canGenerate')}))
             fh.write('- overlaps: %s\n' % json.dumps(r.get('overlaps')))
+            fh.write('- outside: %s\n' % json.dumps(r.get('outside')))
+            if r.get('word_pages') is not None:
+                fh.write('- Word pages (lastRenderedPageBreak): %s; differences: %s\n' % (
+                    [n + 1 for n in r['word_pages']], json.dumps(r.get('pagination'))))
+            if 'zoom_changes' in r:
+                fh.write('- zoom 50/150/200 changes layout: %s\n' % json.dumps(r['zoom_changes']))
             if 'saved' in r:
                 ro = r.get('reopen') or {}
                 fh.write('- saved with Ctrl+S: %s; reopened: %s, pages %s; drawings %s; overlaps %s\n' % (
