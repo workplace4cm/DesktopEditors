@@ -125,7 +125,7 @@ jobs:
           allfonts=$(sudo find /home/qa -name AllFonts.js 2>/dev/null | head -1)
           sel=$(dirname "${allfonts:-/nonexistent}")/font_selection.bin
           echo "AllFonts.js: ${allfonts:-none}" | tee -a "$GITHUB_STEP_SUMMARY"
-          mkdir -p /tmp/out/pdf && sudo chmod a+rwx /tmp/out/pdf
+          sudo mkdir -p /tmp/out/pdf && sudo chmod a+rwx /tmp/out/pdf
           cp tests/docx-layout/doc1.docx /tmp/out/pdf/doc1-original.docx
           [ -f /tmp/out/cases/08-doc1.docx ] && cp /tmp/out/cases/08-doc1.docx /tmp/out/pdf/doc1-saved-by-writer.docx
           sudo chmod a+r /tmp/out/pdf/*.docx
