@@ -795,7 +795,7 @@ jobs:
           export DISPLAY=:99 LIBGL_ALWAYS_SOFTWARE=1 QT_QPA_PLATFORM=xcb
           Xvfb :99 -screen 0 1600x1000x24 & sleep 3
           openbox & sleep 2
-          desktop-apps/tools/sos-apps/verify_apps.sh secure-office-suite-desktopeditors "$RUNNER_TEMP/apps"
+          CURRENT_ARTWORK=1 desktop-apps/tools/sos-apps/verify_apps.sh secure-office-suite-desktopeditors "$RUNNER_TEMP/apps"
 
       # menus, icons, default applications and double-click for DOC, DOCX,
       # ODT, RTF, TXT, XLS, XLSX, ODS, CSV, PPT, PPTX, ODP and PDF, desktop
@@ -847,7 +847,7 @@ jobs:
         shell: pwsh
         run: |
           $setup = Get-ChildItem packages -Recurse -Filter '*.exe' | Select-Object -First 1
-          desktop-apps/tools/sos-apps/verify_windows.ps1 -Installer $setup.FullName -Out "$env:RUNNER_TEMP\windows"
+          desktop-apps/tools/sos-apps/verify_windows.ps1 -Installer $setup.FullName -Out "$env:RUNNER_TEMP\windows" -CurrentArtwork
 
       # DEP/ASLR, permissions of an install folder outside Program Files,
       # quoted open commands, no URL protocol/service/task/ProgramData folder
