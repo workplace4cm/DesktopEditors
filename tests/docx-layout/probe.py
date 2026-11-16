@@ -47,6 +47,10 @@ for (var j=0;j<dr.length;j++){
          type:g&&g.getObjectType&&g.getObjectType(), name:g&&g.getName&&g.getName()};
   if (g){ o.pos=tr(g); o.ext=[mm(g.extX),mm(g.extY)];
     if (g.bounds) o.bounds=[mm(g.bounds.l),mm(g.bounds.t),mm(g.bounds.r),mm(g.bounds.b)];
+    if (g.spPr&&g.spPr.xfrm&&g.spTree){var gx=g.spPr.xfrm;o.chXfrm=[mm(gx.chOffX),mm(gx.chOffY),mm(gx.chExtX),mm(gx.chExtY)];
+      o.children=g.spTree.map(function(c){var b=c.bounds||{};return [mm(c.transform?c.transform.tx:null),mm(c.transform?c.transform.ty:null),mm(c.extX),mm(c.extY)];});
+      var cb={l:1e9,t:1e9,r:-1e9,b:-1e9}; g.spTree.forEach(function(c){var t=c.transform;if(!t)return;cb.l=Math.min(cb.l,t.tx);cb.t=Math.min(cb.t,t.ty);cb.r=Math.max(cb.r,t.tx+c.extX);cb.b=Math.max(cb.b,t.ty+c.extY);});
+      if (g.spTree.length) o.childrenBox=[mm(cb.l),mm(cb.t),mm(cb.r),mm(cb.b)];}
     o.effect=[mm(d.EffectExtent.L||0),mm(d.EffectExtent.T||0),mm(d.EffectExtent.R||0),mm(d.EffectExtent.B||0)];
     if (g.spPr&&g.spPr.xfrm){var x=g.spPr.xfrm;o.xfrm=[mm(x.offX),mm(x.offY),mm(x.extX),mm(x.extY)];}
     if (g.getDrawing){ var dd=g.getDrawing(); o.hasDrawingPart=!!dd;
@@ -94,7 +98,7 @@ def overlaps(lay):
     the drawing's shapes on the same page"""
     found = []
     for k, d in enumerate(lay['drawings']):
-        box = d.get('shapesBox') or d.get('bounds') or (d.get('pos') and [d['pos'][0], d['pos'][1], d['pos'][0] + d['ext'][0], d['pos'][1] + d['ext'][1]])
+        box = d.get('shapesBox') or d.get('childrenBox') or d.get('bounds') or (d.get('pos') and [d['pos'][0], d['pos'][1], d['pos'][0] + d['ext'][0], d['pos'][1] + d['ext'][1]])
         if not box or d.get('behind'):
             continue
         for p in lay['paras']:
@@ -116,6 +120,9 @@ def outside_page(lay):
     f = lay.get('frame')
     for k, d in enumerate(lay.get('drawings', [])):
         b = d.get('bounds')
+        cb = d.get('childrenBox')
+        if b and cb:
+            b = [min(b[0], cb[0]), min(b[1], cb[1]), max(b[2], cb[2]), max(b[3], cb[3])]
         if not b or not d.get('inline') or not f:
             continue
         e = d.get('effect') or [0, 0, 0, 0]
@@ -156,7 +163,8 @@ def pagination(lay, expected):
         return []
     diff = []
     for p, want in zip(lay['paras'], expected):
-        got = p['pages'][0]['page'] if p['pages'] else None
+        filled = [q for q in p['pages'] if q['bottom'] > q['top'] + 0.01]
+        got = (filled or p['pages'])[0]['page'] if p['pages'] else None
         if got != want:
             diff.append({'para': p['i'], 'text': p['text'], 'word_page': want + 1, 'page': None if got is None else got + 1})
     return diff
@@ -205,10 +213,17 @@ api.goToPage(%d); return true;
 
 
 def page_shots(ed, name, pages):
+    """each page whole (zoom to fit the page), then back to 100 %"""
+    ed.js("var b=document.querySelector('.tip-arrow, .asc-tooltip-popup'); "
+          "document.querySelectorAll('button').forEach(function(x){if(x.textContent.trim()==='Got it')x.click();}); return 1")
+    ed.js("api.zoomFitToPage(); return 1")
+    time.sleep(1.5)
     for n in range(pages):
         ed.js(GOTO % n)
         time.sleep(1.2)
         shot(ed, '%s-page%d' % (name, n + 1))
+    ed.js(ZOOM % 100)
+    time.sleep(1)
 
 
 def undo(ed):
@@ -247,7 +262,8 @@ def main(out, files):
         r['open'] = lay = dump(ed)
         r['overlaps'] = overlaps(lay) if lay else None
         r['outside'] = outside_page(lay) if lay else None
-        r['word_pages'] = word_pages(f)
+        # only files as Word saved them carry Word's page marks
+        r['word_pages'] = word_pages(f) if name.startswith(('01', '08')) else None
         r['pagination'] = pagination(lay, r['word_pages'])
         if name.startswith('08') and lay:
             page_shots(ed, name, lay['pages'])
@@ -383,7 +399,7 @@ def main(out, files):
             for p in lay.get('paras', []):
                 fh.write('- para %d `%s` %s lines=%s\n' % (p['i'], p['text'], p['pages'], p['lines']))
             for d in lay.get('drawings', []):
-                fh.write('- drawing: %s\n' % json.dumps({k: d.get(k) for k in ('name', 'inline', 'wrap', 'para', 'page', 'X', 'Y', 'W', 'H', 'pos', 'ext', 'bounds', 'effect', 'xfrm', 'hasDrawingPart', 'drawingPos', 'drawingExt', 'shapesBox', 'canGenerate')}))
+                fh.write('- drawing: %s\n' % json.dumps({k: d.get(k) for k in ('name', 'inline', 'wrap', 'para', 'page', 'X', 'Y', 'W', 'H', 'pos', 'ext', 'bounds', 'effect', 'xfrm', 'chXfrm', 'childrenBox', 'children', 'hasDrawingPart', 'drawingPos', 'drawingExt', 'shapesBox', 'canGenerate')}))
             fh.write('- overlaps: %s\n' % json.dumps(r.get('overlaps')))
             fh.write('- outside: %s\n' % json.dumps(r.get('outside')))
             if r.get('word_pages') is not None:
